@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko-KR">
   <head>
-    <title>Vite - Tailwindcss</title>
+    <title>에몽 - 마켓에몽</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -9,30 +9,47 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/main.js"></script>
+    <script type="module" src="/main-advertising.js"></script>
   </head>
   <body>
-    <div class="header bg-slate-300">
-      <h1 class="logo text-150pxr font-bold">market-emong</h1>
-      <p></p>
+    <!-- Slider main container -->
+    <div class="swiper-advertising relative mx-auto max-w-[1920px]">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <a href="/" class="advertising-slide"
+            ><img
+              src="./src/assets/advertising-photo1.png"
+              alt="도라에몽 한눈에보는 1월의 혜택"
+          /></a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="/" class="advertising-slide">
+            <img
+              src="./src/assets/advertising-photo2.png"
+              alt="도라에몽 한눈에보는 1월의 혜택 없습니다"
+            />
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="/" class="advertising-slide">
+            <img
+              src="./src/assets/advertising-photo3.png"
+              alt="쥐를 보며 달리는 도라에몽과 함께"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
     </div>
-
-    <p class="ljh-test bg-green-400 text-105pxr">컬리 장보기의 특권</p>
-
-    <div class="swiper-product bg-orange-300 text-50pxr">
-      <ul class="flex">
-        <li>상품</li>
-        <li>상품</li>
-        <li>오류나라</li>
-        <li>상품6</li>
-        <li>상품7</li>
-        <li>상품8</li>
-      </ul>
     </div>
-
-    <p
-      class="cye-test rounded bg-purple-400 px-4 py-2 text-20pxr text-base text-white"
-    >
-      더 풍성해진 12월의 퍼플위크
-    </p>
   </body>
 </html>
