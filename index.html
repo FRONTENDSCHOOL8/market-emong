@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko-KR">
   <head>
-    <title>Vite - Tailwindcss</title>
+    <title>에몽 - 마켓에몽</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -9,30 +9,18 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/main.js"></script>
+    <script type="module" src="/main-product.js"></script>
   </head>
   <body>
-    <div class="header bg-slate-300">
-      <h1 class="logo text-150pxr font-bold">market-emong</h1>
-      <p></p>
-    </div>
-
-    <p class="ljh-test bg-green-400 text-105pxr">컬리 장보기의 특권</p>
-
-    <div class="swiper-product bg-orange-300 text-50pxr">
-      <ul class="flex">
-        <li>상품</li>
-        <li>상품</li>
-        <li>오류나라</li>
-        <li>상품6</li>
-        <li>상품7</li>
-        <li>상품8</li>
-      </ul>
-    </div>
-
-    <p
-      class="cye-test rounded bg-purple-400 px-4 py-2 text-20pxr text-base text-white"
+    <div
+      class="product-container flex w-screen flex-nowrap justify-center py-40pxr"
     >
-      더 풍성해진 12월의 퍼플위크
-    </p>
+      <div class="product-inner flex w-1050pxr flex-col">
+        <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
+          이 상품 어때요?
+        </h2>
+        <ul class="product-list inline-flex justify-between"></ul>
+      </div>
+    </div>
   </body>
 </html>
