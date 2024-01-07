@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko-KR">
   <head>
-    <title>Vite - Tailwindcss</title>
+    <title>에몽 - 마켓에몽</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -9,30 +9,75 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/main.js"></script>
+    <script type="module" src="/main-cProduct-swiper.js"></script>
   </head>
   <body>
-    <div class="header bg-slate-300">
-      <h1 class="logo text-150pxr font-bold">market-emong</h1>
-      <p></p>
+    <div class="banner-container display flex justify-center">
+      <a href="/" class="py-40pxr">
+        <img src="/src/assets/banner-photo1.jpg" alt="" />
+      </a>
     </div>
 
-    <p class="ljh-test bg-green-400 text-105pxr">컬리 장보기의 특권</p>
-
-    <div class="swiper-product bg-orange-300 text-50pxr">
-      <ul class="flex">
-        <li>상품</li>
-        <li>상품</li>
-        <li>오류나라</li>
-        <li>상품6</li>
-        <li>상품7</li>
-        <li>상품8</li>
-      </ul>
+  <!--slider swiper -->
+  <!-- Slider main container -->
+  <div class="swiper current-product h-full border-black max-w-73pxr border">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper current-product-wrapper display mx-8xpr flex flex-wrap justify-center gap-x-8pxr">
+      <p class="text-12pxr">최근 본 상품</p>
+      <!-- Slides -->
+      <div class="swiper-slide max-h-18pxr max-w-18pxr flex flex-wrap justify-center gap-x-8pxr ">
+        <img src="/src/assets/bread.png" alt=""/>
+      </div>
+      <div class="swiper-slide max-h-18pxr max-w-18pxr">
+        <img src="/src/assets/bread.png" alt=""/>
+      </div>
+      <div class="swiper-slide max-h-18pxr max-w-18pxr">
+        <img src="/src/assets/bread.png" alt=""/>
+      </div>
+      <div class="swiper-slide max-h-18pxr max-w-18pxr">
+        <img src="/src/assets/bread.png" alt=""/>
+      </div>
+      <div class="swiper-slide max-h-18pxr max-w-18pxr">
+        <img src="/src/assets/bread.png" alt=""/>
+      </div>
     </div>
+    
+    <div class="swiper-button-prev self-center"></div>
+    <div class="swiper-button-next self-center"></div>
 
-    <p
-      class="cye-test rounded bg-purple-400 px-4 py-2 text-20pxr text-base text-white"
-    >
-      더 풍성해진 12월의 퍼플위크
-    </p>
+    <!-- <div class="current-product border-black max-h-223pxr max-w-73pxr border">
+      <div
+        class="current-product-wrapper display mx-8xpr flex flex-wrap justify-center gap-x-8pxr"
+      >
+    </div>
+  </div> -->
+      
+        <!-- <ul class="flex flex-col gap-8pxr">
+          <li>
+            <a class="max-w-40pxr"
+              ><img
+                src="/src/assets/bread.png"
+                alt=""
+                class="max-h-18pxr max-w-18pxr"
+            /></a>
+          </li>
+          <li>
+            <a class="max-w-40pxr"
+              ><img
+                src="/src/assets/bread.png"
+                alt=""
+                class="max-h-18pxr max-w-18pxr"
+            /></a>
+          </li>
+          <li>
+            <a class="max-w-40pxr"
+              ><img
+                src="/src/assets/bread.png"
+                alt=""
+                class="max-h-18pxr max-w-18pxr"
+            /></a>
+          </li>
+        </ul> -->
+
   </body>
 </html>
