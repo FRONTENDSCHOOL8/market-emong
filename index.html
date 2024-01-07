@@ -15,44 +15,17 @@
     <!-- Slider main container -->
     <div class="swiper-advertising relative mx-auto max-w-[1920px]">
       <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        <div class="swiper-slide">
-          <a href="/" class="advertising-slide"
-            ><img
-              src="./src/assets/advertising-photo1.png"
-              alt="도라에몽 한눈에보는 1월의 혜택"
-          /></a>
-        </div>
-
-        <div class="swiper-slide">
-          <a href="/" class="advertising-slide">
-            <img
-              src="./src/assets/advertising-photo2.png"
-              alt="도라에몽 한눈에보는 1월의 혜택 없습니다"
-            />
-          </a>
-        </div>
-
-        <div class="swiper-slide">
-          <a href="/" class="advertising-slide">
-            <img
-              src="./src/assets/advertising-photo3.png"
-              alt="쥐를 보며 달리는 도라에몽과 함께"
-            />
-          </a>
-        </div>
-      </div>
+      <div class="swiper-wrapper"></div>
       <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev left-200pxr"></div>
+      <div class="swiper-button-next right-200pxr"></div>
 
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
     </div>
-    </div>
-        <!-- 유튜브 광고 마크업 -->
-    <div class="flex justify-center">
+
+    <!-- 유튜브 광고 마크업 -->
+    <div class="mt-40pxr flex justify-center">
       <iframe
         width="1050"
         height="510"
@@ -62,5 +35,28 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       ></iframe>
+    </div>
+
+    <!-- 팝업창 마크업 -->
+    <dialog id="dialog" class="overflow-hidden rounded-[16px]">
+      <a href="/"
+        ><img src="./src/assets/popup.png" alt="도라에몽 비밀도구박물관 극장판"
+      /></a>
+      <form
+        method="dialog"
+        class="flex h-86pxr text-16pxr font-normal leading-25pxr text-gray-700"
+      >
+        <button
+          type="button"
+          value="cancel"
+          class="todayButton w-220pxr border-r border-gray-100"
+        >
+          오늘 하루 안보기
+        </button>
+        <button type="button" value="confirm" class="closeButton w-220pxr">
+          닫기
+        </button>
+      </form>
+    </dialog>
   </body>
 </html>
