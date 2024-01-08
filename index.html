@@ -1,24 +1,73 @@
 <!doctype html>
 <html lang="ko-KR">
   <head>
-    <title>에몽 - 마켓 에몽</title>
+    <title>에몽 - 마켓에몽</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/js/include.js"></script>
     <script type="module" src="/main.js"></script>
     <script type="module" src="/main-cProduct-swiper.js"></script>
+    <script type="module" src="/main-advertising.js"></script>
   </head>
+
   <body>
+    <header id="header"></header>
+
+    <!-- Slider main container -->
+    <div class="swiper-advertising relative mx-auto max-w-[1920px]">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper"></div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev left-200pxr"></div>
+      <div class="swiper-button-next right-200pxr"></div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+    <!-- 유튜브 광고 마크업 -->
+    <div class="mt-40pxr flex justify-center">
+      <iframe
+        width="1050"
+        height="510"
+        src="https://www.youtube.com/embed/WupJjDfNyZg?si=XWpttiOgRv7Oat6-"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- 팝업창 마크업 -->
+    <dialog id="dialog" class="overflow-hidden rounded-[16px]">
+      <a href="/"
+        ><img src="./src/assets/popup.png" alt="도라에몽 비밀도구박물관 극장판"
+      /></a>
+      <form
+        method="dialog"
+        class="text-gray-700 flex h-86pxr text-16pxr font-normal leading-25pxr"
+      >
+        <button
+          type="button"
+          value="cancel"
+          class="todayButton border-gray-100 w-220pxr border-r"
+        >
+          오늘 하루 안보기
+        </button>
+        <button type="button" value="confirm" class="closeButton w-220pxr">
+          닫기
+        </button>
+      </form>
+    </dialog>
     <!-- banner -->
     <div class="banner-container display flex justify-center">
       <a href="/" class="py-40pxr">
         <img src="/src/assets/banner-photo1.jpg" alt="" />
       </a>
     </div>
-
     <!--slider swiper 미완성-->
     <!-- Slider main container -->
     <!-- <div
@@ -55,5 +104,6 @@
         class="swiper-button-next max-h-18pxr max-w-18pxr -translate-x-16pxr translate-y-56pxr self-center bg-[url('/src/assets/current-product-bottom.svg')] bg-center bg-no-repeat after:hidden"
       ></div>
     </div> -->
+    <footer id="footer"></footer>
   </body>
 </html>
