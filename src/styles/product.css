@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+
+
+.product-info{
+  @apply relative w-250pxr;
+}
+
+.kit-info{
+  @apply w-250pxr;
+}
+
+.product-info a{
+  @apply flex flex-col gap-4pxr mb-8pxr;
+}
+
+.image-container{
+  @apply bg-gradient-to-r from-gray-200 to-gray-400 w-full h-full mb-8pxr overflow-hidden;
+}
+
+.product-img{
+  @apply w-250pxr h-320pxr;
+}
+
+.label{
+  @apply text-12pxr font-semibold text-gray-600;
+}
+
+.name{
+  @apply text-content;
+}
+
+.discount-price{
+  @apply font-semibold;
+}
+
+.discount-price b,
+.discount-price-kit b{
+  @apply mr-8 text-accent__yellow;
+}
+
+.price{
+  @apply text-12pxr text-gray-600 line-through;
+}
+
+.small-desc{
+  @apply text-12pxr text-gray-600;
+}
+
+.tag{
+  @apply w-full text-12pxr font-semibold text-content rounded-md p-4pxr bg-gray-100;
+}
+
+.product-info button{
+  @apply absolute top-260pxr right-15pxr;
+}
+
+/* 스와이퍼 css */
+
+.swiper-product{
+  @apply w-[1050px];
+}
+
+.swiper-kit{
+  @apply static w-[1050px];
+}
+
+.product-prev,
+.kit-prev{
+  @apply text-0pxr leading-0pxr w-50pxr h-50pxr relative rounded-[25px] 
+         -mt-50pxr top-198pxr -left-25pxr bg-center bg-no-repeat
+         rotate-180;
+  background-image: url("/src/assets/product-arrow.svg");
+}
+
+.product-next,
+.kit-next{
+  @apply text-0pxr leading-0pxr w-50pxr h-50pxr relative rounded-[25px] 
+         -mt-50pxr top-198pxr left-[1025px] bg-center bg-no-repeat;
+  background-image: url("/src/assets/product-arrow.svg");
+}
+
+.product-prev::after,
+.product-next::after,
+.kit-prev::after,
+.kit-next::after{
+  @apply hidden;
+}
+
+/* 상품 이미지 확대 */
+
+.product-img:hover{
+  @apply scale-105 duration-1000;
+}

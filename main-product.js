@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-import './src/styles/style.css';
+import '/src/styles/product.css';
 
 function getPbImageURL(collectionId, id, fileName = 'photo') {
   return `${
@@ -65,7 +65,7 @@ productList.forEach(
     `;
 
     const discountTemplate = /* html */ `
-      <b class="">${discount}%</b>
+      <b>${discount}%</b>
     `;
 
     if (discount != 0) {
