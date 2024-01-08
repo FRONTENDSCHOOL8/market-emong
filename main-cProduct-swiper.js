@@ -1,13 +1,13 @@
-import PocketBase from 'pocketbase';
+// import PocketBase from 'pocketbase';
 import Swiper from 'swiper/bundle';
+import './src/styles/tailwind.css';
 import 'swiper/css/bundle';
-import '/src/styles/tailwind.css';
 
-// const pb = new PocketBase('http://market-emong.pockethost.io');
+// const pb = new PocketBase('import.meta.env.VITE_PB_URL');
 // const cProductImg = document.querySelector('.swiper-wrapper');
 
 // function getPbImageURL(collectionId, id, fileName = 'photo') {
-//   return `https://market-emong.pockethost.io/api/files/${collectionId}/${id}/${fileName}`;
+//   return `${import.meta.env.VITE_PB_URL}/files/${collectionId}/${id}/${fileName}`;
 // }
 
 const swiper = new Swiper('.swiper', {
@@ -21,7 +21,11 @@ const swiper = new Swiper('.swiper', {
   slideToClickedSlide: true,
   // (false-스와이핑안됨)버튼으로만 슬라이드 조작이 가능
   allowTouchMove: true,
-
+  // space bar로 이동
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
   // Navigation arrows
   navigation: {
     nextEl: '.swiper-button-next',
