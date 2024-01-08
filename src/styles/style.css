@@ -1,5 +1,9 @@
 .product-info{
   position: relative;
+  width: 250px;
+}
+.kit-info{
+  width: 250px;
 }
 .product-info a{
   display: flex;
@@ -8,11 +12,17 @@
   margin-bottom: 8px;
 }
 
+.image-container{
+  background-color: #bdbdbd;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
 .product-img{
   width: 250px;
   height: 320px;
-
-  margin-bottom: 8px;
 }
 
 .label{
@@ -29,7 +39,8 @@
   font-weight: 600;
 }
 
-.discount-price b{
+.discount-price b,
+.discount-price-kit b{
   margin-right: 8px;
   color: rgba(250, 98, 47, 1);
 }
@@ -46,7 +57,6 @@
 }
 
 .tag{
-
   width: 100%;
   font-size: 12px;
   font-weight: 600;
@@ -60,4 +70,60 @@
   position: absolute;
   top: 260px;
   right: 15px;
+}
+
+/* 스와이퍼 css */
+
+.swiper-product{
+  width: 1050px;
+}
+
+.swiper-kit{
+  position: static;
+  width: 1050px;
+}
+
+.product-prev,
+.kit-prev{
+  font-size: 0px;
+  line-height: 0px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-top: -50px;
+  top: 198px;
+  left: -25px;
+  background: url("/src/assets/product-arrow.svg") no-repeat;
+  transform: rotate(180deg);
+  background-position: center;
+}
+
+.product-prev::after,
+.product-next::after,
+.kit-prev::after,
+.kit-next::after{
+  display: none;
+}
+
+.product-next,
+.kit-next{
+  font-size: 0px;
+  line-height: 0px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-top: -50px;
+  top: 198px;
+  left: 1025px;
+  background: url("/src/assets/product-arrow.svg") no-repeat;
+  background-position: center;
+}
+
+/* 상품 이미지 확대 */
+
+.product-img:hover{
+  transform: scale(1.05);
+  transition: 1s;
 }
