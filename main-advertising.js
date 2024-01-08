@@ -3,11 +3,13 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import './src/styles/tailwind.css';
 
-const pb = new PocketBase('https://market-emong.pockethost.io');
+const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const advertisingImg = document.querySelector('.swiper-wrapper');
 
 function getPbImageURL(collectionId, id, fileName = 'photo') {
-  return `https://market-emong.pockethost.io/api/files/${collectionId}/${id}/${fileName}`;
+  return `${
+    import.meta.env.VITE_PB_API
+  }/files/${collectionId}/${id}/${fileName}`;
 }
 
 // you can also fetch all records at once via getFullList
