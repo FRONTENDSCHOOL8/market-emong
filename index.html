@@ -8,10 +8,14 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/js/include.js"></script>
     <script type="module" src="/main.js"></script>
     <script type="module" src="/main-advertising.js"></script>
   </head>
+
   <body>
+    <header id="header"></header>
+
     <!-- Slider main container -->
     <div class="swiper-advertising relative mx-auto max-w-[1920px]">
       <!-- Additional required wrapper -->
@@ -23,7 +27,6 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
     </div>
-
     <!-- 유튜브 광고 마크업 -->
     <div class="mt-40pxr flex justify-center">
       <iframe
@@ -58,5 +61,6 @@
         </button>
       </form>
     </dialog>
+    <footer id="footer"></footer>
   </body>
 </html>
