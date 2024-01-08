@@ -21,16 +21,16 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        ...pxToRemFunc(0, 2000),
+        ...pxToRemFunc(0, 1000),
       }, // px을 rem으로 변환
       inset: {
-        ...pxToRemFunc(0, 2000),
+        ...pxToRemFunc(0, 1000),
       },
       fontSize: {
-        ...pxToRemFunc(0, 2000),
+        ...pxToRemFunc(0, 1000),
       }, // px을 rem으로 변환
       lineHeight: {
-        ...pxToRemFunc(0, 2000),
+        ...pxToRemFunc(0, 1000),
       }, // px을 rem으로 변환
       screens: {
         mobile: '360px',
@@ -46,33 +46,10 @@ module.exports = {
         bluemong: 'rgb(2, 152, 228)',
         skybluemong: 'rgb(104, 195, 241)',
       },
-      colors: {
-        secondary: 'rgba(189, 118, 255, 1)',
-        primary: 'rgba(95, 0, 128, 1)',
-        content: 'rgba(51, 51, 51, 1)',
-        accent__yellow: 'rgba(250, 98, 47, 1)',
-        info__error: 'rgba(240, 63, 64, 1)',
-        bluemong: 'rgb(2, 152, 228)',
-        skybluemong: 'rgb(104, 195, 241)',
-      },
-    },
-    colors: {
-      secondary: 'rgba(189, 118, 255, 1)',
-      primary: 'rgba(95, 0, 128, 1)',
-      content: 'rgba(51, 51, 51, 1)',
-      accent__yellow: 'rgba(250, 98, 47, 1)',
-      info__error: 'rgba(240, 63, 64, 1)',
-      bluemong: 'rgb(2, 152, 228)',
-      skybluemong: 'rgb(104, 195, 241)',
     },
     fontFamily: {
       sans: ['Pretendard-Regular', 'noto-sans-kr', 'sans-serif'],
-<<<<<<< HEAD
     },
-    // font-family: noto-sans-kr, sans-serif;
-=======
-    }, // font-family: noto-sans-kr, sans-serif;
->>>>>>> develop
+    plugins: [],
   },
-  plugins: [],
 };
