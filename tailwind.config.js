@@ -49,7 +49,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Pretendard-Regular', 'noto-sans-kr', 'sans-serif'],
-    }, // font-family: noto-sans-kr, sans-serif;
+    },
+    plugins: [],
   },
-  plugins: [],
 };
