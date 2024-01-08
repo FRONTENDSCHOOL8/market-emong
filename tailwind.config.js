@@ -37,7 +37,6 @@ module.exports = {
         tablet: '768px',
         desktop: '1280px',
       },
-
       colors: {
         secondary: 'rgba(189, 118, 255, 1)',
         primary: 'rgba(95, 0, 128, 1)',
@@ -50,7 +49,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Pretendard-Regular', 'noto-sans-kr', 'sans-serif'],
-    }, // font-family: noto-sans-kr, sans-serif;
+    },
+    plugins: [],
   },
-  plugins: [],
 };
