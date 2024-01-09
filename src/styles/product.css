@@ -15,11 +15,11 @@
 }
 
 .image-container{
-  @apply bg-gradient-to-r from-gray-200 to-gray-400 w-full h-full mb-8pxr overflow-hidden;
+  @apply bg-gray-100 w-full h-full mb-8pxr overflow-hidden;
 }
 
 .product-img{
-  @apply w-250pxr h-320pxr;
+  @apply w-250pxr h-320pxr object-contain;
 }
 
 .label{
@@ -31,12 +31,12 @@
 }
 
 .discount-price{
-  @apply font-semibold;
+  @apply font-semibold indent-0;
 }
 
 .discount-price b,
 .discount-price-kit b{
-  @apply mr-8 text-accent__yellow;
+  @apply mr-4pxr text-accent__yellow;
 }
 
 .price{
@@ -48,7 +48,7 @@
 }
 
 .tag{
-  @apply w-full text-12pxr font-semibold text-content rounded-md p-4pxr bg-gray-100;
+  @apply w-full text-12pxr font-semibold text-content rounded-md p-4pxr bg-gray-200;
 }
 
 .product-info button{
