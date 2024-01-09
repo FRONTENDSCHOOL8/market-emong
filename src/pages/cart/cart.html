@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/js/include.js"></script>
-    <script type="module" src="/main.js"></script>
-    <script type="module" src="/main-advertising.js"></script>
+    <script type="module" src="/src/pages/cart/cart.js"></script>
   </head>
   <body>
     <header id="header"></header>
@@ -50,13 +49,15 @@
                   </span>
                   <span>캐릭터</span>
                 </h3>
-                <button>
+                <button class="cart-togglebutton">
                   <img src="/src/assets/ic-arrow.svg" alt="" />
                 </button>
               </div>
 
               <!-- 장바구니에 담은 상품 랜더링-->
-              <ul class="cart-product hidden py-3">
+              <ul
+                class="cart-product hidden py-3 transition-all duration-75 ease-in-out"
+              >
                 <li class="flex items-center gap-3">
                   <input
                     type="checkbox"
@@ -91,7 +92,7 @@
                   </p>
                   <!-- 상품금액 -->
                   <span class="w-1/5 text-right font-bold"> 50,000원 </span>
-                  <!-- 삭제 -->
+                  <!-- 상품삭제 -->
                   <button
                     type="button"
                     class="delete-button h-7 w-7 bg-[url('/src/assets/ic-delete.svg')] bg-cover bg-center bg-no-repeat"
@@ -113,7 +114,7 @@
                   </span>
                   <span>도구</span>
                 </h3>
-                <button>
+                <button class="cart-togglebutton">
                   <img src="/src/assets/ic-arrow.svg" alt="" />
                 </button>
               </div>
@@ -131,7 +132,7 @@
                   <!-- 상품이미지 -->
                   <span>
                     <img
-                      src="/src/assets/test-ic-doraemong.png"
+                      src="/src/assets/test-ic-bread.png"
                       alt="도라에몽"
                       class="h-73pxr w-63pxr border border-gray-200 p-1"
                     />
