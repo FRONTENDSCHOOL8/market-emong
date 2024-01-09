@@ -43,7 +43,7 @@ const adverSwiper = new Swiper('.swiper-advertising', {
   },
   pagination: {
     el: '.swiper-pagination',
-    type: 'progressbar',
+    type: 'fraction',
   },
   navigation: {
     nextEl: '.swiper-button-next',

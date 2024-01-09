@@ -10,23 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/js/include.js"></script>
     <script type="module" src="/main.js"></script>
-    <script type="module" src="/main-advertising.js"></script>
   </head>
 
   <body>
     <header id="header"></header>
 
-    <!-- Slider main container -->
+    <!-- 광고 swiper 컨테이너 -->
     <div class="swiper-advertising relative mx-auto max-w-[1920px]">
-      <!-- Additional required wrapper -->
       <div class="swiper-wrapper"></div>
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev left-200pxr"></div>
-      <div class="swiper-button-next right-200pxr"></div>
-
-      <!-- If we need pagination -->
+      <div class="swiper-button-prev main-prev left-200pxr"></div>
+      <div class="swiper-button-next main-next right-200pxr"></div>
       <div class="swiper-pagination"></div>
     </div>
+
     <!-- 유튜브 광고 마크업 -->
     <div class="mt-40pxr flex justify-center">
       <iframe
@@ -40,11 +36,29 @@
       ></iframe>
     </div>
 
+    <!-- 이 상품 어때요? 컨테이너 -->
+    <div
+      class="product-container flex w-full flex-nowrap justify-center py-40pxr"
+    >
+      <div class="product-inner flex w-[1050px] flex-col">
+        <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
+          이 상품 어때요?
+        </h2>
+        <button class="swiper-button-prev product-prev"></button>
+        <button class="swiper-button-next product-next"></button>
+        <div class="swiper swiper-product">
+          <ul
+            class="product-list swiper-wrapper inline-flex justify-between"
+          ></ul>
+        </div>
+      </div>
+    </div>
+
     <!-- 팝업창 마크업 -->
     <dialog id="dialog" class="overflow-hidden rounded-[16px]">
-      <a href="/"
-        ><img src="./src/assets/popup.png" alt="도라에몽 비밀도구박물관 극장판"
-      /></a>
+      <a href="/">
+        <img src="/src/assets/popup.png" alt="도라에몽 비밀도구박물관 극장판" />
+      </a>
       <form
         method="dialog"
         class="flex h-86pxr text-16pxr font-normal leading-25pxr text-gray-700"
@@ -61,6 +75,66 @@
         </button>
       </form>
     </dialog>
+
+    <!-- banner -->
+    <div class="banner-container display flex justify-center">
+      <a href="/" class="py-40pxr">
+        <img src="/src/assets/banner-photo1.jpg" alt="" />
+      </a>
+    </div>
+
+    <!-- 도구를 다 보여주는 회전 목마 -->
+    <div
+      class="product-container flex w-full flex-nowrap justify-center py-40pxr"
+    >
+      <div class="product-inner flex w-[1050px] flex-col">
+        <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
+          이 도구 어때요?
+        </h2>
+        <button class="swiper-button-prev kit-prev"></button>
+        <button class="swiper-button-next kit-next"></button>
+        <div class="swiper swiper-kit">
+          <ul class="kit-list swiper-wrapper inline-flex justify-between"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!--slider swiper 미완성-->
+    <!-- Slider main container -->
+    <!-- <div
+      class="swiper current-product border-gray-200 m-0 h-full max-h-223pxr max-w-73pxr border p-8pxr"
+    >
+      <p class="mt-32pxr text-center text-12pxr">최근 본 상품</p> -->
+    <!-- Additional required wrapper -->
+    <!-- <div
+        class="swiper-wrapper current-product-wrapper display mx-8xpr justify-center gap-x-8pxr"
+      > -->
+    <!-- Slides -->
+    <!-- <div
+          class="swiper-slide flex max-h-18pxr max-w-18pxr flex-wrap justify-center gap-x-8pxr"
+        >
+          <img src="/src/assets/bread.png" alt="" />
+        </div>
+        <div class="swiper-slide max-h-18pxr max-w-18pxr">
+          <img src="/src/assets/bread.png" alt="" />
+        </div>
+        <div class="swiper-slide max-h-18pxr max-w-18pxr">
+          <img src="/src/assets/bread.png" alt="" />
+        </div>
+        <div class="swiper-slide max-h-18pxr max-w-18pxr">
+          <img src="/src/assets/bread.png" alt="" />
+        </div>
+        <div class="swiper-slide max-h-18pxr max-w-18pxr">
+          <img src="/src/assets/bread.png" alt="" />
+        </div>
+      </div>
+      <div
+        class="swiper-button-prev top-50pxr max-h-18pxr max-w-18pxr -translate-y-31pxr translate-x-16pxr self-center bg-[url('/src/assets/current-product-top.svg')] bg-center bg-no-repeat after:hidden"
+      ></div>
+      <div
+        class="swiper-button-next max-h-18pxr max-w-18pxr -translate-x-16pxr translate-y-56pxr self-center bg-[url('/src/assets/current-product-bottom.svg')] bg-center bg-no-repeat after:hidden"
+      ></div>
+    </div> -->
     <footer id="footer"></footer>
   </body>
 </html>
