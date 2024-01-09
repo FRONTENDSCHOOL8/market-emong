@@ -1,6 +1,6 @@
 // import PocketBase from 'pocketbase';
 import Swiper from 'swiper/bundle';
-import './src/styles/tailwind.css';
+import '/src/styles/tailwind.css';
 import 'swiper/css/bundle';
 
 // const pb = new PocketBase('import.meta.env.VITE_PB_URL');
