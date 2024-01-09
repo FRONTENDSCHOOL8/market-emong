@@ -216,7 +216,6 @@ const adverSwiper = new Swiper('.swiper-advertising', {
   },
   pagination: {
     el: '.swiper-pagination',
-    type: 'progressbar',
   },
   navigation: {
     nextEl: '.swiper-button-next',
