@@ -1,7 +1,252 @@
-// 스와이퍼 import
-// import Swiper from 'swiper/bundle';
-// import 'swiper/css/bundle';
+import PocketBase from 'pocketbase';
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
+import '/src/styles/tailwind.css';
+import '/src/styles/product.css';
 
-// const swiper = new Swiper(node, {
+function getPbImageURL(collectionId, id, fileName = 'photo') {
+  return `${
+    import.meta.env.VITE_PB_API
+  }/files/${collectionId}/${id}/${fileName}`;
+}
+
+function setStorage(name) {
+  const date = new Date();
+
+  // const timer = '6'; // test
+  const timer = date.setTime(date.getDay());
+
+  localStorage.setItem(name, timer);
+}
+
+function getStorage(name) {
+  const now = new Date();
+
+  // const timer = '0'; // test
+  const timer = now.setTime(now.getDay());
+
+  if (parseInt(localStorage.getItem(name)) !== timer) {
+    localStorage.removeItem(name);
+  }
+
+  return parseInt(localStorage.getItem(name)) !== timer;
+}
+
 //
-//})
+
+const pb = new PocketBase(import.meta.env.VITE_PB_URL);
+
+// pb 통신
+
+const records = await pb.collection('advertisement').getFullList({
+  sort: '-created',
+});
+
+const productList = await pb.collection('product').getFullList({
+  sort: '-created',
+});
+
+const kitList = await pb.collection('product').getFullList({
+  filter: 'category = "도구"',
+});
+
+// querySelect
+
+const advertisingImg = document.querySelector('.swiper-wrapper');
+const dialog = document.querySelector('#dialog');
+const todayBtn = document.querySelector('.todayButton');
+const closeBtn = document.querySelector('.closeButton');
+const product = document.querySelector('.product-list');
+const kit = document.querySelector('.kit-list');
+
+// 팝업창 기능 구현
+
+if (getStorage('day') || localStorage.getItem('day') === null) {
+  dialog.showModal();
+}
+
+function handlePopup() {
+  setStorage('day');
+  dialog.close();
+}
+
+todayBtn.addEventListener('click', handlePopup);
+
+closeBtn.addEventListener('click', () => {
+  dialog.close();
+});
+
+// forEach - template
+
+// 광고판 forEach
+
+records.forEach(({ collectionId, id, photo, alt }) => {
+  const template = /*html*/ `
+  <div class="swiper-slide">
+          <a href="/" class="advertising-slide"
+            ><img
+              src="${getPbImageURL(collectionId, id, photo)}"
+              alt="${alt}"
+          /></a>
+        </div>
+`;
+  advertisingImg.insertAdjacentHTML('afterbegin', template);
+});
+
+// 상품 swiper - 1
+
+productList.forEach(
+  ({ collectionId, id, photo, label, brand, name, discount, price, limit }) => {
+    const discountPrice = price - (price * discount) / 100;
+
+    const template = /* html */ `
+    <li class="swiper-slide product-info">
+      <a href="/" class="">
+        <div class="image-container">
+          <img
+          src="${getPbImageURL(collectionId, id, photo)}"
+          alt="${name}"
+          class="product-img"
+          />
+        </div>
+        <span class="name"> [${brand}]${name} </span>
+        <span class="discount-price">
+          ${discountPrice}원
+        </span>
+        <span class="label">${label}</span>
+      </a>
+      <button>
+        <img src="./src/assets/product-cart.svg" alt="장바구니 담기" />
+      </button>
+    </li>
+    `;
+
+    const tagTemplate = /* html */ `
+      <span class="tag">${limit}</span>
+    `;
+
+    product.insertAdjacentHTML('afterbegin', template);
+
+    const productInfo = document.querySelector('.product-info');
+    if (limit) {
+      productInfo.insertAdjacentHTML('beforeend', tagTemplate);
+    }
+
+    const discountTag = document.querySelector('.discount-price');
+    const priceTemplate = /* html */ `
+      <span class="price">${price}</span>
+    `;
+
+    const discountTemplate = /* html */ `
+      <b>${discount}%</b>
+    `;
+
+    if (discount != 0) {
+      discountTag.insertAdjacentHTML('afterbegin', discountTemplate);
+      discountTag.insertAdjacentHTML('afterend', priceTemplate);
+    }
+  }
+);
+
+// 상품 swiper - 2
+
+kitList.forEach(
+  ({ collectionId, id, photo, label, brand, name, discount, price, limit }) => {
+    const discountPrice = price - (price * discount) / 100;
+
+    const template = /* html */ `
+    <li class="swiper-slide product-info kit-info">
+      <a href="/" class="">
+        <div class="image-container">
+          <img
+          src="${getPbImageURL(collectionId, id, photo)}"
+          alt="${name}"
+          class="product-img"
+          />
+        </div>
+        <span class="name"> [${brand}]${name} </span>
+        <span class="discount-price-kit">
+          ${discountPrice}원
+        </span>
+        <span class="label">${label}</span>
+      </a>
+      <button>
+        <img src="./src/assets/product-cart.svg" alt="장바구니 담기" />
+      </button>
+    </li>
+    `;
+    const tagTemplate = /* html */ `
+      <span class="tag">${limit}</span>
+    `;
+
+    kit.insertAdjacentHTML('afterbegin', template);
+
+    const kitInfo = document.querySelector('.kit-info');
+    if (limit) {
+      kitInfo.insertAdjacentHTML('beforeend', tagTemplate);
+    }
+
+    const discountTag = document.querySelector('.discount-price-kit');
+    const priceTemplate = /* html */ `
+      <span class="price">${price}</span>
+    `;
+
+    const discountTemplate = /* html */ `
+      <b class="">${discount}%</b>
+    `;
+
+    if (discount != 0) {
+      discountTag.insertAdjacentHTML('afterbegin', discountTemplate);
+      discountTag.insertAdjacentHTML('afterend', priceTemplate);
+    }
+  }
+);
+
+// Swiper 옵션
+
+// 광고판 swiper
+
+const adverSwiper = new Swiper('.swiper-advertising', {
+  loop: true,
+  speed: 300,
+  effect: 'fade',
+  resistance: true,
+  autoplay: {
+    delay: 4000,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'progressbar',
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  keyboard: {
+    enabled: true,
+  },
+});
+
+// 상품 swiper - 1
+
+const productSwiper = new Swiper('.swiper-product', {
+  direction: 'horizontal',
+  slidesPerView: 4,
+  spaceBetween: 16,
+  navigation: {
+    nextEl: '.product-next',
+    prevEl: '.product-prev',
+  },
+});
+
+// 상품 swiper - 2
+
+const kitSwiper = new Swiper('.swiper-kit', {
+  direction: 'horizontal',
+  slidesPerView: 4,
+  spaceBetween: 16,
+  navigation: {
+    nextEl: '.kit-next',
+    prevEl: '.kit-prev',
+  },
+});
