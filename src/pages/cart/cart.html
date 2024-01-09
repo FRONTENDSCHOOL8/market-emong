@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>에몽 - 마켓에몽</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/js/include.js"></script>
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/main-advertising.js"></script>
+  </head>
+  <body>
+    <header id="header"></header>
+
+    <section class="cart m-auto w-full pb-10">
+      <h2 class="py-12 text-center text-3xl">장바구니</h2>
+      <div
+        class="m-auto flex w-3/4 max-w-7xl items-start justify-between gap-5"
+      >
+        <article class="cart-list w-3/4">
+          <h1 class="sr-only">장바구니 목록</h1>
+          <div class="m-auto">
+            <div class="cart-checkbox flex items-center gap-2 py-4 text-sm">
+              <input
+                type="checkbox"
+                id="selected-all"
+                unchecked
+                class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+              />
+              <label for="selected-all">
+                <span>전체선택 (0/0)</span>
+              </label>
+              <span>|</span>
+              <button type="button">선택삭제</button>
+            </div>
+
+            <!-- 장바구니 목록 캐릭터 -->
+            <div class="cart-category border-t-2 border-skybluemong py-3">
+              <div class="flex justify-between pb-4">
+                <h3 class="flex items-center gap-2">
+                  <span>
+                    <img
+                      src="/src/assets/ic-character.png"
+                      alt=""
+                      class="w-32pxr"
+                    />
+                  </span>
+                  <span>캐릭터</span>
+                </h3>
+                <button>
+                  <img src="/src/assets/ic-arrow.svg" alt="" />
+                </button>
+              </div>
+
+              <!-- 장바구니에 담은 상품 랜더링-->
+              <ul class="cart-product hidden py-3">
+                <li class="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id="product-select"
+                    unchecked
+                    class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+                  />
+                  <label for="product-select"></label>
+                  <!-- 상품이미지 -->
+                  <span>
+                    <img
+                      src="/src/assets/product-doraemong.png"
+                      alt="도라에몽"
+                      class="h-73pxr w-63pxr border border-gray-200 p-1"
+                    />
+                  </span>
+                  <!-- 상품이름 -->
+                  <span class="w-1/2 font-bold"> [도구보관함] 도라에몽 </span>
+                  <!-- 상품갯수 추가, 감소 버튼 -->
+                  <p
+                    class="product-count flex h-30pxr items-center gap-2 border border-gray-200"
+                  >
+                    <button
+                      type="button"
+                      class="minus-button h-7 w-7 bg-[url('/src/assets/ic-minus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    ></button>
+                    <span>1</span>
+                    <button
+                      type="button"
+                      class="plus-button h-7 w-7 bg-[url('/src/assets/ic-plus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    ></button>
+                  </p>
+                  <!-- 상품금액 -->
+                  <span class="w-1/5 text-right font-bold"> 50,000원 </span>
+                  <!-- 삭제 -->
+                  <button
+                    type="button"
+                    class="delete-button h-7 w-7 bg-[url('/src/assets/ic-delete.svg')] bg-cover bg-center bg-no-repeat"
+                  ></button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- 장바구니 목록 도구 -->
+            <div class="cart-list-inner border-t-2 border-skybluemong py-3">
+              <div class="flex justify-between pb-4">
+                <h3 class="flex items-center gap-2">
+                  <span>
+                    <img src="/src/assets/ic-tool.png" alt="" class="w-32pxr" />
+                  </span>
+                  <span>도구</span>
+                </h3>
+                <button>
+                  <img src="/src/assets/ic-arrow.svg" alt="" />
+                </button>
+              </div>
+
+              <!-- 장바구니에 담은 상품 랜더링-->
+              <ul class="py-3">
+                <li class="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id="product-select"
+                    unchecked
+                    class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+                  />
+                  <label for="product-select"></label>
+                  <!-- 상품이미지 -->
+                  <span>
+                    <img
+                      src="/src/assets/product-doraemong.png"
+                      alt="도라에몽"
+                      class="h-73pxr w-63pxr border border-gray-200 p-1"
+                    />
+                  </span>
+                  <!-- 상품이름 -->
+                  <span class="w-1/2 font-bold"> [도구보관함] 도라에몽 </span>
+                  <!-- 상품갯수 추가, 감소 버튼 -->
+                  <p
+                    class="product-count flex h-30pxr items-center gap-2 border border-gray-200"
+                  >
+                    <button
+                      type="button"
+                      class="minus-button h-7 w-7 bg-[url('/src/assets/ic-minus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    ></button>
+                    <span>1</span>
+                    <button
+                      type="button"
+                      class="plus-button h-7 w-7 bg-[url('/src/assets/ic-plus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    ></button>
+                  </p>
+                  <!-- 상품금액 -->
+                  <span class="w-1/5 text-right font-bold"> 50,000원 </span>
+                  <!-- 삭제 -->
+                  <button
+                    type="button"
+                    class="delete-button h-7 w-7 bg-[url('/src/assets/ic-delete.svg')] bg-cover bg-center bg-no-repeat"
+                  ></button>
+                </li>
+              </ul>
+
+              <ul class="py-3">
+                <li class="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id="product-select"
+                    unchecked
+                    class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+                  />
+                  <label for="product-select"></label>
+                  <!-- 상품이미지 -->
+                  <span>
+                    <img
+                      src="/src/assets/product-doraemong.png"
+                      alt="도라에몽"
+                      class="h-73pxr w-63pxr border border-gray-200 p-1"
+                    />
+                  </span>
+                  <!-- 상품이름 -->
+                  <span class="w-1/2 font-bold"> [도구보관함] 도라에몽 </span>
+                  <!-- 상품갯수 추가, 감소 버튼 -->
+                  <p
+                    class="product-count flex h-30pxr items-center gap-2 border border-gray-200"
+                  >
+                    <button
+                      type="button"
+                      class="minus-button h-7 w-7 bg-[url('/src/assets/ic-minus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    ></button>
+                    <span>1</span>
+                    <button
+                      type="button"
+                      class="plus-button h-7 w-7 bg-[url('/src/assets/ic-plus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    ></button>
+                  </p>
+                  <!-- 상품금액 -->
+                  <span class="w-1/5 text-right font-bold"> 50,000원 </span>
+                  <!-- 삭제 -->
+                  <button
+                    type="button"
+                    class="delete-button h-7 w-7 bg-[url('/src/assets/ic-delete.svg')] bg-cover bg-center bg-no-repeat"
+                  ></button>
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="cart-checkbox flex items-center gap-2 border-t-2 border-skybluemong py-4 text-sm"
+            >
+              <input
+                type="checkbox"
+                id="selected-all"
+                unchecked
+                class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+              />
+              <label for="selected-all">
+                <span>전체선택 (0/0)</span>
+              </label>
+              <span>|</span>
+              <button type="button">선택삭제</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="cart-price relative h-700pxr w-1/4 pt-12">
+          <h1 class="sr-only">결제예정금액</h1>
+          <!-- position: sticky 사용 시에는 부모요소의 hight가 있어야함! -->
+          <div class="sticky top-32">
+            <div class="m-auto border p-5">
+              <div class="flex items-center pb-3">
+                <img src="/src/assets/ic-location.svg" alt="배송지" />
+                <span>배송지</span>
+              </div>
+              <div class="pb-10">
+                <span>배송지를 입력해주세요💕</span>
+                <!-- 로그인 후 주소 랜더링 -->
+                <span class="hidden">배송지 주소</span>
+              </div>
+              <!-- 로그인 후 배송지 변경으로 바꾸기 -->
+              <button
+                type="button"
+                class="w-full rounded-lg border border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
+              >
+                주소 검색
+              </button>
+            </div>
+
+            <div class="bg-gray-50 p-5">
+              <!-- 상품 금액, 금액 합 랜더링 -->
+              <div class="flex justify-between pb-4">
+                <span>상품금액</span>
+                <span>원</span>
+              </div>
+              <div class="flex justify-between pb-4">
+                <span>상품할인금액</span>
+                <span>원</span>
+              </div>
+              <div class="flex justify-between pb-4">
+                <span>배송비</span>
+                <span>원</span>
+              </div>
+              <!-- 금액의 총 합 -->
+              <div class="flex justify-between border-t-2 py-4">
+                <span>결제예정금액</span>
+                <span>
+                  <strong></strong>
+                  <span>원</span>
+                </span>
+              </div>
+              <div class="flex justify-end gap-1 text-xs">
+                <span class="rounded-sm bg-skybluemong px-1 text-white"
+                  >적립</span
+                >
+                <span>로그인 후 회원 등급에 따라 적립</span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="mt-5 w-full rounded bg-skybluemong py-2 text-white transition-all hover:bg-bluemong"
+            >
+              로그인
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer id="footer"></footer>
+  </body>
+</html>

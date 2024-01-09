@@ -1,3 +1,8 @@
+// top banner
+document.querySelector('.banner-close').addEventListener('click', () => {
+  const topBanner = document.querySelector('.header-topbanner');
+  topBanner.style.display = 'none';
+});
 // 헤더 scroll
 window.addEventListener('scroll', function () {
   const nav = document.querySelector('nav');
@@ -5,7 +10,7 @@ window.addEventListener('scroll', function () {
   const subCart = document.querySelector('.sub-cart');
   const subNotice = this.document.querySelector('.sub-notice');
 
-  if (document.documentElement.scrollTop > 100) {
+  if (document.documentElement.scrollTop > 110) {
     nav.classList.add('active', 'shadow-md');
     subSearch.style.display = 'block';
     subCart.style.display = 'block';
