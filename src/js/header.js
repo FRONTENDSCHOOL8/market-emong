@@ -13,13 +13,13 @@ window.addEventListener('scroll', function () {
 
   if (document.documentElement.scrollTop > 100) {
     nav.classList.add('active', 'shadow-md');
-    subNav.classList.add('gap-12');
+    subNav.classList.add('gap-11');
     subSearch.style.display = 'block';
     subCart.style.display = 'block';
     subNotice.style.display = 'none';
   } else {
     nav.classList.remove('active');
-    subNav.classList.remove('gap-12');
+    subNav.classList.remove('gap-11');
     subSearch.style.display = 'none';
     subCart.style.display = 'none';
     subNotice.style.display = 'block';
