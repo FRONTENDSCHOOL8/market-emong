@@ -20,11 +20,11 @@
 
       <div class="flex">
         <!-- 카테고리 list  -->
-        <nav class="mr-47pxr w-220pxr bg-pink-300">
+        <nav class="mr-47pxr w-220pxr">
           <!-- 필터 및 초기화 -->
-          <div class="flex justify-between">
+          <div class="list-nav flex justify-between">
             <span>필터</span>
-            <button class="flex items-center">
+            <button class="flex h-full items-center">
               <svg
                 width="12"
                 height="12"
@@ -47,37 +47,31 @@
                   stroke-linejoin="round"
                 ></path>
               </svg>
-              <span class="text-skybluemong">초기화</span>
+              <span class="ml-5pxr text-15pxr">초기화</span>
             </button>
           </div>
           <!-- 카테고리 nav -->
-          <div>
-            <button
-              class="bg-iconArrow w-full bg-right bg-no-repeat text-start"
-            >
+          <div class="list-nav">
+            <button class="listnav-btn">
               <span>카테고리</span>
             </button>
           </div>
           <!-- 브랜드 nav -->
-          <div>
-            <button
-              class="bg-iconArrow w-full bg-right bg-no-repeat text-start"
-            >
+          <div class="list-nav">
+            <button class="listnav-btn">
               <span>브랜드</span>
             </button>
           </div>
           <!-- 가격 nav -->
-          <div>
-            <button
-              class="bg-iconArrow w-full bg-right bg-no-repeat text-start"
-            >
+          <div class="list-nav">
+            <button class="listnav-btn">
               <span>가격</span>
             </button>
           </div>
         </nav>
 
-        <!--상품 list-->
-        <section class="w-783pxr bg-blue-300">
+        <!--상품 list -->
+        <section class="w-783pxr">
           <!-- 상품 list herder -->
           <ul class="mb-20pxr flex justify-between">
             <li>총 8건</li>
@@ -119,8 +113,19 @@
             </li>
           </ul>
           <ul
-            class="product-list grid grid-cols-3 gap-x-17pxr gap-y-73pxr"
+            class="product-list grid grid-cols-3 gap-x-17pxr gap-y-50pxr"
           ></ul>
+          <!-- 페이지 -->
+          <div
+            class="mb-80pxr mt-50pxr flex h-70pxr w-full items-end justify-center"
+          >
+            <!-- 페이지 늘리면 css 공통으로 나누고 복붙하고 수정하기 -->
+            <a
+              href="/"
+              class="flex h-34pxr w-34pxr justify-center border-2 border-solid border-gray-200 p-7pxr align-middle text-12pxr"
+              >1</a
+            >
+          </div>
         </section>
       </div>
     </main>
