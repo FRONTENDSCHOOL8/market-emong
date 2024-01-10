@@ -37,6 +37,9 @@ module.exports = {
         tablet: '768px',
         desktop: '1280px',
       },
+      content: {
+        arrow: 'url("/src/assets/signUp-arrow.svg")',
+      },
       colors: {
         secondary: 'rgba(189, 118, 255, 1)',
         primary: 'rgba(95, 0, 128, 1)',
