@@ -3,16 +3,26 @@
   <head>
     <title>에몽 - 마켓에몽</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/js/include.js"></script>
     <script type="module" src="/src/pages/detail/detail.js"></script>
   </head>
   <body>
+    <!-- 헤더 불러오기 -->
+    <header id="header"></header>
+
+    <!-- 상품 선택 후 장바구니 담기 -->
     <main>
-      <div>
+      <div class="mt-40pxr">
         <section>
           <div>
-            <img src="/" alt="" />
+            <img
+              src="/src/assets/doraemon.png"
+              alt="도라에몽"
+              class="h-428pxr w-360pxr"
+            />
           </div>
           <div class="detail-cart-wrapper">
             <div class="detail-title">
@@ -130,6 +140,8 @@
         </section>
       </div>
     </main>
+
+    <!-- 상품 설명 bar -->
     <nav class="select-bar">
       <ul>
         <li>
@@ -155,10 +167,15 @@
         </li>
       </ul>
     </nav>
+
+    <!-- 상품 정보(설명, 정보, 후기, 문의) -->
     <div class="detail-desc">
       <div class="detail-desc-wrapper">
         <div class="detail-product-desc"></div>
       </div>
     </div>
+
+    <!--푸터 불러오기-->
+    <footer id="footer"></footer>
   </body>
 </html>
