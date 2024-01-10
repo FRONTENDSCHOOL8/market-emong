@@ -14,12 +14,14 @@ window.addEventListener('scroll', function () {
   if (document.documentElement.scrollTop > 110) {
     nav.classList.add('active', 'shadow-md');
     subNav.classList.add('gap-11');
+    subNav.classList.remove('gap-20');
     subSearch.style.display = 'block';
     subCart.style.display = 'block';
     subNotice.style.display = 'none';
   } else {
     nav.classList.remove('active');
     subNav.classList.remove('gap-11');
+    subNav.classList.add('gap-20');
     subSearch.style.display = 'none';
     subCart.style.display = 'none';
     subNotice.style.display = 'block';
@@ -27,27 +29,35 @@ window.addEventListener('scroll', function () {
 });
 
 // 고객센터 hover
-document.querySelector('.user-info').addEventListener('mouseenter', () => {
-  const userInfoList = document.querySelector('.info-list');
-  userInfoList.style.visibility = 'visible';
-});
+const userInfo = document.querySelector('.user-info');
+const userInfoList = document.querySelector('.info-list');
 
-document.querySelector('.user-info').addEventListener('mouseleave', () => {
-  const userInfoList = document.querySelector('.info-list');
-  userInfoList.style.visibility = 'hidden';
-});
+function userToggle(eventStyle) {
+  userInfo.addEventListener(eventStyle, () => {
+    if (eventStyle === 'mouseenter') {
+      userInfoList.style.visibility = 'visible';
+    } else if (eventStyle === 'mouseleave') {
+      userInfoList.style.visibility = 'hidden';
+    }
+  });
+}
+
+userToggle('mouseenter');
+userToggle('mouseleave');
 
 // 카테고리 hover
-document
-  .querySelector('.header-category')
-  .addEventListener('mouseenter', () => {
-    const categoryList = document.querySelector('.category-list');
-    categoryList.style.visibility = 'visible';
-  });
+const headerCategory = document.querySelector('.header-category');
+const categoryList = document.querySelector('.category-list');
 
-document
-  .querySelector('.header-category')
-  .addEventListener('mouseleave', () => {
-    const categoryList = document.querySelector('.category-list');
-    categoryList.style.visibility = 'hidden';
+function headerToggle(eventStyle) {
+  headerCategory.addEventListener(eventStyle, () => {
+    if (eventStyle === 'mouseenter') {
+      categoryList.style.visibility = 'visible';
+    } else if (eventStyle === 'mouseleave') {
+      categoryList.style.visibility = 'hidden';
+    }
   });
+}
+
+headerToggle('mouseenter');
+headerToggle('mouseleave');
