@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>에몽 - 마켓에몽</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/js/include.js"></script>
+    <script type="module" src="/main.js"></script>
+  </head>
+  <body>
+    <header id="header"></header>
+    <main class="flex justify-center">
+      <section class="w-640pxr">
+        <h2 class="text-center text-21pxr font-semibold">회원가입</h2>
+        <form
+          action="/"
+          class="flex flex-col gap-40pxr border-y-2 border-black py-20pxr"
+        >
+          <div class="flex justify-between">
+            <label for="idField" class="h-45pxr w-140pxr p-8pxr">
+              <span class="font-semibold">아이디</span>
+            </label>
+            <input
+              type="text"
+              id="idField"
+              placeholder="아이디를 입력해주세요"
+              class="w-320pxr"
+            />
+            <button type="submit" class="w-143pxr border border-bluemong">
+              중복 확인
+            </button>
+          </div>
+          <div>
+            <label for="pwField">비밀번호</label>
+            <input
+              type="password"
+              id="pwField"
+              placeholder="비밀번호를 입력해주세요"
+            />
+          </div>
+          <div>
+            <label for="pwCheckField">비밀번호 확인</label>
+            <input
+              type="password"
+              id="pwCheckField"
+              placeholder="비밀번호를 한번 더 입력해주세요"
+            />
+          </div>
+          <div>
+            <label for="nameField">이름</label>
+            <input
+              type="text"
+              id="nameField"
+              placeholder="이름을 입력해 주세요"
+            />
+          </div>
+          <div>
+            <label for="emailField">이메일</label>
+            <input
+              type="text"
+              id="emailField"
+              placeholder="예: marketemong@emong.com"
+            />
+          </div>
+          <div>
+            <label for="phoneNumField">휴대폰</label>
+            <input
+              type="text"
+              id="phoneNumField"
+              placeholder="숫자만 입력해 주세요."
+            />
+          </div>
+          <div>
+            <span>주소</span>
+            <button type="button">주소 검색</button>
+          </div>
+          <div>
+            <label for="gender">성별</label>
+            <input type="radio" name="성별" id="gender" value="남자" />
+            <span>남성</span>
+            <input type="radio" name="성별" id="gender" value="여자" />
+            <span>여성</span>
+            <input type="radio" name="성별" id="gender" value="선택안함" />
+            <span>선택안함</span>
+          </div>
+          <div>
+            <label for="birthday">생년월일</label>
+            <input type="text" id="birthday" placeholder="YYYY / MM / DD" />
+          </div>
+          <div>
+            <label for="extraCheck">추가입력 사항</label>
+            <input
+              type="radio"
+              name="extra"
+              id="extraCheck"
+              value="친구초대 추천인 아이디"
+            />
+            <span>친구초대 추천인 아이디</span>
+            <input
+              type="radio"
+              name="extra"
+              id="extraCheck"
+              value="참여 이벤트명"
+            />
+            <span>참여 이벤트명</span>
+          </div>
+        </form>
+        <form action="/" class="flex">
+          <label for="agreement">이용약관 동의</label>
+          <div>
+            <div>
+              <div>
+                <input type="checkbox" name="allAgree" id="agreement" />
+                <span>전체 동의합니다.</span>
+              </div>
+              <span>
+                선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를
+                이용할 수 있습니다.
+              </span>
+            </div>
+            <div>
+              <input type="checkbox" name="agree-1" id="agreement" />
+              <span> 이용약관 동의 (필수) </span>
+              <button type="button">약관보기</button>
+            </div>
+            <div>
+              <input type="checkbox" name="agree-2" id="agreement" />
+              <span>개인정보 수집 이용 동의 (필수)</span>
+              <button type="button">약관보기</button>
+            </div>
+            <div>
+              <input type="checkbox" name="agree-3" id="agreement" />
+              <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의 (선택)</span>
+              <button type="button">약관보기</button>
+            </div>
+            <div>
+              <input type="checkbox" name="agree-4" id="agreement" />
+              <span>본인은 만 14세 이상입니다. (필수)</span>
+              <button type="button">약관보기</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>
