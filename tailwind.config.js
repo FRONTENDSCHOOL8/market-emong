@@ -20,6 +20,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        iconArrow: "url('/src/assets/ic-arrow.svg')",
+      },
       spacing: {
         ...pxToRemFunc(0, 1000),
       }, // px을 rem으로 변환
