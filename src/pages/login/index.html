@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>에몽 - 마켓에몽</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/js/include.js"></script>
+    <script type="module" src="/main.js"></script>
+  </head>
+
+  <body>
+    <header id="header"></header>
+    <main class="my-80pxr w-full">
+      <section class="m-auto w-[1050px]">
+        <div class="mx-355pxr w-340pxr">
+          <h2 class="mb-44pxr text-center text-21pxr font-semibold">로그인</h2>
+          <form action="/" class="flex flex-col gap-12pxr">
+            <label for="idField"></label>
+            <input
+              type="text"
+              id="idField"
+              placeholder="아이디를 입력해주세요"
+              class="h-50pxr w-340pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+            />
+            <label for="pwField"></label>
+            <input
+              type="text"
+              id="pwField"
+              placeholder="비밀번호를 입력해주세요"
+              class="h-50pxr w-340pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+            />
+            <div class="flex items-center justify-end">
+              <a href="/" class="text-12pxr">아이디 찾기</a>
+              <div class="mx-4pxr h-10pxr border-l border-black"></div>
+              <a href="/" class="text-12pxr">비밀번호 찾기</a>
+            </div>
+            <button
+              type="submit"
+              disabled
+              class="mt-16pxr h-54pxr w-340pxr rounded border border-skybluemong bg-bluemong font-semibold text-white hover:bg-white hover:text-skybluemong disabled:pointer-events-none disabled:bg-sky-300"
+            >
+              로그인
+            </button>
+          </form>
+          <a
+            href="/src/pages/signUp/"
+            class="mt-12pxr flex h-54pxr w-340pxr items-center justify-center rounded border border-skybluemong px-20pxr font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+            >회원가입</a
+          >
+        </div>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>
