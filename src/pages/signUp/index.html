@@ -79,39 +79,42 @@
             <button type="button">주소 검색</button>
           </div>
           <div>
-            <label for="">성별</label>
-            <input type="checkbox" name="" id="" value="남자" />
+            <label for="gender">성별</label>
+            <input type="radio" name="성별" id="gender" value="남자" />
             <span>남성</span>
-            <input type="checkbox" name="" id="" value="여자" />
+            <input type="radio" name="성별" id="gender" value="여자" />
             <span>여성</span>
-            <input type="checkbox" name="" id="" value="선택안함" />
+            <input type="radio" name="성별" id="gender" value="선택안함" />
             <span>선택안함</span>
           </div>
           <div>
-            <label for="">생년월일</label>
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
+            <label for="birthday">생년월일</label>
+            <input type="text" id="birthday" placeholder="YYYY / MM / DD" />
           </div>
           <div>
-            <label for="">추가입력 사항</label>
+            <label for="extraCheck">추가입력 사항</label>
             <input
-              type="checkbox"
-              name=""
-              id=""
+              type="radio"
+              name="extra"
+              id="extraCheck"
               value="친구초대 추천인 아이디"
             />
             <span>친구초대 추천인 아이디</span>
-            <input type="checkbox" name="" id="" value="참여 이벤트명" />
+            <input
+              type="radio"
+              name="extra"
+              id="extraCheck"
+              value="참여 이벤트명"
+            />
             <span>참여 이벤트명</span>
           </div>
         </form>
-        <form action="" class="flex">
-          <label for="">이용약관 동의</label>
+        <form action="/" class="flex">
+          <label for="agreement">이용약관 동의</label>
           <div>
             <div>
               <div>
-                <input type="checkbox" name="" id="" />
+                <input type="checkbox" name="allAgree" id="agreement" />
                 <span>전체 동의합니다.</span>
               </div>
               <span>
@@ -120,22 +123,22 @@
               </span>
             </div>
             <div>
-              <input type="checkbox" name="" id="" />
+              <input type="checkbox" name="agree-1" id="agreement" />
               <span> 이용약관 동의 (필수) </span>
               <button type="button">약관보기</button>
             </div>
             <div>
-              <input type="checkbox" name="" id="" />
+              <input type="checkbox" name="agree-2" id="agreement" />
               <span>개인정보 수집 이용 동의 (필수)</span>
               <button type="button">약관보기</button>
             </div>
             <div>
-              <input type="checkbox" name="" id="" />
+              <input type="checkbox" name="agree-3" id="agreement" />
               <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의 (선택)</span>
               <button type="button">약관보기</button>
             </div>
             <div>
-              <input type="checkbox" name="" id="" />
+              <input type="checkbox" name="agree-4" id="agreement" />
               <span>본인은 만 14세 이상입니다. (필수)</span>
               <button type="button">약관보기</button>
             </div>
