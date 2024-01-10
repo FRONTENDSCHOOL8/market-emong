@@ -1,40 +1,8 @@
-import PocketBase from 'pocketbase';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import '/src/styles/tailwind.css';
 import '/src/styles/product.css';
-
-function getPbImageURL(collectionId, id, fileName = 'photo') {
-  return `${
-    import.meta.env.VITE_PB_API
-  }/files/${collectionId}/${id}/${fileName}`;
-}
-
-function setStorage(name) {
-  const date = new Date();
-
-  // const timer = '6'; // test
-  const timer = date.setTime(date.getDay());
-
-  localStorage.setItem(name, timer);
-}
-
-function getStorage(name) {
-  const now = new Date();
-
-  // const timer = '0'; // test
-  const timer = now.setTime(now.getDay());
-
-  if (parseInt(localStorage.getItem(name)) !== timer) {
-    localStorage.removeItem(name);
-  }
-
-  return parseInt(localStorage.getItem(name)) !== timer;
-}
-
-//
-
-const pb = new PocketBase(import.meta.env.VITE_PB_URL);
+import { getPbImageURL, pb, setStorageDay, compareDay } from '/src/lib/';
 
 // pb 통신
 
@@ -61,12 +29,12 @@ const kit = document.querySelector('.kit-list');
 
 // 팝업창 기능 구현
 
-if (getStorage('day') || localStorage.getItem('day') === null) {
+if (compareDay('day') || localStorage.getItem('day') === null) {
   dialog.showModal();
 }
 
 function handlePopup() {
-  setStorage('day');
+  setStorageDay('day');
   dialog.close();
 }
 
@@ -115,7 +83,7 @@ productList.forEach(
         </span>
         <span class="label">${label}</span>
       </a>
-      <button>
+      <button type="button">
         <img src="/assets/product-cart.svg" alt="장바구니 담기" />
       </button>
     </li>
@@ -133,6 +101,7 @@ productList.forEach(
     }
 
     const discountTag = document.querySelector('.discount-price');
+
     const priceTemplate = /* html */ `
       <span class="price">${price}</span>
     `;
