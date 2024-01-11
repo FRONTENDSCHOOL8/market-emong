@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/js/include.js"></script>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/pages/signUp/signUp.js"></script>
   </head>
   <body>
     <header id="header"></header>
@@ -139,48 +139,56 @@
                 <div class="w-143pxr"></div>
               </div>
               <div class="flex justify-between">
-                <label
-                  for="gender"
+                <span
                   class="h-45pxr w-140pxr p-8pxr font-semibold text-content"
                 >
                   성별
-                </label>
+                </span>
                 <div class="flex w-333pxr justify-between">
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
                       name="성별"
-                      id="gender"
+                      id="boy"
                       value="남자"
                       class="h-20pxr w-20pxr p-2pxr"
                     />
-                    <span class="text-14pxr font-semibold text-content"
-                      >남성</span
+                    <label
+                      for="boy"
+                      class="text-14pxr font-semibold text-content"
                     >
+                      남성
+                    </label>
                   </div>
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
                       name="성별"
-                      id="gender"
+                      id="girl"
                       value="여자"
                       class="h-20pxr w-20pxr p-2pxr"
                     />
-                    <span class="text-14pxr font-semibold text-content"
-                      >여성</span
+                    <label
+                      for="girl"
+                      class="text-14pxr font-semibold text-content"
                     >
+                      여성
+                    </label>
                   </div>
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
                       name="성별"
-                      id="gender"
+                      id="none"
                       value="선택안함"
                       class="h-20pxr w-20pxr p-2pxr"
                     />
-                    <span class="text-14pxr font-semibold text-content"
-                      >선택안함</span
+                    <label
+                      for="none"
+                      class="text-14pxr font-semibold text-content"
                     >
+                      선택 안함
+                    </label>
                   </div>
                 </div>
                 <div class="w-143pxr"></div>
@@ -198,62 +206,64 @@
                 <div class="w-143pxr"></div>
               </div>
               <div class="flex justify-between">
-                <label
-                  for="extraCheck"
+                <span
                   class="h-45pxr w-140pxr p-8pxr font-semibold text-content"
                 >
                   추가입력 사항
-                </label>
+                </span>
                 <div class="flex w-333pxr justify-between">
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
                       name="extra"
-                      id="extraCheck"
+                      id="extraFriend"
                       value="친구초대 추천인 아이디"
                       class="h-20pxr w-20pxr p-2pxr"
                     />
-                    <span class="text-14pxr font-semibold text-content">
+                    <label
+                      for="extraFriend"
+                      class="text-14pxr font-semibold text-content"
+                    >
                       친구초대 추천인 아이디
-                    </span>
+                    </label>
                   </div>
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
                       name="extra"
-                      id="extraCheck"
+                      id="extraEvent"
                       value="참여 이벤트명"
                       class="h-20pxr w-20pxr p-2pxr"
                     />
-                    <span class="text-14pxr font-semibold text-content"
-                      >참여 이벤트명</span
-                    >
+                    <label
+                      for="extraEvent"
+                      class="text-14pxr font-semibold text-content"
+                      >참여 이벤트명
+                    </label>
                   </div>
                 </div>
                 <div class="w-143pxr"></div>
               </div>
             </fieldset>
             <fieldset class="flex border-y border-black py-20pxr">
-              <label
-                for="agreement"
-                class="h-45pxr w-140pxr p-8pxr font-semibold text-content"
-              >
+              <div class="h-45pxr w-140pxr p-8pxr font-semibold text-content">
                 <span>이용약관 동의</span>
                 <b class="text-info__error">*</b>
-              </label>
+              </div>
               <div class="flex w-490pxr flex-col">
                 <div>
                   <div>
                     <input
                       type="checkbox"
                       name="allAgree"
-                      id="agreement"
+                      id="allAgree"
                       class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
                     />
-                    <span
+                    <label
+                      for="allAgree"
                       class="align-middle text-21pxr font-semibold text-content"
-                      >전체 동의합니다.</span
-                    >
+                      >전체 동의합니다.
+                    </label>
                   </div>
                   <span class="block text-right text-12pxr text-gray-400">
                     선택항목에 동의하지 않은 경우도 회원가입 및 일반적인
@@ -264,13 +274,13 @@
                   <div>
                     <input
                       type="checkbox"
-                      name="agree-1"
-                      id="agreement"
+                      name="agree"
+                      id="agree-1"
                       class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
                     />
-                    <span class="align-middle text-content">
+                    <label for="agree-1" class="align-middle text-content">
                       이용약관 동의 (필수)
-                    </span>
+                    </label>
                   </div>
                   <button
                     type="button"
@@ -283,13 +293,13 @@
                   <div>
                     <input
                       type="checkbox"
-                      name="agree-2"
-                      id="agreement"
+                      name="agree"
+                      id="agree-2"
                       class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
                     />
-                    <span class="align-middle text-content"
-                      >개인정보 수집 이용 동의 (필수)</span
-                    >
+                    <label for="agree-2" class="align-middle text-content">
+                      개인정보 수집 이용 동의 (필수)
+                    </label>
                   </div>
                   <button
                     type="button"
@@ -302,13 +312,13 @@
                   <div>
                     <input
                       type="checkbox"
-                      name="agree-3"
-                      id="agreement"
+                      name="agree"
+                      id="agree-3"
                       class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
                     />
-                    <span class="align-middle text-content"
-                      >무료배송, 할인쿠폰 등 혜택/정보 수신 동의 (선택)</span
-                    >
+                    <label for="agree-3" class="align-middle text-content">
+                      무료배송, 할인쿠폰 등 혜택/정보 수신 동의 (선택)
+                    </label>
                   </div>
                   <button
                     type="button"
@@ -321,13 +331,13 @@
                   <div>
                     <input
                       type="checkbox"
-                      name="agree-4"
-                      id="agreement"
+                      name="agree"
+                      id="agree-4"
                       class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
                     />
-                    <span class="align-middle text-content"
-                      >본인은 만 14세 이상입니다. (필수)</span
-                    >
+                    <label for="agree-4" class="align-middle text-content">
+                      본인은 만 14세 이상입니다. (필수)
+                    </label>
                   </div>
                   <button
                     type="button"
