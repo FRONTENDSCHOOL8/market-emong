@@ -15,8 +15,8 @@
 
     <!-- 상품 선택 후 장바구니 담기 -->
     <main>
-      <div class="mt-40pxr">
-        <section class="m-auto">
+      <div class="mt-40pxr flex w-full justify-center">
+        <section class="flex w-[1050px] justify-between">
           <div>
             <img
               src="/src/assets/doraemon.png"
@@ -24,116 +24,174 @@
               class="h-428pxr w-360pxr"
             />
           </div>
-          <div class="detail-cart-wrapper flex">
-            <div class="detail-title">
-              <p class="text-gray-500">미래배송</p>
-              <div>
-                <h1>[너구리]도라에몽</h1>
-                <h2>도구보관함</h2>
+          <div class="detail-product-container flex-col flex-nowrap">
+            <div class="detail-cart-wrapper">
+              <div class="detail-title">
+                <span class="mb-16pxr text-21pxr font-normal text-gray-500"
+                  >미래배송</span
+                >
+                <div>
+                  <h1 class="text-28pxr font-semibold">[너구리]도라에몽</h1>
+                  <h2 class="mb-16pxr text-16pxr font-normal text-gray-400">
+                    도구보관함
+                  </h2>
+                </div>
+                <div class="mb-16pxr">
+                  <span class="text-28pxr font-semibold">50,000</span>
+                  <span class="mb-20pxr font-normal">원</span>
+                </div>
+                <p class="mb-20pxr font-semibold text-skybluemong">
+                  로그인 후, 적립 혜택이 제공됩니다.
+                </p>
               </div>
-              <div>
-                <span>50,000</span>
-                <span>원</span>
-              </div>
-              <p>로그인 후, 적립 혜택이 제공됩니다.</p>
+              <ul class="flex flex-col">
+                <li
+                  class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
+                >
+                  <dt class="w-128pxr">배송</dt>
+                  <dd>
+                    <p>미래배송</p>
+                    <p class="text-gray-400">
+                      1초 만에 타임머신으로 배송이 옵니다.
+                    </p>
+                  </dd>
+                </li>
+                <li
+                  class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
+                >
+                  <dt class="w-128pxr">판매자</dt>
+                  <dd>
+                    <span>에몽마켓</span>
+                  </dd>
+                </li>
+                <li
+                  class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
+                >
+                  <dt class="w-128pxr">포장타입</dt>
+                  <dd>
+                    <span>캐릭터</span>
+                    <p class="text-gray-400">
+                      택배배송은 에코 포장이 스티로폼으로 대체됩니다.
+                    </p>
+                  </dd>
+                </li>
+                <li
+                  class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
+                >
+                  <dt class="w-128pxr">판매단위</dt>
+                  <dd>
+                    <span>1개</span>
+                  </dd>
+                </li>
+                <li
+                  class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
+                >
+                  <dt class="w-128pxr">중량/용량</dt>
+                  <dd>
+                    <span>129.3kg</span>
+                  </dd>
+                </li>
+                <li
+                  class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
+                >
+                  <dt class="w-128pxr">주의사항</dt>
+                  <dd>
+                    <span>상세페이지 별도표기</span>
+                  </dd>
+                </li>
+              </ul>
             </div>
-            <ul>
-              <li>
-                <dt>배송</dt>
-                <dd>
-                  <p>미래배송</p>
-                  <p>1초 만에 타임머신으로 배송이 옵니다.</p>
-                </dd>
-              </li>
-              <li>
-                <dt>판매자</dt>
-                <dd>
-                  <span>에몽마켓</span>
-                </dd>
-              </li>
-              <li>
-                <dt>포장타입</dt>
-                <dd>
-                  <span>캐릭터</span>
-                  <p>택배배송은 에코 포장이 스티로폼으로 대체됩니다.</p>
-                </dd>
-              </li>
-              <li>
-                <dt>판매단위</dt>
-                <dd>
-                  <span>1개</span>
-                </dd>
-              </li>
-              <li>
-                <dt>중량/용량</dt>
-                <dd>
-                  <span>129.3kg</span>
-                </dd>
-              </li>
-              <li>
-                <dt>주의사항</dt>
-                <dd>
-                  <span>상세페이지 별도표기</span>
-                </dd>
-              </li>
-            </ul>
-          </div>
-          <div class="detail-product-select">
-            <div class="detail-select">
-              <dl>
-                <dt>상품선택</dt>
-                <dd>
-                  <div class="select-option">
-                    <div class="select-product">
-                      <span>[너구리]도라에몽</span>
+            <div class="detail-product-select">
+              <div class="detail-select">
+                <dl
+                  class="flex justify-between border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
+                >
+                  <dt>상품선택</dt>
+                  <dd>
+                    <div
+                      class="select-option flex w-full justify-between font-semibold text-gray-500"
+                    >
+                      <div class="select-product flex justify-between">
+                        <div
+                          class="flex flex-col gap-12pxr border border-solid border-gray-100 px-16pxr py-12pxr"
+                        >
+                          <span>[너구리]도라에몽</span>
+                          <div
+                            class="select-product-count flex justify-between border border-gray-100 text-center font-semibold text-gray-500"
+                          >
+                            <button type="button" aria-label="수량내리기">
+                              <img
+                                src="/src/assets/detail-Minus.svg"
+                                alt="빼기"
+                              />
+                            </button>
+                            <div class="items-center text-16pxr">1</div>
+                            <button type="button" aria-label="수량올리기">
+                              <img
+                                src="/src/assets/detail-Plus.svg"
+                                alt="더하기"
+                              />
+                            </button>
+                          </div>
+                          <div class="detail-select-count">
+                            <span class="text-black">50,000원</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="select-product-count">
-                      <div class="detail-count">
-                        <button
-                          type="button"
-                          aria-label="수량내리기"
-                          disabled
-                        ></button>
-                        <div>1</div>
-                        <button type="button" aria-label="수량올리기"></button>
-                      </div>
-                      <div class="detail-select-count">
-                        <span>42,000원</span>
-                        <span>50,000원</span>
-                      </div>
+                  </dd>
+                </dl>
+              </div>
+              <div
+                class="detail-price border-t border-solid border-gray-100 px-4pxr py-28pxr text-right"
+              >
+                <div>
+                  <div class="flex justify-center text-16pxr">
+                    <div class="flex items-center text-right font-semibold">
+                      <span class="pr-17pxr">총 상품금액:</span>
+                      <span class="pr-4pxr text-28pxr">50,000</span>
+                      <span class="font-normal">원</span>
                     </div>
                   </div>
-                </dd>
-              </dl>
-            </div>
-            <div class="detail-price">
-              <div>
-                <div>
-                  <span>총 상품금액:</span>
-                  <span>50,000</span>
-                  <span>원</span>
-                </div>
-                <div>
-                  <span>적립</span>
-                  <span>로그인 후, 적립 혜택 제공</span>
+                  <div class="text-16pxr">
+                    <span
+                      class="gap-8pxr rounded-2xl bg-accent__yellow px-8pxr py-4pxr text-10pxr text-white"
+                      >적립</span
+                    >
+                    <span class="text-16pxr font-semibold"
+                      >로그인 후, 적립 혜택 제공</span
+                    >
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="detail-add-cart">
-              <button type="button" class="like-button">
-                <span>
-                  <img src="/src/assets/Heart.svg" alt="" />
-                </span>
-              </button>
-              <button type="button" class="bell-button">
-                <span>
-                  <img src="/src/assets/Bell.svg" alt="" />
-                </span>
-              </button>
-              <div class="detail-cart-button">
-                <button type="button" class="radius-3">
-                  <span>장바구니 담기</span>
+              <div class="detail-add-cart flex justify-between">
+                <button
+                  type="button"
+                  class="like-button rounded-sm border border-gray-100 p-4pxr"
+                >
+                  <span>
+                    <img
+                      src="/src/assets/Heart.svg"
+                      alt="좋아요"
+                      class="w-36pxr"
+                    />
+                  </span>
                 </button>
+                <button
+                  type="button"
+                  class="bell-button rounded-sm border border-gray-100 p-4pxr"
+                >
+                  <span>
+                    <img src="/src/assets/Bell.svg" alt="알림" />
+                  </span>
+                </button>
+                <div
+                  class="detail-cart-button flex w-300pxr justify-center rounded-sm bg-skybluemong text-white"
+                >
+                  <button type="button" class="radius-3 font-semibold">
+                    <span>장바구니 담기</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -142,25 +200,27 @@
     </main>
 
     <!-- 상품 설명 bar -->
-    <nav class="select-bar">
-      <ul>
-        <li>
+    <nav class="select-bar flex w-full justify-center pt-48pxr">
+      <ul
+        class="flex h-54pxr w-[1050px] text-center align-middle text-16pxr font-semibold"
+      >
+        <li class="flex-1 border-x border-t border-gray-100 text-skybluemong">
           <a href="/">
             <span>상품 설명</span>
           </a>
         </li>
-        <li>
+        <li class="flex-1 border-y border-l border-gray-300">
           <a href="/">
             <span>상세 정보</span>
           </a>
         </li>
-        <li>
+        <li class="flex-1 border-y border-l border-gray-300">
           <a href="/">
             <span>후기</span>
             <span>(1,000)</span>
           </a>
         </li>
-        <li>
+        <li class="flex-1 border border-gray-300">
           <a href="/">
             <span>문의</span>
           </a>
@@ -169,57 +229,112 @@
     </nav>
 
     <!-- 상품 정보(설명, 정보, 후기, 문의) -->
-    <div class="w-[1050px]j">
-      <div class="detail-description">
-        <div class="detail-product-wrapper">
-          <div class="detail-product-desc">
+    <div class="w-full">
+      <div class="detail-description flex justify-center pt-40pxr">
+        <div class="detail-product-wrapper w-[1050px]">
+          <div
+            class="detail-product-desc flex flex-col items-center justify-center text-center"
+          >
             <div class="detail-pic-desc">
-              <div class="detail-product-pic">
+              <div class="detail-product-pic flex justify-center pb-76pxr">
                 <img src="/src/assets/doraemon.png" alt="상품" />
               </div>
               <div class="detail-product-text">
-                <h3>도라에몽</h3>
-                <p>도라에몽 설명</p>
+                <h2 class="text-28pxr font-semibold">도구보관함</h2>
+                <h3 class="pb-36pxr text-50pxr font-normal text-gray-800">
+                  [너구리]도라에몽
+                </h3>
+                <p
+                  class="w-[1050px] border-t border-gray-100 pt-28pxr text-16pxr font-normal"
+                >
+                  해결사를 맡고 있으며 때론 바보같고 천연덕스럽지만 전체적으로
+                  믿음직스러운 로봇이다. <br />
+                  양산형 어린아이 돌보기용 고양이형 로봇(친구형)으로 성별은
+                  수컷. <br />
+                  고성능 로봇이라 매우 똑똑하다.(아마도..) (단. 주머니 안에는
+                  아무것도 없다.)
+                </p>
               </div>
             </div>
-            <div class="detail-product-point">
-              <h3>
-                <span>emong's Check Point</span>
-              </h3>
-              <div class="detail-point-text">
-                <img src="/" alt="" />
+            <div class="detail-product-point w-[1050px] py-96pxr">
+              <div class="flex flex-col justify-center">
+                <h3 class="text-50pxr font-normal text-gray-800">
+                  <span>emong's Check Point</span>
+                </h3>
+                <div class="detail-point-text text-left font-normal">
+                  <div class="pt-68pxr">
+                    <span class="text-23pxr">주의사항</span>
+                    <p class="pt-22pxr text-16pxr">
+                      •쥐를 보면 129.3km/h로 달린다. <br />
+                      •평상시는 시속12km.
+                    </p>
+                  </div>
+                  <div class="pt-68pxr">
+                    <span class="text-23pxr">내구성</span>
+                    <p class="pt-22pxr text-16pxr">
+                      몸이 꽤 튼튼하고 옹골차서, 높은 수압의 심해나
+                      우주공간에서도 그대로 활동이 가능하다. <br />
+                      산이나 산성액체에도 녹지 않는다. 충격에도 강해서 설정상
+                      가스 폭발이 일어나는 곳 한가운데 <br />
+                      있어도 몸이 원형을 유지한다고 한다. 우주 공간에서도
+                      아무렇지 않게 건강하다. <br />
+                      이외에 피부가 인체와 비슷하게 잘 늘어나고 원상회복이 잘
+                      되는 것을 보아 상당히 신축성이 <br />
+                      좋은 탄상 재료로 구성되었다. 매우 튼튼한 편이지만
+                      정기적으로 정비나 수리를 받으러 간다. <br />
+                      (AS자동화 시스템) 단 추우면 감기도 걸립니다.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="detail-info">
-            <div class="detail-img">
+          <div
+            class="detail-info flex flex-col items-center justify-center pt-175pxr"
+          >
+            <div class="detail-img pb-175pxr">
               <img
                 src="/src/assets/doraemon-detail.png"
                 alt="자세한크기 이미지"
               />
             </div>
             <div class="detail-why-container">
-              <div class="detail-why-wrapper">
+              <div
+                class="detail-why-wrapper pb-35pxr text-center text-28pxr font-normal"
+              >
                 <span>WHY EMONG</span>
               </div>
-              <div class="detail-wrapper-desc">
-                <dl class="detail-desc1">
-                  <dt>
+              <div class="detail-wrapper-desc pb-84pxr">
+                <dl
+                  class="detail-desc1 m-auto grid-rows-1 pt-56pxr text-center"
+                >
+                  <dt
+                    class="flex flex-col items-center justify-center text-center"
+                  >
                     <img
                       src="/src/assets/detail-list-icon.svg"
                       alt="상품위원회"
+                      class="h-40pxr w-40pxr pb-16pxr"
                     />
                     깐깐한 상품위원회
                   </dt>
-                  <dd>
+                  <dd class="pt-24pxr">
                     나와 내 가족의 미래를 위한 마음으로 <br />
                     매주 도구를 직접 사용해보고 경험해보고 <br />
                     안정성 등 다각도의 기준을 통과한 도구 만을 판매합니다.
                   </dd>
                 </dl>
-                <dl class="detail-desc2">
-                  <dt>
-                    <img src="/src/assets/detail-only-e.svg" alt="오직에몽" />
+                <dl
+                  class="detail-desc2 m-auto grid-rows-2 pt-56pxr text-center"
+                >
+                  <dt
+                    class="flex flex-col items-center justify-center text-center"
+                  >
+                    <img
+                      src="/src/assets/detail-only-e.svg"
+                      alt="오직에몽"
+                      class="h-40pxr w-40pxr pb-16pxr"
+                    />
                     차별화된 Emong Only 상품
                   </dt>
                   <dd>
@@ -229,9 +344,17 @@
                     스펙의 Emong Only 상품을 믿고 만나보세요.
                   </dd>
                 </dl>
-                <dl class="detail-desc3">
-                  <dt>
-                    <img src="/src/assets/detail-delivery.svg" alt="배송" />
+                <dl
+                  class="detail-desc3 m-auto grid-rows-3 pt-56pxr text-center"
+                >
+                  <dt
+                    class="flex flex-col items-center justify-center text-center"
+                  >
+                    <img
+                      src="/src/assets/detail-delivery.svg"
+                      alt="배송"
+                      class="h-40pxr w-40pxr pb-16pxr"
+                    />
                     타임머신 배송
                   </dt>
                   <dd>
@@ -240,9 +363,17 @@
                     상품을 안전하게 눈 앞까지 전해드립니다.
                   </dd>
                 </dl>
-                <dl>
-                  <dt>
-                    <img src="/src/assets/detail-price.svg" alt="최선의가격" />
+                <dl
+                  class="detail-desc4 m-auto grid-cols-1 pt-56pxr text-center"
+                >
+                  <dt
+                    class="flex flex-col items-center justify-center text-center"
+                  >
+                    <img
+                      src="/src/assets/detail-price.svg"
+                      alt="최선의가격"
+                      class="h-40pxr w-40pxr pb-16pxr"
+                    />
                     고객, 생산자를 위한 최선의 가격
                   </dt>
                   <dd>
@@ -251,11 +382,16 @@
                     언제나 합리적인 가격으로 정기 조정합니다.
                   </dd>
                 </dl>
-                <dl class="detail-desc4">
-                  <dt>
+                <dl
+                  class="detail-desc5 m-auto grid-cols-2 pt-56pxr text-center"
+                >
+                  <dt
+                    class="flex flex-col items-center justify-center text-center"
+                  >
                     <img
                       src="/src/assets/detail-circulation.svg"
                       alt="환경보호유통"
+                      class="h-40pxr w-40pxr pb-16pxr"
                     />
                     환경을 생각하는 지속 가능한 품질
                   </dt>
@@ -273,7 +409,7 @@
           <div class="detail-review"></div>
           <div class="detail-inquiry"></div>
         </div>
-        <div class=""></div>
+        <div class="my-40pxr"></div>
       </div>
     </div>
 
