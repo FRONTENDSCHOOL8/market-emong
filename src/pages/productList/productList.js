@@ -1,5 +1,5 @@
 import PocketBase from 'pocketbase';
-import '../../styles/product.css';
+import '/src/styles/product.css';
 import '/src/styles/tailwind.css';
 
 function getPbImageURL(collectionId, id, fileName = 'photo') {
@@ -39,7 +39,7 @@ productList.forEach(
         <span class="label">${label}</span>
       </a>
       <button>
-        <img src="/src/assets/product-cart.svg" alt="장바구니 담기" />
+        <img src="/assets/product-cart.svg" alt="장바구니 담기" />
       </button>
     </li>
     `;
