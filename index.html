@@ -16,11 +16,15 @@
     <header id="header"></header>
 
     <!-- 광고 swiper 컨테이너 -->
-    <div class="swiper-advertising relative mx-auto h-370pxr w-[1920px]">
-      <div class="swiper-wrapper"></div>
-      <div class="swiper-button-prev main-prev left-200pxr"></div>
-      <div class="swiper-button-next main-next right-200pxr"></div>
-      <div class="swiper-pagination"></div>
+    <div class="w-full overflow-hidden">
+      <div
+        class="swiper-advertising relative mx-auto min-w-[1050px] max-w-[1920px]"
+      >
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-prev main-prev left-200pxr"></div>
+        <div class="swiper-button-next main-next right-200pxr"></div>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
 
     <!-- 유튜브 광고 마크업 -->
@@ -54,7 +58,7 @@
     </div>
 
     <!-- 팝업창 마크업 -->
-    <dialog id="dialog" class="overflow-hidden rounded-[16px]">
+    <dialog id="dialog" class="max-h-672pxr min-h-300pxr rounded-[16px]">
       <a href="/">
         <img src="/src/assets/popup.png" alt="도라에몽 비밀도구박물관 극장판" />
       </a>
