@@ -28,7 +28,9 @@
                 <input
                   type="checkbox"
                   id="selected-all"
-                  class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+                  name="selectedAll"
+                  onclick="selectAll(this)"
+                  class="bg-unchecked-icon checked:bg-checked-icon h-5 w-5 appearance-none bg-cover bg-center bg-no-repeat"
                 />
                 <span>전체선택 (0/0)</span>
               </label>
@@ -41,28 +43,28 @@
               <button class="cart-toggle flex w-full justify-between py-2">
                 <span class="flex items-center gap-2">
                   <img
-                    src="/src/assets/test-ic-character.png"
+                    src="/src/assets/cartPage/test-ic-character.png"
                     alt=""
                     class="w-32pxr"
                   />
                   <strong>캐릭터</strong>
                 </span>
                 <img
-                  src="/src/assets/ic-arrow.svg"
+                  src="/src/assets/cartPage/ic-arrow.svg"
                   alt=""
                   class="toggle-icon transition-all"
                 />
               </button>
 
               <!-- 장바구니에 담은 상품 랜더링-->
-              <div class="cart-product hidden">
+              <div class="cart-product">
                 <ul class="flex items-center justify-around py-3">
                   <li>
                     <input
                       type="checkbox"
                       id="product-select"
-                      name="checkedValue"
-                      class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+                      name="productSelect"
+                      class="bg-unchecked-icon checked:bg-checked-icon h-5 w-5 appearance-none bg-cover bg-center bg-no-repeat"
                     />
                     <label for="product-select"></label>
                   </li>
@@ -70,7 +72,7 @@
                     <!-- 상품이미지 -->
                     <span>
                       <img
-                        src="/src/assets/test-ic-bread.png"
+                        src="/src/assets/cartPage/test-ic-doraemong.png"
                         alt="도라에몽"
                         class="h-73pxr w-63pxr border border-gray-200 p-1"
                       />
@@ -86,14 +88,14 @@
                     <!-- 상품갯수 추가, 감소 버튼 -->
                     <button
                       type="button"
-                      class="minus-button h-7 w-7 bg-[url('/src/assets/ic-minus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                      class="minus-button bg-minus-icon h-7 w-7 bg-cover bg-center bg-no-repeat hover:bg-slate-200"
                     >
                       <span class="sr-only">수량감소</span>
                     </button>
                     <span>1</span>
                     <button
                       type="button"
-                      class="plus-button h-7 w-7 bg-[url('/src/assets/ic-plus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                      class="plus-button bg-plus-icon h-7 w-7 bg-cover bg-center bg-no-repeat hover:bg-slate-200"
                     >
                       <span class="sr-only">수량증가</span>
                     </button>
@@ -106,7 +108,63 @@
                     <!-- 삭제 -->
                     <button
                       type="button"
-                      class="delete-button h-8 w-7 bg-[url('/src/assets/ic-delete.svg')] bg-cover bg-center bg-no-repeat"
+                      class="delete-button bg-delete-icon h-8 w-7 bg-cover bg-center bg-no-repeat"
+                    >
+                      <span class="sr-only">상품삭제</span>
+                    </button>
+                  </li>
+                </ul>
+                <ul class="flex items-center justify-around py-3">
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="product-select"
+                      name="productSelect"
+                      class="bg-unchecked-icon checked:bg-checked-icon h-5 w-5 appearance-none bg-cover bg-center bg-no-repeat"
+                    />
+                    <label for="product-select"></label>
+                  </li>
+                  <li class="flex items-center gap-1">
+                    <!-- 상품이미지 -->
+                    <span>
+                      <img
+                        src="/src/assets/cartPage/test-ic-doraemong.png"
+                        alt="도라에몽"
+                        class="h-73pxr w-63pxr border border-gray-200 p-1"
+                      />
+                    </span>
+                    <!-- 상품이름 -->
+                    <span class="w-325pxr font-bold">
+                      [도구보관함] 도라에몽
+                    </span>
+                  </li>
+                  <li
+                    class="product-count flex h-30pxr items-center gap-2 border border-gray-200"
+                  >
+                    <!-- 상품갯수 추가, 감소 버튼 -->
+                    <button
+                      type="button"
+                      class="minus-button bg-minus-icon h-7 w-7 bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    >
+                      <span class="sr-only">수량감소</span>
+                    </button>
+                    <span>1</span>
+                    <button
+                      type="button"
+                      class="plus-button bg-plus-icon h-7 w-7 bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                    >
+                      <span class="sr-only">수량증가</span>
+                    </button>
+                  </li>
+                  <li class="w-130pxr text-end">
+                    <!-- 상품금액 -->
+                    <span class="text-right font-bold"> 50,000원 </span>
+                  </li>
+                  <li>
+                    <!-- 삭제 -->
+                    <button
+                      type="button"
+                      class="delete-button bg-delete-icon h-8 w-7 bg-cover bg-center bg-no-repeat"
                     >
                       <span class="sr-only">상품삭제</span>
                     </button>
@@ -120,28 +178,28 @@
               <button class="cart-toggle flex w-full justify-between py-2">
                 <span class="flex items-center gap-2">
                   <img
-                    src="/src/assets/test-ic-tool.png"
+                    src="/src/assets/cartPage/test-ic-tool.png"
                     alt=""
                     class="w-32pxr"
                   />
                   <strong>도구</strong>
                 </span>
                 <img
-                  src="/src/assets/ic-arrow.svg"
+                  src="/src/assets/cartPage/ic-arrow.svg"
                   alt=""
                   class="toggle-icon transition-all"
                 />
               </button>
 
               <!-- 장바구니에 담은 상품 랜더링-->
-              <div class="cart-product hidden">
+              <div class="cart-product">
                 <ul class="flex items-center justify-around py-3">
                   <li>
                     <input
                       type="checkbox"
                       id="product-select"
                       name="checkedValue"
-                      class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+                      class="bg-unchecked-icon checked:bg-checked-icon h-5 w-5 appearance-none bg-cover bg-center bg-no-repeat"
                     />
                     <label for="product-select"></label>
                   </li>
@@ -149,7 +207,7 @@
                     <!-- 상품이미지 -->
                     <span>
                       <img
-                        src="/src/assets/test-ic-bread.png"
+                        src="/src/assets/cartPage/test-ic-bread.png"
                         alt="도라에몽"
                         class="h-73pxr w-63pxr border border-gray-200 p-1"
                       />
@@ -165,14 +223,14 @@
                     <!-- 상품갯수 추가, 감소 버튼 -->
                     <button
                       type="button"
-                      class="minus-button h-7 w-7 bg-[url('/src/assets/ic-minus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                      class="minus-button bg-minus-icon h-7 w-7 bg-cover bg-center bg-no-repeat hover:bg-slate-200"
                     >
                       <span class="sr-only">수량감소</span>
                     </button>
                     <span>1</span>
                     <button
                       type="button"
-                      class="plus-button h-7 w-7 bg-[url('/src/assets/ic-plus.svg')] bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+                      class="plus-button bg-plus-icon h-7 w-7 bg-cover bg-center bg-no-repeat hover:bg-slate-200"
                     >
                       <span class="sr-only">수량증가</span>
                     </button>
@@ -185,7 +243,7 @@
                     <!-- 삭제 -->
                     <button
                       type="button"
-                      class="delete-button h-8 w-7 bg-[url('/src/assets/ic-delete.svg')] bg-cover bg-center bg-no-repeat"
+                      class="delete-button bg-delete-icon h-8 w-7 bg-cover bg-center bg-no-repeat"
                     >
                       <span class="sr-only">상품삭제</span>
                     </button>
@@ -200,7 +258,7 @@
                 <input
                   type="checkbox"
                   id="selected-all"
-                  class="h-5 w-5 appearance-none bg-[url('/src/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat checked:bg-[url('/src/assets/ic-is-checked.svg')]"
+                  class="bg-unchecked-icon checked:bg-checked-icon h-5 w-5 appearance-none bg-cover bg-center bg-no-repeat"
                 />
                 <span>전체선택 (0/0)</span>
               </label>
@@ -215,7 +273,7 @@
           <div>
             <div class="m-auto border p-5">
               <div class="flex items-center pb-3">
-                <img src="/src/assets/ic-location.svg" alt="배송지" />
+                <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" />
                 <span>배송지</span>
               </div>
               <div class="pb-10">

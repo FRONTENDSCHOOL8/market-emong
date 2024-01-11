@@ -10,50 +10,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <footer class="w-full">
+    <footer class="w-full border-t">
       <section
-        class="footer-info m-auto flex w-[1050px] justify-between gap-2 py-5"
+        class="footer-info m-auto flex w-[1050px] justify-between gap-2 py-8"
       >
         <article class="info-left">
           <h1 class="sr-only">고객센터</h1>
-          <div>
-            <p class="font-bold">고객행복센터</p>
-            <div class="flex items-center gap-3">
-              <span class="pt-2 text-4xl font-bold">1644-1107</span>
-              <span class="text-sm font-bold"
-                >월~토요일 오전 7시 ~ 오후 6시</span
-              >
+          <div class="font-bold">
+            <h2 class="pb-2 text-xl font-medium">고객행복센터</h2>
+            <div class="flex items-end gap-3">
+              <strong class="text-3xl">1644-1107</strong>
+              <span>월~토요일 오전 7시 ~ 오후 6시</span>
             </div>
           </div>
-          <div class="flex flex-col gap-5 pt-4">
+          <div class="flex flex-col gap-5 pt-4 text-sm">
             <div class="flex gap-4">
               <button type="button" class="w-140pxr rounded-sm border">
                 카카오톡 문의
               </button>
-              <span>
-                <p>월~토요일| 오전 7시 ~ 오후 6시</p>
-                <p>일/공휴일| 오전 7시 ~ 오후 1시</p>
+              <span class="text-gray-500">
+                <p>월~토요일 ‣ 오전 7시 ~ 오후 6시</p>
+                <p>일/공휴일 ‣ 오전 7시 ~ 오후 1시</p>
               </span>
             </div>
             <div class="flex gap-4">
               <button type="button" class="w-140pxr rounded-sm border">
                 1:1문의
               </button>
-              <span>
+              <span class="text-gray-500">
                 <p>365일</p>
-                <p>고객센터 운영시간에 답변드리겠습니다.</p>
+                <p>고객센터 운영시간에 순차적으로 답변드리겠습니다.</p>
               </span>
             </div>
             <div class="flex gap-4">
               <button type="button" class="w-140pxr rounded-sm border">
                 대량주문 문의
               </button>
-              <span>
-                <p>월~금요일| 오전9시 ~ 오후6시</p>
-                <p>점심시간| 낮 12시 ~ 오후 1시</p>
+              <span class="text-gray-500">
+                <p>월~금요일 ‣ 오전9시 ~ 오후6시</p>
+                <p>점심시간 ‣ 낮 12시 ~ 오후 1시</p>
               </span>
             </div>
-            <p class="text-sm">
+            <p class="text-xs">
               비회원 문의:
               <a href="/" class="text-indigo-700">help@emong.com</a>
             </p>
@@ -61,8 +59,8 @@
         </article>
 
         <article class="info-right">
-          <h1 class="sr-only">마켓정보</h1>
-          <div class="flex gap-3">
+          <h2 class="sr-only">마켓정보</h2>
+          <div class="flex gap-3 text-sm">
             <a href="/">에몽소개</a>
             <a href="/">에몽소개영상</a>
             <a href="/">인재채용</a>
@@ -70,7 +68,7 @@
             <a href="/">개인정보처리방침</a>
             <a href="/">이용안내</a>
           </div>
-          <div class="pt-4 text-sm">
+          <div class="pt-4 text-xs text-gray-500">
             <p>
               법인명(상호): 마켓에몽
               <span>|</span>
@@ -91,35 +89,44 @@
           </div>
           <div class="flex gap-3 pt-5">
             <a href="/"
-              ><img src="/assets/ic-blog.png" alt="네이버블로그" class="w-10"
-            /></a>
-            <a href="/"
-              ><img src="/assets/ic-facebook.png" alt="페이스북" class="w-10"
+              ><img
+                src="/assets/footer/ic-blog.png"
+                alt="네이버블로그"
+                class="w-10"
             /></a>
             <a href="/"
               ><img
-                src="/assets/ic-instagram.png"
+                src="/assets/footer/ic-facebook.png"
+                alt="페이스북"
+                class="w-10"
+            /></a>
+            <a href="/"
+              ><img
+                src="/assets/footer/ic-instagram.png"
                 alt="인스타그램"
                 class="w-10"
             /></a>
             <a href="/"
               ><img
-                src="/assets/ic-naverpost.png"
+                src="/assets/footer/ic-naverpost.png"
                 alt="네이버포스트"
                 class="w-10"
             /></a>
             <a href="/"
-              ><img src="/assets/ic-youtube.png" alt="유튜브" class="w-10"
+              ><img
+                src="/assets/footer/ic-youtube.png"
+                alt="유튜브"
+                class="w-10"
             /></a>
           </div>
         </article>
       </section>
 
       <section
-        class="footer-service m-auto flex w-[1050px] justify-between border-t-2 py-10 text-10pxr"
+        class="footer-service m-auto flex w-[1050px] justify-between border-t-2 py-10 text-10pxr text-gray-400"
       >
-        <button class="flex items-center gap-3 text-start">
-          <img src="/assets/ic-logo-isms.svg" alt="" />
+        <button class="flex items-center gap-2 text-start">
+          <img src="/assets/footer/ic-logo-isms.svg" alt="" />
           <p>
             [인증범위] 컬리 쇼핑몰 서비스 개발•운영
             <br />
@@ -128,24 +135,24 @@
             [유효기간] 2024.01.15 ~ 2025.01.14
           </p>
         </button>
-        <button class="flex items-center gap-3 text-start">
-          <img src="/assets/ic-logo-privacy.svg" alt="" />
+        <button class="flex items-center gap-2 text-start">
+          <img src="/assets/footer/ic-logo-privacy.svg" alt="" />
           <p>
             개인정보보호 우수 웹사이트
             <br />
             개인정보처리시스템 인정 (ePRIVACY PLUS)
           </p>
         </button>
-        <button class="flex items-center gap-3 text-start">
-          <img src="/assets/ic-logo-tosspayments.svg" alt="" />
+        <button class="flex items-center gap-2 text-start">
+          <img src="/assets/footer/ic-logo-tosspayments.svg" alt="" />
           <p>
             토스페이먼츠 구매안전(에스크로)
             <br />
             서비스를 이용하실 수 있습니다.
           </p>
         </button>
-        <button class="flex items-center gap-3 text-start">
-          <img src="/assets/ic-logo-wooriBank.svg" alt="" />
+        <button class="flex items-center gap-2 text-start">
+          <img src="/assets/footer/ic-logo-wooriBank.svg" alt="" />
           <p>
             고객님이 현금으로 결제한 금액에 대해 우리은행과
             <br />
