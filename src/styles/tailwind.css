@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* productList페이지 사이드nav 공통 css */
+.listnav-btn {
+  @apply bg-iconArrow h-full w-full items-center bg-right bg-no-repeat text-start;
+}
+
+.list-nav {
+  @apply h-52pxr items-center border-b-2 border-solid border-gray-300;
+}
