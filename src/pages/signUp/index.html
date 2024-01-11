@@ -9,141 +9,354 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/js/include.js"></script>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/pages/signUp/signUp.js"></script>
   </head>
   <body>
     <header id="header"></header>
-    <main class="flex justify-center">
-      <section class="w-640pxr">
-        <h2 class="text-center text-21pxr font-semibold">회원가입</h2>
-        <form
-          action="/"
-          class="flex flex-col gap-40pxr border-y-2 border-black py-20pxr"
-        >
-          <div class="flex justify-between">
-            <label for="idField" class="h-45pxr w-140pxr p-8pxr">
-              <span class="font-semibold">아이디</span>
-            </label>
-            <input
-              type="text"
-              id="idField"
-              placeholder="아이디를 입력해주세요"
-              class="w-320pxr"
-            />
-            <button type="submit" class="w-143pxr border border-bluemong">
-              중복 확인
-            </button>
-          </div>
-          <div>
-            <label for="pwField">비밀번호</label>
-            <input
-              type="password"
-              id="pwField"
-              placeholder="비밀번호를 입력해주세요"
-            />
-          </div>
-          <div>
-            <label for="pwCheckField">비밀번호 확인</label>
-            <input
-              type="password"
-              id="pwCheckField"
-              placeholder="비밀번호를 한번 더 입력해주세요"
-            />
-          </div>
-          <div>
-            <label for="nameField">이름</label>
-            <input
-              type="text"
-              id="nameField"
-              placeholder="이름을 입력해 주세요"
-            />
-          </div>
-          <div>
-            <label for="emailField">이메일</label>
-            <input
-              type="text"
-              id="emailField"
-              placeholder="예: marketemong@emong.com"
-            />
-          </div>
-          <div>
-            <label for="phoneNumField">휴대폰</label>
-            <input
-              type="text"
-              id="phoneNumField"
-              placeholder="숫자만 입력해 주세요."
-            />
-          </div>
-          <div>
-            <span>주소</span>
-            <button type="button">주소 검색</button>
-          </div>
-          <div>
-            <label for="gender">성별</label>
-            <input type="radio" name="성별" id="gender" value="남자" />
-            <span>남성</span>
-            <input type="radio" name="성별" id="gender" value="여자" />
-            <span>여성</span>
-            <input type="radio" name="성별" id="gender" value="선택안함" />
-            <span>선택안함</span>
-          </div>
-          <div>
-            <label for="birthday">생년월일</label>
-            <input type="text" id="birthday" placeholder="YYYY / MM / DD" />
-          </div>
-          <div>
-            <label for="extraCheck">추가입력 사항</label>
-            <input
-              type="radio"
-              name="extra"
-              id="extraCheck"
-              value="친구초대 추천인 아이디"
-            />
-            <span>친구초대 추천인 아이디</span>
-            <input
-              type="radio"
-              name="extra"
-              id="extraCheck"
-              value="참여 이벤트명"
-            />
-            <span>참여 이벤트명</span>
-          </div>
-        </form>
-        <form action="/" class="flex">
-          <label for="agreement">이용약관 동의</label>
-          <div>
-            <div>
-              <div>
-                <input type="checkbox" name="allAgree" id="agreement" />
-                <span>전체 동의합니다.</span>
+    <main class="mb-40pxr mt-80pxr w-full">
+      <section class="m-auto w-[1050px]">
+        <div class="mx-205pxr w-640pxr">
+          <h2 class="text-center text-21pxr font-semibold">회원가입</h2>
+          <span
+            class="mb-10pxr mt-10pxr block text-right indent-0 text-content"
+          >
+            <b class="text-info__error">*</b>
+            필수입력사항
+          </span>
+          <form action="/">
+            <fieldset
+              class="flex flex-col gap-40pxr border-y-2 border-black py-20pxr"
+            >
+              <div class="flex justify-between">
+                <label for="idField" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">아이디</span>
+                  <b class="text-info__error">*</b>
+                </label>
+                <input
+                  type="text"
+                  id="idField"
+                  placeholder="아이디를 입력해주세요"
+                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                />
+                <button
+                  type="button"
+                  class="w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                >
+                  중복 확인
+                </button>
               </div>
-              <span>
-                선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를
-                이용할 수 있습니다.
-              </span>
-            </div>
-            <div>
-              <input type="checkbox" name="agree-1" id="agreement" />
-              <span> 이용약관 동의 (필수) </span>
-              <button type="button">약관보기</button>
-            </div>
-            <div>
-              <input type="checkbox" name="agree-2" id="agreement" />
-              <span>개인정보 수집 이용 동의 (필수)</span>
-              <button type="button">약관보기</button>
-            </div>
-            <div>
-              <input type="checkbox" name="agree-3" id="agreement" />
-              <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의 (선택)</span>
-              <button type="button">약관보기</button>
-            </div>
-            <div>
-              <input type="checkbox" name="agree-4" id="agreement" />
-              <span>본인은 만 14세 이상입니다. (필수)</span>
-              <button type="button">약관보기</button>
-            </div>
-          </div>
-        </form>
+              <div class="flex justify-between">
+                <label for="pwField" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">비밀번호</span>
+                  <b class="text-info__error">*</b>
+                </label>
+                <input
+                  type="password"
+                  id="pwField"
+                  placeholder="비밀번호를 입력해주세요"
+                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                />
+                <div class="w-143pxr"></div>
+              </div>
+              <div class="flex justify-between">
+                <label for="pwCheckField" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">비밀번호 확인</span>
+                  <b class="text-info__error">*</b>
+                </label>
+                <input
+                  type="password"
+                  id="pwCheckField"
+                  placeholder="비밀번호를 입력해주세요"
+                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                />
+                <div class="w-143pxr"></div>
+              </div>
+              <div class="flex justify-between">
+                <label for="nameField" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">이름</span>
+                  <b class="text-info__error">*</b>
+                </label>
+                <input
+                  type="text"
+                  id="nameField"
+                  placeholder="이름을 입력해 주세요."
+                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                />
+                <div class="w-143pxr"></div>
+              </div>
+              <div class="flex justify-between">
+                <label for="emailField" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">이메일</span>
+                  <b class="text-info__error">*</b>
+                </label>
+                <input
+                  type="email"
+                  id="emailField"
+                  placeholder="예: marketemong@emong.com"
+                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                />
+                <button
+                  type="button"
+                  class="w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                >
+                  중복 확인
+                </button>
+              </div>
+              <div class="flex justify-between">
+                <label for="phoneNumFeild" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">휴대폰</span>
+                  <b class="text-info__error">*</b>
+                </label>
+                <input
+                  type="text"
+                  id="phoneNumFeild"
+                  placeholder="숫자만 입력해 주세요."
+                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                />
+                <button
+                  type="button"
+                  class="w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                >
+                  인증번호 받기
+                </button>
+              </div>
+              <div class="flex justify-between">
+                <label for="phoneNumFeild" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">주소</span>
+                  <b class="text-info__error">*</b>
+                </label>
+                <div class="flex flex-col">
+                  <button
+                    type="button"
+                    class="h-45pxr w-333pxr rounded border border-skybluemong px-20pxr font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                  >
+                    주소 검색
+                  </button>
+                  <span class="text-12pxr"
+                    >배송지에 따라 상품 정보가 달라질 수 있습니다.</span
+                  >
+                </div>
+                <div class="w-143pxr"></div>
+              </div>
+              <div class="flex justify-between">
+                <span
+                  class="h-45pxr w-140pxr p-8pxr font-semibold text-content"
+                >
+                  성별
+                </span>
+                <div class="flex w-333pxr justify-between">
+                  <div class="flex gap-8pxr py-8pxr align-middle">
+                    <input
+                      type="radio"
+                      name="성별"
+                      id="boy"
+                      value="남자"
+                      class="h-20pxr w-20pxr p-2pxr"
+                    />
+                    <label
+                      for="boy"
+                      class="text-14pxr font-semibold text-content"
+                    >
+                      남성
+                    </label>
+                  </div>
+                  <div class="flex gap-8pxr py-8pxr align-middle">
+                    <input
+                      type="radio"
+                      name="성별"
+                      id="girl"
+                      value="여자"
+                      class="h-20pxr w-20pxr p-2pxr"
+                    />
+                    <label
+                      for="girl"
+                      class="text-14pxr font-semibold text-content"
+                    >
+                      여성
+                    </label>
+                  </div>
+                  <div class="flex gap-8pxr py-8pxr align-middle">
+                    <input
+                      type="radio"
+                      name="성별"
+                      id="none"
+                      value="선택안함"
+                      class="h-20pxr w-20pxr p-2pxr"
+                    />
+                    <label
+                      for="none"
+                      class="text-14pxr font-semibold text-content"
+                    >
+                      선택 안함
+                    </label>
+                  </div>
+                </div>
+                <div class="w-143pxr"></div>
+              </div>
+              <div class="flex justify-between">
+                <label for="birthday" class="h-45pxr w-140pxr p-8pxr">
+                  <span class="font-semibold text-content">생년월일</span>
+                </label>
+                <input
+                  type="text"
+                  id="birthday"
+                  placeholder="YYYY / MM / DD"
+                  class="w-333pxr rounded border border-gray-300 px-20pxr text-center focus:border-skybluemong focus:outline-none"
+                />
+                <div class="w-143pxr"></div>
+              </div>
+              <div class="flex justify-between">
+                <span
+                  class="h-45pxr w-140pxr p-8pxr font-semibold text-content"
+                >
+                  추가입력 사항
+                </span>
+                <div class="flex w-333pxr justify-between">
+                  <div class="flex gap-8pxr py-8pxr align-middle">
+                    <input
+                      type="radio"
+                      name="extra"
+                      id="extraFriend"
+                      value="친구초대 추천인 아이디"
+                      class="h-20pxr w-20pxr p-2pxr"
+                    />
+                    <label
+                      for="extraFriend"
+                      class="text-14pxr font-semibold text-content"
+                    >
+                      친구초대 추천인 아이디
+                    </label>
+                  </div>
+                  <div class="flex gap-8pxr py-8pxr align-middle">
+                    <input
+                      type="radio"
+                      name="extra"
+                      id="extraEvent"
+                      value="참여 이벤트명"
+                      class="h-20pxr w-20pxr p-2pxr"
+                    />
+                    <label
+                      for="extraEvent"
+                      class="text-14pxr font-semibold text-content"
+                      >참여 이벤트명
+                    </label>
+                  </div>
+                </div>
+                <div class="w-143pxr"></div>
+              </div>
+            </fieldset>
+            <fieldset class="flex border-y border-black py-20pxr">
+              <div class="h-45pxr w-140pxr p-8pxr font-semibold text-content">
+                <span>이용약관 동의</span>
+                <b class="text-info__error">*</b>
+              </div>
+              <div class="flex w-490pxr flex-col">
+                <div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="allAgree"
+                      id="allAgree"
+                      class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
+                    />
+                    <label
+                      for="allAgree"
+                      class="align-middle text-21pxr font-semibold text-content"
+                      >전체 동의합니다.
+                    </label>
+                  </div>
+                  <span class="block text-right text-12pxr text-gray-400">
+                    선택항목에 동의하지 않은 경우도 회원가입 및 일반적인
+                    서비스를 이용할 수 있습니다.
+                  </span>
+                </div>
+                <div class="flex justify-between py-12pxr align-middle">
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="agree"
+                      id="agree-1"
+                      class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
+                    />
+                    <label for="agree-1" class="align-middle text-content">
+                      이용약관 동의 (필수)
+                    </label>
+                  </div>
+                  <button
+                    type="button"
+                    class="after:content-arrow text-14pxr font-semibold text-indigo-700"
+                  >
+                    약관보기
+                  </button>
+                </div>
+                <div class="flex justify-between py-12pxr">
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="agree"
+                      id="agree-2"
+                      class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
+                    />
+                    <label for="agree-2" class="align-middle text-content">
+                      개인정보 수집 이용 동의 (필수)
+                    </label>
+                  </div>
+                  <button
+                    type="button"
+                    class="after:content-arrow text-14pxr font-semibold text-indigo-700"
+                  >
+                    약관보기
+                  </button>
+                </div>
+                <div class="flex justify-between py-12pxr">
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="agree"
+                      id="agree-3"
+                      class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
+                    />
+                    <label for="agree-3" class="align-middle text-content">
+                      무료배송, 할인쿠폰 등 혜택/정보 수신 동의 (선택)
+                    </label>
+                  </div>
+                  <button
+                    type="button"
+                    class="after:content-arrow text-14pxr font-semibold text-indigo-700"
+                  >
+                    약관보기
+                  </button>
+                </div>
+                <div class="flex justify-between py-12pxr">
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="agree"
+                      id="agree-4"
+                      class="h-5 w-5 appearance-none bg-[url('/assets/ic-is-unchecked.svg')] bg-cover bg-center bg-no-repeat align-middle checked:bg-[url('/assets/ic-is-checked.svg')]"
+                    />
+                    <label for="agree-4" class="align-middle text-content">
+                      본인은 만 14세 이상입니다. (필수)
+                    </label>
+                  </div>
+                  <button
+                    type="button"
+                    class="after:content-arrow text-14pxr font-semibold text-indigo-700"
+                  >
+                    약관보기
+                  </button>
+                </div>
+              </div>
+            </fieldset>
+            <button
+              type="submit"
+              disabled
+              class="mx-150pxr my-40pxr h-55pxr w-340pxr rounded border border-skybluemong bg-bluemong font-semibold text-white hover:bg-white hover:text-skybluemong disabled:pointer-events-none disabled:bg-sky-300"
+            >
+              가입하기
+            </button>
+          </form>
+        </div>
       </section>
     </main>
     <footer id="footer"></footer>
