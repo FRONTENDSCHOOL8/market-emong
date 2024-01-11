@@ -1,5 +1,5 @@
 import PocketBase from 'pocketbase';
-import '../../styles/product.css';
+import '/src/styles/product.css';
 import '/src/styles/tailwind.css';
 import { getPbImageURL, pb } from '/src/lib/';
 
