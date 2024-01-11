@@ -22,6 +22,11 @@ module.exports = {
     extend: {
       backgroundImage: {
         iconArrow: "url('/src/assets/ic-arrow.svg')",
+        'checked-icon': "url('/src/assets/components/ic-is-checked.svg')",
+        'unchecked-icon': "url('/src/assets/components/ic-is-unchecked.svg')",
+        'plus-icon': "url('/src/assets/components/ic-plus.svg')",
+        'minus-icon': "url('/src/assets/components/ic-minus.svg')",
+        'delete-icon': "url('/src/assets/components/ic-delete.svg')",
       },
       spacing: {
         ...pxToRemFunc(0, 1000),
@@ -39,6 +44,9 @@ module.exports = {
         mobile: '360px',
         tablet: '768px',
         desktop: '1280px',
+      },
+      content: {
+        arrow: 'url("/src/assets/signUp-arrow.svg")',
       },
       colors: {
         secondary: 'rgba(189, 118, 255, 1)',
