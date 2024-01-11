@@ -65,6 +65,9 @@ records.forEach(({ collectionId, id, photo, alt }) => {
 
 productList.forEach(
   ({ collectionId, id, photo, label, brand, name, discount, price, limit }) => {
+    if (name === '상품 준비중..') {
+      return;
+    }
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
