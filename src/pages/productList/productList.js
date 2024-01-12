@@ -3,11 +3,40 @@ import '../../styles/product.css';
 import '/src/styles/tailwind.css';
 import { getPbImageURL, pb } from '/src/lib/';
 
+// 상품 페이지 추천순 물음표 hover
+const userInfo = document.querySelector('.list-recommend');
+const userInfoList = document.querySelector('.list-question');
+
+function userToggle(eventStyle) {
+  userInfo.addEventListener(eventStyle, () => {
+    if (eventStyle === 'mouseenter') {
+      userInfoList.style.visibility = 'visible';
+    } else if (eventStyle === 'mouseleave') {
+      userInfoList.style.visibility = 'hidden';
+    }
+  });
+}
+
+userToggle('mouseenter');
+userToggle('mouseleave');
+
+// main이랑 같은 코드 데이터 -> 상품 불러오기
 const product = document.querySelector('.product-list');
 
+// 추천순
 const productList = await pb.collection('product').getFullList({
-  sort: '-created',
+  sort: '-recommend',
 });
+
+// // 신상품순
+// const currentUrl = window.location.href;
+// const newProduct = window.location.search;
+// console.log(newProduct);
+// history.pushState(null, null, 'productList');
+
+// const records = await pb.collection('product').getFullList({
+//   sort: '-created',
+// });
 
 productList.forEach(
   ({ collectionId, id, photo, label, brand, name, discount, price, limit }) => {

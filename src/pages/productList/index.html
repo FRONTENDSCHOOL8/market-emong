@@ -77,9 +77,10 @@
             <li>총 8건</li>
             <li>
               <ul class="flex items-center gap-x-8pxr text-gray-400">
-                <li class="flex gap-4pxr text-black">
+                <li class="relative flex gap-4pxr text-black">
                   <a href="/">추천순</a
                   ><svg
+                    class="list-recommend"
                     xmlns="http://www.w3.org/2000/svg"
                     width="14"
                     height="20"
@@ -98,9 +99,16 @@
                       fill="#CCCCCC"
                     />
                   </svg>
+                  <div
+                    class="list-question invisible absolute top-40pxr z-20 w-272pxr rounded border-2 border-solid border-bluemong bg-white p-17pxr text-12pxr text-gray-500"
+                  >
+                    소비자 인기도(판매량, 판매금액, 조회수 등), 상품 출시일,
+                    수요 적합성, 상품 운영상 필요 등을 종합적으로 고려한
+                    순서입니다.
+                  </div>
                 </li>
                 <li class="text-10pxr text-gray-400">|</li>
-                <li><a href="/">신상품순</a></li>
+                <li><a href="/" class="newProduct">신상품순</a></li>
                 <li class="text-10pxr text-gray-400">|</li>
                 <li><a href="/">판매량순</a></li>
                 <li class="text-10pxr text-gray-400">|</li>

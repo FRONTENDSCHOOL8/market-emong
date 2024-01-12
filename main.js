@@ -29,9 +29,9 @@ const kit = document.querySelector('.kit-list');
 
 // 팝업창 기능 구현
 
-if (compareDay('day') || localStorage.getItem('day') === null) {
-  dialog.showModal();
-}
+// if (compareDay('day') || localStorage.getItem('day') === null) {
+//   dialog.showModal();
+// }
 
 function handlePopup() {
   setStorageDay('day');
@@ -219,5 +219,18 @@ const kitSwiper = new Swiper('.swiper-kit', {
   navigation: {
     nextEl: '.kit-next',
     prevEl: '.kit-prev',
+  },
+});
+
+// 최근본 상품 swiper
+
+const recentSwiper = new Swiper('.recently-container', {
+  direction: 'vertical',
+  resistance: true,
+  allowTouchMove: false,
+  slidesPerView: 2.5,
+  navigation: {
+    nextEl: '.recently-prev',
+    prevEl: '.recently-next',
   },
 });
