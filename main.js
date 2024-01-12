@@ -229,8 +229,12 @@ const recentSwiper = new Swiper('.recently-container', {
   resistance: true,
   allowTouchMove: false,
   slidesPerView: 2.5,
+  spaceBetween: 4,
   navigation: {
     nextEl: '.recently-prev',
     prevEl: '.recently-next',
+  },
+  keyboard: {
+    enabled: true,
   },
 });
