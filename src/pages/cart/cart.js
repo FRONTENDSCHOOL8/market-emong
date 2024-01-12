@@ -42,7 +42,7 @@ cartDataCharacter.forEach(
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
-    <ul class="flex items-center justify-around py-3">
+    <ul class="flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <input
           type="checkbox"
@@ -116,7 +116,7 @@ cartDataTool.forEach(
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
-    <ul class="flex items-center justify-around py-3">
+    <ul class="flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <input
           type="checkbox"
