@@ -20,6 +20,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        iconArrow: "url('/src/assets/ic-arrow.svg')",
+        'checked-icon': "url('/src/assets/components/ic-is-checked.svg')",
+        'unchecked-icon': "url('/src/assets/components/ic-is-unchecked.svg')",
+        'plus-icon': "url('/src/assets/components/ic-plus.svg')",
+        'minus-icon': "url('/src/assets/components/ic-minus.svg')",
+        'delete-icon': "url('/src/assets/components/ic-delete.svg')",
+      },
       spacing: {
         ...pxToRemFunc(0, 1000),
       }, // px을 rem으로 변환

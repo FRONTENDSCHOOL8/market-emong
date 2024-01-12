@@ -1,16 +1,9 @@
 import PocketBase from 'pocketbase';
 import '/src/styles/product.css';
 import '/src/styles/tailwind.css';
-
-function getPbImageURL(collectionId, id, fileName = 'photo') {
-  return `${
-    import.meta.env.VITE_PB_API
-  }/files/${collectionId}/${id}/${fileName}`;
-}
+import { getPbImageURL, pb } from '/src/lib/';
 
 const product = document.querySelector('.product-list');
-
-const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 const productList = await pb.collection('product').getFullList({
   sort: '-created',
