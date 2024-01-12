@@ -25,9 +25,9 @@
           </span>
           <form action="/">
             <fieldset
-              class="flex flex-col gap-40pxr border-y-2 border-black py-20pxr"
+              class="flex flex-col gap-24pxr border-y-2 border-black py-20pxr"
             >
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <label for="idField" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">아이디</span>
                   <b class="text-info__error">*</b>
@@ -35,97 +35,138 @@
                 <div class="flex flex-col">
                   <input
                     type="text"
+                    name="idField"
                     id="idField"
                     placeholder="아이디를 입력해주세요"
                     class="h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
                   />
-                  <span class="text-12pxr"
-                    >배송지에 따라 상품 정보가 달라질 수 있습니다.
+                  <span
+                    class="mt-4pxr hidden text-12pxr tracking-tight text-red-600"
+                    >6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합
                   </span>
                 </div>
                 <button
                   type="button"
-                  class="w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                  class="h-45pxr w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
                 >
                   중복 확인
                 </button>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <label for="pwField" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">비밀번호</span>
                   <b class="text-info__error">*</b>
                 </label>
-                <input
-                  type="password"
-                  id="pwField"
-                  placeholder="비밀번호를 입력해주세요"
-                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
-                />
-                <div class="w-143pxr"></div>
+                <div class="flex flex-col">
+                  <input
+                    type="password"
+                    name="pwField"
+                    id="pwField"
+                    autocomplete="off"
+                    placeholder="비밀번호를 입력해주세요"
+                    class="h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                  />
+                  <span
+                    class="mt-4pxr hidden text-12pxr tracking-tight text-red-600"
+                  >
+                    영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합
+                  </span>
+                </div>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <label for="pwCheckField" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">비밀번호 확인</span>
                   <b class="text-info__error">*</b>
                 </label>
-                <input
-                  type="password"
-                  id="pwCheckField"
-                  placeholder="비밀번호를 입력해주세요"
-                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
-                />
-                <div class="w-143pxr"></div>
+                <div class="flex flex-col">
+                  <input
+                    type="password"
+                    name="pwCheckField"
+                    id="pwCheckField"
+                    autocomplete="off"
+                    placeholder="비밀번호를 입력해주세요"
+                    class="h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                  />
+                  <span
+                    class="mt-4pxr hidden text-12pxr tracking-tight text-red-600"
+                  >
+                  </span>
+                </div>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <label for="nameField" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">이름</span>
                   <b class="text-info__error">*</b>
                 </label>
-                <input
-                  type="text"
-                  id="nameField"
-                  placeholder="이름을 입력해 주세요."
-                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
-                />
-                <div class="w-143pxr"></div>
+                <div class="flex flex-col">
+                  <input
+                    type="text"
+                    name="nameField"
+                    id="nameField"
+                    placeholder="이름을 입력해 주세요."
+                    class="h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                  />
+                  <span
+                    class="mt-4pxr hidden text-12pxr tracking-tight text-red-600"
+                  >
+                    이름을 입력해 주세요.
+                  </span>
+                </div>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <label for="emailField" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">이메일</span>
                   <b class="text-info__error">*</b>
                 </label>
-                <input
-                  type="email"
-                  id="emailField"
-                  placeholder="예: marketemong@emong.com"
-                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
-                />
+                <div class="flex flex-col">
+                  <input
+                    type="email"
+                    name="emailField"
+                    id="emailField"
+                    placeholder="예: marketemong@emong.com"
+                    class="h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                  />
+                  <span
+                    class="mt-4pxr hidden text-12pxr tracking-tight text-red-600"
+                  >
+                    이메일 형식으로 입력해 주세요.
+                  </span>
+                </div>
                 <button
                   type="button"
-                  class="w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                  class="h-45pxr w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
                 >
                   중복 확인
                 </button>
               </div>
-              <div class="flex justify-between">
-                <label for="phoneNumFeild" class="h-45pxr w-140pxr p-8pxr">
+              <div class="flex gap-8pxr">
+                <label for="phoneNumField" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">휴대폰</span>
                   <b class="text-info__error">*</b>
                 </label>
-                <input
-                  type="text"
-                  id="phoneNumFeild"
-                  placeholder="숫자만 입력해 주세요."
-                  class="w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
-                />
+                <div class="flex flex-col">
+                  <input
+                    type="text"
+                    name="phoneNumField"
+                    id="phoneNumField"
+                    placeholder="숫자만 입력해 주세요."
+                    class="h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                  />
+                  <span
+                    class="mt-4pxr hidden text-12pxr tracking-tight text-red-600"
+                  >
+                    휴대폰 번호를 입력해 주세요.
+                  </span>
+                </div>
                 <button
                   type="button"
-                  class="w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                  disabled
+                  class="phoneBtn h-45pxr w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white disabled:pointer-events-none disabled:text-gray-400"
                 >
                   인증번호 받기
                 </button>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <label for="phoneNumFeild" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">주소</span>
                   <b class="text-info__error">*</b>
@@ -133,17 +174,28 @@
                 <div class="flex flex-col">
                   <button
                     type="button"
-                    class="h-45pxr w-333pxr rounded border border-skybluemong px-20pxr font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                    class="addressBtn h-45pxr w-333pxr rounded border border-skybluemong px-20pxr font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
                   >
                     주소 검색
                   </button>
-                  <span class="text-12pxr"
-                    >배송지에 따라 상품 정보가 달라질 수 있습니다.
+                  <input
+                    type="text"
+                    name="mainAddress"
+                    id="mainAddress"
+                    class="mb-24pxr hidden h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                  />
+                  <input
+                    type="text"
+                    name="subAddress"
+                    id="subAddress"
+                    class="hidden h-45pxr w-333pxr rounded border border-gray-300 px-20pxr focus:border-skybluemong focus:outline-none"
+                  />
+                  <span class="mt-4pxr text-12pxr tracking-tight">
+                    배송지에 따라 상품 정보가 달라질 수 있습니다.
                   </span>
                 </div>
-                <div class="w-143pxr"></div>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <span
                   class="h-45pxr w-140pxr p-8pxr font-semibold text-content"
                 >
@@ -153,7 +205,7 @@
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
-                      name="성별"
+                      name="gender"
                       id="boy"
                       value="남자"
                       class="h-20pxr w-20pxr p-2pxr"
@@ -168,7 +220,7 @@
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
-                      name="성별"
+                      name="gender"
                       id="girl"
                       value="여자"
                       class="h-20pxr w-20pxr p-2pxr"
@@ -183,7 +235,7 @@
                   <div class="flex gap-8pxr py-8pxr align-middle">
                     <input
                       type="radio"
-                      name="성별"
+                      name="gender"
                       id="none"
                       value="선택안함"
                       class="h-20pxr w-20pxr p-2pxr"
@@ -196,21 +248,47 @@
                     </label>
                   </div>
                 </div>
-                <div class="w-143pxr"></div>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <label for="birthday" class="h-45pxr w-140pxr p-8pxr">
                   <span class="font-semibold text-content">생년월일</span>
                 </label>
-                <input
-                  type="text"
-                  id="birthday"
-                  placeholder="YYYY / MM / DD"
-                  class="w-333pxr rounded border border-gray-300 px-20pxr text-center focus:border-skybluemong focus:outline-none"
-                />
-                <div class="w-143pxr"></div>
+                <div class="flex flex-col">
+                  <div
+                    class="flex w-333pxr justify-center rounded border border-gray-300 focus-within:border-skybluemong"
+                  >
+                    <input
+                      type="text"
+                      name="birthday"
+                      id="year"
+                      placeholder="YYYY"
+                      class="border-none0 text-cente h-45pxr w-91pxr rounded px-20pxr focus:outline-none"
+                    />
+                    <span class="flex items-center text-gray-300">/</span>
+                    <input
+                      type="text"
+                      name="birthday"
+                      id="month"
+                      placeholder="MM"
+                      class="h-45pxr w-91pxr rounded border-none px-20pxr text-center focus:outline-none"
+                    />
+                    <span class="flex items-center text-gray-300">/</span>
+                    <input
+                      type="text"
+                      name="birthday"
+                      id="day"
+                      placeholder="DD"
+                      class="h-45pxr w-91pxr rounded border-none px-20pxr text-center focus:outline-none"
+                    />
+                  </div>
+                  <span
+                    class="valiBirthText mt-4pxr hidden text-12pxr tracking-tight text-red-600"
+                  >
+                    생년월일을 다시 확인해주세요.
+                  </span>
+                </div>
               </div>
-              <div class="flex justify-between">
+              <div class="flex gap-8pxr">
                 <span
                   class="h-45pxr w-140pxr p-8pxr font-semibold text-content"
                 >
@@ -222,7 +300,7 @@
                       type="radio"
                       name="extra"
                       id="extraFriend"
-                      value="친구초대 추천인 아이디"
+                      value="friendID"
                       class="h-20pxr w-20pxr p-2pxr"
                     />
                     <label
@@ -236,7 +314,7 @@
                     <input
                       type="radio"
                       name="extra"
-                      id="extraEvent"
+                      id="eventName"
                       value="참여 이벤트명"
                       class="h-20pxr w-20pxr p-2pxr"
                     />
@@ -356,7 +434,7 @@
             <button
               type="submit"
               disabled
-              class="mx-150pxr my-40pxr h-55pxr w-340pxr rounded border border-skybluemong bg-bluemong font-semibold text-white hover:bg-white hover:text-skybluemong disabled:pointer-events-none disabled:bg-sky-300"
+              class="joinBtn mx-150pxr my-40pxr h-55pxr w-340pxr rounded border border-skybluemong bg-bluemong font-semibold text-white hover:bg-white hover:text-skybluemong disabled:pointer-events-none disabled:bg-sky-300"
             >
               가입하기
             </button>
