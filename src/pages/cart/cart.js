@@ -17,23 +17,15 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
   });
 });
 
-// const productTemplate = document.querySelector('.cart-list');
-// 로그인 유저 정보 가져오기
-// const userData = await pb.collection('users').getOne('q4l7a4urcjb33hz');
+// 로그인 유저 정보 가져오기 test
+// const userData = await pb.collection('users').getOne('6kki52fp9i5fmjy');
 // const { id } = userData;
 
 const cartListCharater = document.querySelector('.product-list-charater');
 const cartListTool = document.querySelector('.product-list-tool');
 
-// 캐릭터 템플릿
-// const cartDataCharacter = await pb
-//   .collection('carts_products_data')
-//   .getFullList({
-//     filter: `packageType = "캐릭터" && users_record = "${id}"`,
-//     sort: 'created',
-//   });
-
 const cartDataCharacter = await pb.collection('product').getFullList({
+  filter: `category = "캐릭터"`,
   sort: '-created',
 });
 
@@ -108,6 +100,7 @@ cartDataCharacter.forEach(
 
 // 도구 템플릿
 const cartDataTool = await pb.collection('product').getFullList({
+  filter: `category = "도구"`,
   sort: '-created',
 });
 
@@ -217,26 +210,28 @@ plusButtons.forEach((plusButton) => {
 
 const cartList = document.querySelector('.cart-price');
 
-function updateTemplate() {
-  // clearContents('.result--template');
+// test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
+const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
+const { address } = userAddress;
 
+function updateTemplate() {
   const template = /* html */ `
-    <div class="m-auto border p-5">
+
+    <div class="m-auto border p-5 ">
       <div class="flex items-center pb-3">
         <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" />
         <span>배송지</span>
       </div>
-      <div class="pb-10">
-        <span>배송지를 입력해주세요💕</span>
-        <!-- 로그인 후 주소 랜더링 -->
-        <span class="hidden">배송지 주소</span>
+      <div class="pb-6">
+        <!-- 로그인 유저 주소 데이터 랜더링 -->
+        <h3>${address}</h3>
+        <span class="text-bluemong text-xs font-bold">미래배송</span>
       </div>
-      <!-- 로그인 후 배송지 변경으로 바꾸기 -->
       <button
         type="button"
-        class="w-full rounded-lg border border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
+        class="w-full font-bold rounded-lg border-2 border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
       >
-        주소 검색
+        배송지 변경
       </button>
     </div>
 
@@ -250,9 +245,9 @@ function updateTemplate() {
         <span>상품할인금액</span>
         <span>원</span>
       </div>
-      <div class="flex justify-between pb-4">
+      <div class="flex justify-between items-center pb-4">
         <span>배송비</span>
-        <span>365일 언제나 무료배송~</span>
+        <span class="text-bluemong text-sm">마켓에몽은 <strong>365일</strong> 언제나 무료배송!</span>
       </div>
       <!-- 금액의 총 합 -->
       <div class="flex justify-between border-t-2 py-4">
