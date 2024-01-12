@@ -212,3 +212,64 @@ minusButtons.forEach((minusButton) => {
 plusButtons.forEach((plusButton) => {
   plusButton.addEventListener('click', changeAmount);
 });
+
+// 배송지 정보
+
+const cartList = document.querySelector('.cart-price');
+
+function updateTemplate() {
+  // clearContents('.result--template');
+
+  const template = /* html */ `
+    <div class="m-auto border p-5">
+      <div class="flex items-center pb-3">
+        <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" />
+        <span>배송지</span>
+      </div>
+      <div class="pb-10">
+        <span>배송지를 입력해주세요💕</span>
+        <!-- 로그인 후 주소 랜더링 -->
+        <span class="hidden">배송지 주소</span>
+      </div>
+      <!-- 로그인 후 배송지 변경으로 바꾸기 -->
+      <button
+        type="button"
+        class="w-full rounded-lg border border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
+      >
+        주소 검색
+      </button>
+    </div>
+
+    <div class="bg-gray-50 p-5">
+      <!-- 상품 금액, 금액 합 랜더링 -->
+      <div class="flex justify-between pb-4">
+        <span>상품금액</span>
+        <span>원</span>
+      </div>
+      <div class="flex justify-between pb-4">
+        <span>상품할인금액</span>
+        <span>원</span>
+      </div>
+      <div class="flex justify-between pb-4">
+        <span>배송비</span>
+        <span>365일 언제나 무료배송~</span>
+      </div>
+      <!-- 금액의 총 합 -->
+      <div class="flex justify-between border-t-2 py-4">
+        <span>결제예정금액</span>
+        <span>
+          <strong><!-- 상품금액+배송비 합 --></strong>
+          <span>원</span>
+        </span>
+      </div>
+      <div class="flex justify-end gap-1 text-xs">
+        <span class="rounded-sm bg-orange-600 px-1 text-white"
+          >적립</span
+        >
+        <span>로그인 후 회원 등급에 따라 적립</span>
+      </div>
+    </div>
+  `;
+  cartList.insertAdjacentHTML('afterbegin', template);
+}
+updateTemplate();
