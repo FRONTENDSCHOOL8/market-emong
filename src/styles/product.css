@@ -58,7 +58,7 @@
 /* 스와이퍼 css */
 
 .swiper-product{
-  @apply w-[1050px];
+  @apply static w-[1050px];
 }
 
 .swiper-kit{
