@@ -15,3 +15,11 @@ fetch('/src/components/footer.html')
     const footer = document.querySelector('footer');
     footer.innerHTML = data;
   });
+
+fetch('/src/components/recently.html')
+  .then((res) => res.text())
+  .then((data) => {
+    const recently = document.querySelector('.recently-swiper');
+    recently.innerHTML = data;
+    return import('/src/js/recently.js');
+  });
