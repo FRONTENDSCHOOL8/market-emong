@@ -20,12 +20,14 @@ const emailField = document.querySelector('input[name="emailField"]');
 const phoneNumField = document.querySelector('input[name="phoneNumField"]');
 // const mainAddress = document.querySelector('input[name="mainAddress"]');
 // const subAddress = document.querySelector('input[name="subAddress"]');
-// const addressBtn = document.querySelector('.adressBtn');
+const addressBtn = document.querySelector('.adressBtn');
 const genderRadio = document.querySelectorAll('input[name="gender"]');
 const birthField = document.querySelectorAll('input[name="birthday"]');
 const valiBirthText = document.querySelector('.valiBirthText');
 const extraRadio = document.querySelectorAll('input[name="extra"]');
 const joinBtn = document.querySelector('.joinBtn');
+const idDuplicateBtn = document.querySelector('.idDuplicateBtn');
+const emailDuplicateBtn = document.querySelector('.emailDuplicateBtn');
 const verify = {
   verifyId: false,
   verifyPw: false,
@@ -52,23 +54,157 @@ function checkAllVerify() {
   );
 }
 
+// 주소 찾기
+
+// function searchAddress() {
+//   new daum.Postcode({
+//     oncomplete: function (data) {
+//       // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+//       // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+//       // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+//       var roadAddr = data.roadAddress; // 도로명 주소 변수
+//       var extraRoadAddr = ''; // 참고 항목 변수
+
+//       // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+//       // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+//       if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+//         extraRoadAddr += data.bname;
+//       }
+//       // 건물명이 있고, 공동주택일 경우 추가한다.
+//       if (data.buildingName !== '' && data.apartment === 'Y') {
+//         extraRoadAddr +=
+//           extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+//       }
+//       // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+//       if (extraRoadAddr !== '') {
+//         extraRoadAddr = ' (' + extraRoadAddr + ')';
+//       }
+
+//       // 우편번호와 주소 정보를 해당 필드에 넣는다.
+//       document.getElementById('sample4_postcode').value = data.zonecode;
+//       document.getElementById('sample4_roadAddress').value = roadAddr;
+//       document.getElementById('sample4_jibunAddress').value = data.jibunAddress;
+
+//       // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+//       if (roadAddr !== '') {
+//         document.getElementById('sample4_extraAddress').value = extraRoadAddr;
+//       } else {
+//         document.getElementById('sample4_extraAddress').value = '';
+//       }
+
+//       var guideTextBox = document.getElementById('guide');
+//       // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+//       if (data.autoRoadAddress) {
+//         var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+//         guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+//         guideTextBox.style.display = 'block';
+//       } else if (data.autoJibunAddress) {
+//         var expJibunAddr = data.autoJibunAddress;
+//         guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+//         guideTextBox.style.display = 'block';
+//       } else {
+//         guideTextBox.innerHTML = '';
+//         guideTextBox.style.display = 'none';
+//       }
+//     },
+//   }).open();
+// }
+
+// addressBtn.addEventListener('click', searchAddress);
+
+// id duplicate btn event
+async function duplicateID(e) {
+  e.preventDefault();
+
+  const usernameList = [];
+
+  try {
+    const userData = await pb.collection('users').getFullList();
+
+    userData.forEach((userData) => {
+      usernameList.push(userData.username);
+    });
+
+    const valid = usernameList.some((data) => data === idField.value);
+
+    if (!valid) {
+      verify.verifyId = true;
+      idField.nextElementSibling.style.display = 'inline';
+      idField.nextElementSibling.style.color = 'green';
+      idField.nextElementSibling.textContent = '사용 가능한 아이디입니다.';
+    } else {
+      verify.verifyId = false;
+      idField.nextElementSibling.style.display = 'inline';
+      idField.nextElementSibling.textContent = '중복된 아이디입니다.';
+    }
+
+    if (checkAllVerify(verify)) {
+      joinBtn.disabled = false;
+    } else if (!checkAllVerify(verify)) {
+      joinBtn.disabled = true;
+    }
+  } catch {
+    alert('서버 오류로 중복 확인에 실패했습니다..');
+  }
+}
+
+idDuplicateBtn.addEventListener('click', duplicateID);
+
+// email duplicate btn event
+
+async function duplicateEmail(e) {
+  e.preventDefault();
+
+  const userEmailList = [];
+
+  try {
+    const userData = await pb.collection('users').getFullList();
+
+    userData.forEach((userData) => {
+      userEmailList.push(userData.email);
+    });
+
+    const valid = userEmailList.some((data) => data === emailField.value);
+
+    if (!valid) {
+      verify.verifyEmail = true;
+      emailField.nextElementSibling.style.display = 'inline';
+      emailField.nextElementSibling.style.color = 'green';
+      emailField.nextElementSibling.textContent = '사용 가능한 이메일입니다.';
+    } else {
+      verify.verifyEmail = false;
+      emailField.nextElementSibling.style.display = 'inline';
+      emailField.nextElementSibling.textContent = '이미 사용중인 이메일입니다.';
+    }
+
+    if (checkAllVerify(verify)) {
+      joinBtn.disabled = false;
+    } else if (!checkAllVerify(verify)) {
+      joinBtn.disabled = true;
+    }
+  } catch {
+    alert('서버 오류로 중복 확인에 실패했습니다..');
+  }
+}
+
+emailDuplicateBtn.addEventListener('click', duplicateEmail);
+
 // id event
 
 function verifyId(e) {
   const validation = validateId(e.target.value);
   if (!validation) {
     idField.nextElementSibling.style.display = 'inline';
-    verify.verifyId = false;
+    idField.nextElementSibling.textContent =
+      '6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합';
+    idDuplicateBtn.disabled = true;
   } else {
     idField.nextElementSibling.style.display = 'none';
-    verify.verifyId = true;
-  }
-  if (checkAllVerify(verify)) {
-    joinBtn.disabled = false;
-  } else if (!checkAllVerify(verify)) {
-    joinBtn.disabled = true;
+    idDuplicateBtn.disabled = false;
   }
 }
+
 idField.addEventListener('input', verifyId);
 
 // pw event
@@ -94,6 +230,7 @@ function verifyPw(e) {
     joinBtn.disabled = true;
   }
 }
+
 pwField.addEventListener('input', verifyPw);
 
 // pwCheck event
@@ -146,15 +283,12 @@ function verifyEmail(e) {
   const validation = validateEmail(e.target.value);
   if (!validation) {
     emailField.nextElementSibling.style.display = 'inline';
-    verify.verifyEmail = false;
+    emailField.nextElementSibling.textContent =
+      '이메일 형식으로 입력해 주세요.';
+    emailDuplicateBtn.disabled = true;
   } else {
     emailField.nextElementSibling.style.display = 'none';
-    verify.verifyEmail = true;
-  }
-  if (checkAllVerify()) {
-    joinBtn.disabled = false;
-  } else if (!checkAllVerify()) {
-    joinBtn.disabled = true;
+    emailDuplicateBtn.disabled = false;
   }
 }
 
@@ -196,9 +330,6 @@ genderRadio.forEach((radio) => {
 // birthday event
 function verifyBirth(e) {
   const target = e.target;
-  if (target.value === '') {
-    valiBirthText.style.display = 'none';
-  }
 
   if (
     target.id === 'year' &&
@@ -240,8 +371,7 @@ function verifyBirth(e) {
     validateDay(target.value) &&
     target.value !== ''
   ) {
-    valiBirthText.style.display = 'inline';
-    valiBirthText.textContent = '생년월일을 다시 확인해주세요.';
+    valiBirthText.style.display = 'none';
   }
 }
 
