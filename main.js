@@ -72,7 +72,7 @@ productList.forEach(
 
     const template = /* html */ `
     <li class="swiper-slide product-info">
-      <a href="/" class="">
+      <a href="/src/pages/detail/#${id}" class="">
         <div class="image-container">
           <img
           src="${getPbImageURL(collectionId, id, photo)}"
