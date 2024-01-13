@@ -42,7 +42,7 @@ cartDataCharacter.forEach(
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
-    <ul class="poduct flex items-center justify-around py-3 border-b border-gray-200">
+    <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <label for="product-select">
         <input
@@ -74,16 +74,16 @@ cartDataCharacter.forEach(
         <button
           type="button"
           class="minus-button h-7 w-7 bg-minus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량감소"
           disabled
         >
-          <span class="sr-only">수량감소</span>
         </button>
         <span class="count">1</span>
         <button
           type="button"
           class="plus-button h-7 w-7 bg-plus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량증가"
         >
-          <span class="sr-only">수량증가</span>
         </button>
       </li>
       <li class="flex flex-col w-130pxr text-end">
@@ -96,8 +96,8 @@ cartDataCharacter.forEach(
         <button
           type="button"
           class="delete-button h-8 w-7 bg-delete-icon bg-cover bg-center bg-no-repeat"
+          aria-label="상품삭제"
         >
-          <span class="sr-only">상품삭제</span>
         </button>
       </li>
     </ul>
@@ -150,16 +150,16 @@ cartDataTool.forEach(
         <button
           type="button"
           class="minus-button h-7 w-7 bg-minus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량감소"
           disabled
         >
-          <span class="sr-only">수량감소</span>
         </button>
         <span class="count">1</span>
         <button
           type="button"
           class="plus-button h-7 w-7 bg-plus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량증가"
         >
-          <span class="sr-only">수량증가</span>
         </button>
       </li>
       <li class="flex flex-col w-130pxr text-end">
@@ -172,8 +172,8 @@ cartDataTool.forEach(
         <button
           type="button"
           class="delete-button h-8 w-7 bg-delete-icon bg-cover bg-center bg-no-repeat"
+          aria-label="상품삭제"
         >
-          <span class="sr-only">상품삭제</span>
         </button>
       </li>
     </ul>
@@ -182,6 +182,25 @@ cartDataTool.forEach(
     cartListTool.insertAdjacentHTML('afterbegin', template);
   }
 );
+
+// 상품 삭제 (임시)
+cartListCharater.addEventListener('click', function (event) {
+  if (event.target.classList.contains('delete-button')) {
+    const product = event.target.closest('.product');
+    if (product) {
+      cartListCharater.removeChild(product);
+    }
+  }
+});
+
+cartListTool.addEventListener('click', function (event) {
+  if (event.target.classList.contains('delete-button')) {
+    const product = event.target.closest('.product');
+    if (product) {
+      cartListTool.removeChild(product);
+    }
+  }
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                   checkbox                                 */
@@ -192,14 +211,14 @@ const selectAllCheckboxes = document.querySelectorAll(
 const productCheckboxes = document.querySelectorAll(
   'input[name="product-select"]'
 );
-const checkedCountElement = document.querySelector('.checked-count');
+const checkedCount = document.querySelector('.checked-count');
 
 selectAllCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', function () {
     productCheckboxes.forEach((productCheckbox) => {
       productCheckbox.checked = this.checked;
     });
-    syncSelectAllCheckboxes(this.checked);
+    SelectAllCheckboxes(this.checked);
     updateCheckedCount();
   });
 });
@@ -209,25 +228,36 @@ productCheckboxes.forEach((checkbox) => {
     const isAllSelected = Array.from(productCheckboxes).every(
       (productCheckbox) => productCheckbox.checked
     );
-    syncSelectAllCheckboxes(isAllSelected);
+    SelectAllCheckboxes(isAllSelected);
     updateCheckedCount();
   });
 });
 
-function syncSelectAllCheckboxes(checked) {
+function SelectAllCheckboxes(checked) {
   selectAllCheckboxes.forEach((checkbox) => {
     checkbox.checked = checked;
   });
 }
 
+// 선택한 상품 갯수
 function updateCheckedCount() {
   const checkedItemsCount = document.querySelectorAll(
     'input[name="product-select"]:checked'
   ).length;
-  checkedCountElement.textContent = checkedItemsCount.toString();
+  checkedCount.textContent = checkedItemsCount.toString();
 }
 
 updateCheckedCount();
+
+// 전체 상품 갯수
+let productSelectCount = document.querySelectorAll(
+  'input[name="product-select"]'
+).length;
+let checkedAllCount = document.querySelectorAll('.checked-all-count');
+
+checkedAllCount.forEach(function (element) {
+  element.textContent = productSelectCount;
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                수량 변경                                    */
