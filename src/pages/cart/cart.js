@@ -37,11 +37,10 @@ const cartDataCharacter = await pb.collection('product').getFullList({
 });
 
 // 캐릭터 템플릿
-cartDataCharacter.forEach(
-  ({ collectionId, id, photo, brand, name, discount, price }) => {
-    const discountPrice = price - (price * discount) / 100;
+cartDataCharacter.forEach(({ photo, brand, name, discount, price }) => {
+  const discountPrice = price - (price * discount) / 100;
 
-    const template = /* html */ `
+  const template = /* html */ `
     <ul class="poduct flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <label for="product-select">
@@ -57,7 +56,7 @@ cartDataCharacter.forEach(
         <!-- 상품이미지 -->
         <span>
           <img
-            src="${getPbImageURL(collectionId, id, photo)}"
+            src="${getPbImageURL(photo)}"
             alt="${name}"
             class="h-73pxr w-63pxr border border-gray-200 p-1"
           />
@@ -103,9 +102,8 @@ cartDataCharacter.forEach(
     </ul>
   `;
 
-    cartListCharater.insertAdjacentHTML('afterbegin', template);
-  }
-);
+  cartListCharater.insertAdjacentHTML('afterbegin', template);
+});
 
 // 도구 템플릿
 const cartDataTool = await pb.collection('product').getFullList({
@@ -113,11 +111,10 @@ const cartDataTool = await pb.collection('product').getFullList({
   sort: '-created',
 });
 
-cartDataTool.forEach(
-  ({ collectionId, id, photo, brand, name, discount, price }) => {
-    const discountPrice = price - (price * discount) / 100;
+cartDataTool.forEach(({ photo, brand, name, discount, price }) => {
+  const discountPrice = price - (price * discount) / 100;
 
-    const template = /* html */ `
+  const template = /* html */ `
     <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <label for="product-select">
@@ -133,7 +130,7 @@ cartDataTool.forEach(
         <!-- 상품이미지 -->
         <span>
           <img
-            src="${getPbImageURL(collectionId, id, photo)}"
+            src="${getPbImageURL(photo)}"
             alt="${name}"
             class="h-73pxr w-63pxr border border-gray-200 p-1"
           />
@@ -179,9 +176,8 @@ cartDataTool.forEach(
     </ul>
   `;
 
-    cartListTool.insertAdjacentHTML('afterbegin', template);
-  }
-);
+  cartListTool.insertAdjacentHTML('afterbegin', template);
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                   checkbox                                 */
