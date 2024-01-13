@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>에몽 - 마켓에몽</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="/src/pages/components/addCart/addCart.js"
+    ></script>
+  </head>
+
+  <body>
+    <!-- 디자인 확인용 block -->
+    <dialog class="add-cart-popup block w-[440px] rounded-2xl p-6 shadow-lg">
+      <form action="" class="flex h-full flex-col gap-5">
+        <div class="product-name border-b border-gray-300 pb-4">
+          <p class="font-bold">[너구리] 도라에몽</p>
+        </div>
+
+        <!-- 상품 수량 -->
+        <div
+          class="product-count flex items-center justify-between border-b border-gray-300 pb-4"
+        >
+          <p class="flex items-center gap-1">
+            <span class="font-bold">46,500원</span>
+            <span class="text-sm text-gray-400 line-through">50,000원</span>
+          </p>
+          <div
+            class="procuct-count-button flex h-30pxr w-90pxr items-center justify-between border border-gray-200"
+          >
+            <button
+              type="button"
+              class="minus-button h-7 w-7 bg-minus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+              disabled
+            >
+              <span class="sr-only">수량감소</span>
+            </button>
+            <span class="count">1</span>
+            <button
+              type="button"
+              class="plus-button h-7 w-7 bg-plus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+            >
+              <span class="sr-only">수량증가</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 금액 합계 -->
+        <div class="total-price flex justify-between">
+          <span class="font-bold">합계</span>
+          <div class="text-end">
+            <span class="text-2xl font-bold">46,500원</span>
+            <p class="flex justify-end gap-1 pt-2 text-xs">
+              <span class="rounded-sm bg-orange-600 px-1 text-white">적립</span>
+              <span>로그인 후 회원 등급에 따라 적립</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex w-full justify-between gap-2 pt-1 font-bold">
+          <button
+            type="reset"
+            class="add-cart-cancel h-[54px] w-1/2 rounded-lg border border-skybluemong text-content"
+          >
+            취소
+          </button>
+          <button
+            type="submit"
+            class="add-cart-close h-[54px] w-1/2 rounded-lg bg-skybluemong text-white"
+          >
+            장바구니 담기
+          </button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
