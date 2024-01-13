@@ -31,16 +31,17 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
 const cartListCharater = document.querySelector('.product-list-charater');
 const cartListTool = document.querySelector('.product-list-tool');
 
+// 캐릭터 템플릿
 const cartDataCharacter = await pb.collection('product').getFullList({
   filter: `category = "캐릭터"`,
   sort: '-created',
 });
 
-// 캐릭터 템플릿
-cartDataCharacter.forEach(({ photo, brand, name, discount, price }) => {
-  const discountPrice = price - (price * discount) / 100;
+cartDataCharacter.forEach(
+  ({ collectionId, id, photo, brand, name, discount, price }) => {
+    const discountPrice = price - (price * discount) / 100;
 
-  const template = /* html */ `
+    const template = /* html */ `
     <ul class="poduct flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <label for="product-select">
@@ -56,7 +57,7 @@ cartDataCharacter.forEach(({ photo, brand, name, discount, price }) => {
         <!-- 상품이미지 -->
         <span>
           <img
-            src="${getPbImageURL(photo)}"
+            src="${getPbImageURL(collectionId, id, photo)}"
             alt="${name}"
             class="h-73pxr w-63pxr border border-gray-200 p-1"
           />
@@ -102,8 +103,9 @@ cartDataCharacter.forEach(({ photo, brand, name, discount, price }) => {
     </ul>
   `;
 
-  cartListCharater.insertAdjacentHTML('afterbegin', template);
-});
+    cartListCharater.insertAdjacentHTML('afterbegin', template);
+  }
+);
 
 // 도구 템플릿
 const cartDataTool = await pb.collection('product').getFullList({
@@ -111,10 +113,11 @@ const cartDataTool = await pb.collection('product').getFullList({
   sort: '-created',
 });
 
-cartDataTool.forEach(({ photo, brand, name, discount, price }) => {
-  const discountPrice = price - (price * discount) / 100;
+cartDataTool.forEach(
+  ({ collectionId, id, photo, brand, name, discount, price }) => {
+    const discountPrice = price - (price * discount) / 100;
 
-  const template = /* html */ `
+    const template = /* html */ `
     <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <label for="product-select">
@@ -130,7 +133,7 @@ cartDataTool.forEach(({ photo, brand, name, discount, price }) => {
         <!-- 상품이미지 -->
         <span>
           <img
-            src="${getPbImageURL(photo)}"
+            src="${getPbImageURL(collectionId, id, photo)}"
             alt="${name}"
             class="h-73pxr w-63pxr border border-gray-200 p-1"
           />
@@ -176,8 +179,9 @@ cartDataTool.forEach(({ photo, brand, name, discount, price }) => {
     </ul>
   `;
 
-  cartListTool.insertAdjacentHTML('afterbegin', template);
-});
+    cartListTool.insertAdjacentHTML('afterbegin', template);
+  }
+);
 
 /* -------------------------------------------------------------------------- */
 /*                                   checkbox                                 */
