@@ -1,4 +1,4 @@
-fetch('/components/header.html')
+fetch('/src/components/header.html')
   .then((res) => res.text())
   .then((data) => {
     const header = document.querySelector('header');
@@ -9,7 +9,7 @@ fetch('/components/header.html')
     console.error(error);
   });
 
-fetch('/components/footer.html')
+fetch('/src/components/footer.html')
   .then((res) => res.text())
   .then((data) => {
     const footer = document.querySelector('footer');
