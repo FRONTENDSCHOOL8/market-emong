@@ -2,6 +2,10 @@ import PocketBase from 'pocketbase';
 import '/src/styles/tailwind.css';
 import { getPbImageURL, pb } from '/src/lib/';
 
+/* -------------------------------------------------------------------------- */
+/*                                  toggle                                    */
+/* -------------------------------------------------------------------------- */
+
 document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
   toggle.addEventListener('click', function () {
     const cartProduct = this.nextElementSibling;
@@ -17,6 +21,9 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
   });
 });
 
+/* -------------------------------------------------------------------------- */
+/*                            cart product list                               */
+/* -------------------------------------------------------------------------- */
 // 로그인 유저 정보 가져오기 test
 // const userData = await pb.collection('users').getOne('6kki52fp9i5fmjy');
 // const { id } = userData;
@@ -29,20 +36,22 @@ const cartDataCharacter = await pb.collection('product').getFullList({
   sort: '-created',
 });
 
+// 캐릭터 템플릿
 cartDataCharacter.forEach(
   ({ collectionId, id, photo, brand, name, discount, price }) => {
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
-    <ul class="flex items-center justify-around py-3 border-b border-gray-200">
+    <ul class="poduct flex items-center justify-around py-3 border-b border-gray-200">
       <li>
+        <label for="product-select">
         <input
           type="checkbox"
           id="product-select"
-          name="productSelect"
+          name="product-select"
           class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
-        <label for="product-select"></label>
+        </label>
       </li>
       <li class="flex items-center gap-1">
         <!-- 상품이미지 -->
@@ -109,15 +118,16 @@ cartDataTool.forEach(
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
-    <ul class="flex items-center justify-around py-3 border-b border-gray-200">
+    <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
       <li>
+        <label for="product-select">
         <input
           type="checkbox"
           id="product-select"
-          name="productSelect"
+          name="product-select"
           class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
-        <label for="product-select"></label>
+        </label>
       </li>
       <li class="flex items-center gap-1">
         <!-- 상품이미지 -->
@@ -173,11 +183,58 @@ cartDataTool.forEach(
   }
 );
 
-// 수량, 금액 변경
+/* -------------------------------------------------------------------------- */
+/*                                   checkbox                                 */
+/* -------------------------------------------------------------------------- */
+const selectAllCheckboxes = document.querySelectorAll(
+  'input[id^="selected-all"]'
+);
+const productCheckboxes = document.querySelectorAll(
+  'input[name="product-select"]'
+);
+const checkedCountElement = document.querySelector('.checked-count');
+
+selectAllCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', function () {
+    productCheckboxes.forEach((productCheckbox) => {
+      productCheckbox.checked = this.checked;
+    });
+    syncSelectAllCheckboxes(this.checked);
+    updateCheckedCount();
+  });
+});
+
+productCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', function () {
+    const isAllSelected = Array.from(productCheckboxes).every(
+      (productCheckbox) => productCheckbox.checked
+    );
+    syncSelectAllCheckboxes(isAllSelected);
+    updateCheckedCount();
+  });
+});
+
+function syncSelectAllCheckboxes(checked) {
+  selectAllCheckboxes.forEach((checkbox) => {
+    checkbox.checked = checked;
+  });
+}
+
+function updateCheckedCount() {
+  const checkedItemsCount = document.querySelectorAll(
+    'input[name="product-select"]:checked'
+  ).length;
+  checkedCountElement.textContent = checkedItemsCount.toString();
+}
+
+updateCheckedCount();
+
+/* -------------------------------------------------------------------------- */
+/*                                수량 변경                                    */
+/* -------------------------------------------------------------------------- */
 const minusButtons = Array.from(document.querySelectorAll('.minus-button'));
 const plusButtons = Array.from(document.querySelectorAll('.plus-button'));
-const productAmount = document.querySelectorAll('.count');
-productAmount.textContent = 1;
+// const productAmounts = document.querySelectorAll('.count');
 
 function changeAmount(e) {
   e.preventDefault();
@@ -206,9 +263,10 @@ plusButtons.forEach((plusButton) => {
   plusButton.addEventListener('click', changeAmount);
 });
 
-// 배송지 정보
-
-const cartList = document.querySelector('.cart-price');
+/* -------------------------------------------------------------------------- */
+/*                                cart-side                                   */
+/* -------------------------------------------------------------------------- */
+const cartList = document.querySelector('.cart-side');
 
 // test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
 const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
