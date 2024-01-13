@@ -18,6 +18,8 @@ const kitList = await pb.collection('product').getFullList({
   filter: 'category = "도구"',
 });
 
+// await localStorage.setItem('currentView', '[]');
+
 // querySelect
 
 const advertisingImg = document.querySelector('.swiper-wrapper');
@@ -72,7 +74,7 @@ productList.forEach(
 
     const template = /* html */ `
     <li class="swiper-slide product-info">
-      <a href="/" class="">
+      <a href="/" class="saveItem">
         <div class="image-container">
           <img
           src="${getPbImageURL(collectionId, id, photo)}"
@@ -219,22 +221,5 @@ const kitSwiper = new Swiper('.swiper-kit', {
   navigation: {
     nextEl: '.kit-next',
     prevEl: '.kit-prev',
-  },
-});
-
-// 최근본 상품 swiper
-
-const recentSwiper = new Swiper('.recently-container', {
-  direction: 'vertical',
-  resistance: true,
-  allowTouchMove: false,
-  slidesPerView: 2.5,
-  spaceBetween: 4,
-  navigation: {
-    nextEl: '.recently-prev',
-    prevEl: '.recently-next',
-  },
-  keyboard: {
-    enabled: true,
   },
 });
