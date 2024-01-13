@@ -8,6 +8,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        header: resolve(__dirname, 'src/components/header.html'),
+        footer: resolve(__dirname, 'src/components/footer.html'),
+        login: resolve(__dirname, 'src/pages/login/index.html'),
+        productList: resolve(__dirname, 'src/pages/productList/index.html'),
+        signUp: resolve(__dirname, 'src/pages/signUp/index.html'),
       },
     },
   },
