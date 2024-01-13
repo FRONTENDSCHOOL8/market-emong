@@ -20,11 +20,37 @@
       <div
         class="swiper-advertising relative mx-auto min-w-[1050px] max-w-[1920px]"
       >
-        <div class="swiper-wrapper"></div>
+        <div class="swiper-wrapper advertising-wrapper"></div>
         <div class="swiper-button-prev main-prev left-200pxr"></div>
         <div class="swiper-button-next main-next right-200pxr"></div>
         <div class="swiper-pagination"></div>
       </div>
+    </div>
+
+    <!-- 최근본 상품 -->
+    <div
+      class="recently-swiper sticky right-20pxr top-200pxr z-50 float-right max-h-223pxr w-78pxr translate-y-100pxr flex-col overflow-hidden border-2 border-gray-200 bg-white px-6pxr py-24pxr text-center"
+    >
+      <span class="my-8pxr block text-12pxr font-[600]">최근 본 상품</span>
+      <div class="swiper recently-container">
+        <div class="swiper-wrapper recently-wrapper h-130pxr">
+          <a href="/" class="swiper-slide flex justify-center">
+            <img src="./src/assets/current-test.png" alt="test용" />
+          </a>
+          <a href="/" class="swiper-slide flex justify-center">
+            <img src="./src/assets/current-test.png" alt="test용" />
+          </a>
+          <a href="/" class="swiper-slide flex justify-center">
+            <img src="./src/assets/current-test.png" alt="test용" />
+          </a>
+        </div>
+      </div>
+      <div
+        class="swiper-button-prev recently-prev bg-current-bottom lock absolute h-18pxr w-18pxr translate-x-17pxr translate-y-110pxr bg-no-repeat after:hidden"
+      ></div>
+      <div
+        class="swiper-button-next recently-next bg-current-top h-18pxr w-18pxr -translate-x-20pxr -translate-y-80pxr bg-no-repeat after:hidden"
+      ></div>
     </div>
 
     <!-- 유튜브 광고 마크업 -->
@@ -76,7 +102,6 @@
         </button>
       </form>
     </dialog>
-
     <!-- banner -->
     <div class="banner-container my-40pxr w-full">
       <div class="banner-wrapper m-auto w-[1050px]">
@@ -101,69 +126,6 @@
           <ul class="kit-list swiper-wrapper inline-flex justify-between"></ul>
         </div>
       </div>
-    </div>
-
-    <!--slider swiper 미완성-->
-    <!-- Slider main container -->
-    <!-- <div
-      class="swiper current-product border-gray-200 m-0 h-full max-h-223pxr max-w-73pxr border p-8pxr"
-    >
-      <p class="mt-32pxr text-center text-12pxr">최근 본 상품</p> -->
-    <!-- Additional required wrapper -->
-    <!-- <div
-        class="swiper-wrapper current-product-wrapper display mx-8xpr justify-center gap-x-8pxr"
-      > -->
-    <!-- Slides -->
-    <!-- <div
-          class="swiper-slide flex max-h-18pxr max-w-18pxr flex-wrap justify-center gap-x-8pxr"
-        >
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-      </div>
-      <div
-        class="swiper-button-prev top-50pxr max-h-18pxr max-w-18pxr -translate-y-31pxr translate-x-16pxr self-center bg-[url('/src/assets/current-product-top.svg')] bg-center bg-no-repeat after:hidden"
-      ></div>
-      <div
-        class="swiper-button-next max-h-18pxr max-w-18pxr -translate-x-16pxr translate-y-56pxr self-center bg-[url('/src/assets/current-product-bottom.svg')] bg-center bg-no-repeat after:hidden"
-      ></div>
-    </div> -->
-
-    <!-- 최근본 상품 -->
-    <div
-      class="recently-swiper relative max-h-223pxr w-78pxr flex-col overflow-hidden border-2 border-gray-200 px-6pxr py-24pxr text-center"
-    >
-      <span class="my-8pxr block text-12pxr font-[600]">최근 본 상품</span>
-      <div class="swiper recently-container">
-        <div class="swiper-wrapper recently-wrapper h-130pxr">
-          <a href="/" class="swiper-slide flex justify-center">
-            <img src="./src/assets/current-test.png" alt="test용" />
-          </a>
-          <a href="/" class="swiper-slide flex justify-center">
-            <img src="./src/assets/current-test.png" alt="test용" />
-          </a>
-          <a href="/" class="swiper-slide flex justify-center">
-            <img src="./src/assets/current-test.png" alt="test용" />
-          </a>
-        </div>
-      </div>
-      <div
-        class="swiper-button-prev recently-prev bg-current-bottom lock absolute h-18pxr w-18pxr translate-x-17pxr translate-y-110pxr bg-no-repeat after:hidden"
-      ></div>
-      <div
-        class="swiper-button-next recently-next bg-current-top h-18pxr w-18pxr -translate-x-20pxr -translate-y-80pxr bg-no-repeat after:hidden"
-      ></div>
     </div>
 
     <footer id="footer"></footer>

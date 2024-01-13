@@ -50,7 +50,7 @@ closeBtn.addEventListener('click', () => {
 
 records.forEach(({ collectionId, id, photo, alt }) => {
   const template = /*html*/ `
-  <div class="swiper-slide">
+  <div class="swiper-slide advertising-slide">
           <a href="/" class="advertising-slide"
             ><img
               src="${getPbImageURL(collectionId, id, photo)}"
