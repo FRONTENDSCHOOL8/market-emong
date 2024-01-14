@@ -18,6 +18,8 @@ const kitList = await pb.collection('product').getFullList({
   filter: 'category = "도구"',
 });
 
+// await localStorage.setItem('currentView', '[]');
+
 // querySelect
 
 const advertisingImg = document.querySelector('.swiper-wrapper');
@@ -29,9 +31,9 @@ const kit = document.querySelector('.kit-list');
 
 // 팝업창 기능 구현
 
-if (compareDay('day') || localStorage.getItem('day') === null) {
-  dialog.showModal();
-}
+// if (compareDay('day') || localStorage.getItem('day') === null) {
+//   dialog.showModal();
+// }
 
 function handlePopup() {
   setStorageDay('day');
@@ -50,7 +52,7 @@ closeBtn.addEventListener('click', () => {
 
 records.forEach(({ collectionId, id, photo, alt }) => {
   const template = /*html*/ `
-  <div class="swiper-slide">
+  <div class="swiper-slide advertising-slide">
           <a href="/" class="advertising-slide"
             ><img
               src="${getPbImageURL(collectionId, id, photo)}"
@@ -72,7 +74,7 @@ productList.forEach(
 
     const template = /* html */ `
     <li class="swiper-slide product-info">
-      <a href="/" class="">
+      <a href="/" class="saveItem">
         <div class="image-container">
           <img
           src="${getPbImageURL(collectionId, id, photo)}"
