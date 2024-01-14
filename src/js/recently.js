@@ -17,7 +17,7 @@ function test(e) {
     ? JSON.parse(localStorage.getItem('currentItem'))
     : [];
   data.push({ url, thumbnailSrc, thumbnailAlt });
-  console.log(data);
+  // console.log(data);
   localStorage.setItem('currentItem', JSON.stringify(data));
 }
 
@@ -26,7 +26,7 @@ function test2() {
   if (!saveItem) return;
   const recently = document.querySelector('.recently-wrapper');
   saveItem.forEach((item) => {
-    console.log(item, item.thumbnailSrc);
+    // console.log(item, item.thumbnailSrc);
     const template = /* html */ `
       <li class="swiper-slide">
         <a href="${item.url}" class="flex justify-center">
@@ -40,7 +40,7 @@ function test2() {
         </a>
       </li>
       `;
-    console.log(template);
+    // console.log(template);
     recently.insertAdjacentHTML('afterbegin', template);
   });
 }

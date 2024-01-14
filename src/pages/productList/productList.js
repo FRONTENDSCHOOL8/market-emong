@@ -3,6 +3,8 @@ import '/src/styles/product.css';
 import '/src/styles/tailwind.css';
 import { getPbImageURL, pb } from '/src/lib/';
 
+const hash = window.location.hash.slice(1);
+
 // 상품 페이지 추천순 물음표 hover
 const userInfo = document.querySelector('.list-recommend');
 const userInfoList = document.querySelector('.list-question');
@@ -23,20 +25,10 @@ userToggle('mouseleave');
 // main이랑 같은 코드 데이터 -> 상품 불러오기
 const product = document.querySelector('.product-list');
 
-// 추천순
+// 순서 함수
 const productList = await pb.collection('product').getFullList({
-  sort: '-recommend',
+  sort: `${hash}`,
 });
-
-// // 신상품순
-// const currentUrl = window.location.href;
-// const newProduct = window.location.search;
-// console.log(newProduct);
-// history.pushState(null, null, 'productList');
-
-// const records = await pb.collection('product').getFullList({
-//   sort: '-created',
-// });
 
 productList.forEach(
   ({ collectionId, id, photo, label, brand, name, discount, price, limit }) => {

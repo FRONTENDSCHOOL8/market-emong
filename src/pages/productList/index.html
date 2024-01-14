@@ -58,6 +58,12 @@
             <button class="listnav-btn">
               <span>카테고리</span>
             </button>
+            <!-- <nav>
+              <ul class="flex flex-col">
+                <li>캐릭터</li>
+                <li>도구</li>
+              </ul>
+            </nav> -->
           </div>
           <!-- 브랜드 nav -->
           <div class="list-nav">
@@ -71,6 +77,32 @@
               <span>가격</span>
             </button>
           </div>
+          <details class="group">
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between font-medium"
+            >
+              <span> 카테고리</span>
+              <span class="transition group-open:rotate-180">
+                <svg
+                  fill="none"
+                  height="24"
+                  shape-rendering="geometricPrecision"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  width="24"
+                >
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </span>
+            </summary>
+            <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+              캐릭터
+            </p>
+            <p class="group-open:animate-fadeIn mt-3 text-neutral-600">도구</p>
+          </details>
         </nav>
 
         <!--상품 list -->
@@ -79,9 +111,9 @@
           <ul class="mb-20pxr flex justify-between">
             <li>총 8건</li>
             <li>
-              <ul class="flex items-center gap-x-8pxr text-gray-400">
+              <ul class="prolist-ul flex items-center gap-x-8pxr text-gray-400">
                 <li class="relative flex gap-4pxr text-black">
-                  <a href="/">추천순</a
+                  <a href="/src/pages/productList/#-recommend">추천순</a
                   ><svg
                     class="list-recommend"
                     xmlns="http://www.w3.org/2000/svg"
@@ -111,15 +143,29 @@
                   </div>
                 </li>
                 <li class="text-10pxr text-gray-400">|</li>
-                <li><a href="/" class="newProduct">신상품순</a></li>
+                <li>
+                  <a
+                    href="/src/pages/productList/#-created"
+                    class="clickProduct"
+                    >신상품순</a
+                  >
+                </li>
                 <li class="text-10pxr text-gray-400">|</li>
                 <li><a href="/">판매량순</a></li>
                 <li class="text-10pxr text-gray-400">|</li>
                 <li><a href="/">혜택순</a></li>
                 <li class="text-10pxr text-gray-400">|</li>
-                <li><a href="/">낮은 가격순</a></li>
+                <li>
+                  <a href="/src/pages/productList/#-price" class="clickProduct"
+                    >낮은 가격순</a
+                  >
+                </li>
                 <li class="text-10pxr text-gray-400">|</li>
-                <li><a href="/">높은 가격순</a></li>
+                <li>
+                  <a href="/src/pages/productList/#+price" class="clickProduct"
+                    >높은 가격순</a
+                  >
+                </li>
               </ul>
             </li>
           </ul>
