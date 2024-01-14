@@ -24,9 +24,12 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
 /* -------------------------------------------------------------------------- */
 /*                            cart product list                               */
 /* -------------------------------------------------------------------------- */
-// 로그인 유저 정보 가져오기 test
-// const userData = await pb.collection('users').getOne('6kki52fp9i5fmjy');
-// const { id } = userData;
+// test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
+const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
+const { address } = userAddress;
+// test 상품 등록
+const totalPrice = await pb.collection('product').getOne('vyvndu8syem4du2');
+const { price, discount } = totalPrice;
 
 const cartListCharater = document.querySelector('.product-list-charater');
 const cartListTool = document.querySelector('.product-list-tool');
@@ -329,11 +332,8 @@ plusButtons.forEach((plusButton) => {
 /* -------------------------------------------------------------------------- */
 const cartList = document.querySelector('.cart-side');
 
-// test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
-const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
-const { address } = userAddress;
-
-function updateTemplate() {
+function priceTemplate() {
+  const discountPrice = price - (price * discount) / 100;
   const template = /* html */ `
 
     <div class="m-auto border p-5 ">
@@ -359,11 +359,11 @@ function updateTemplate() {
       <!-- 선택 상품 금액, 금액 합 랜더링 -->
       <div class="flex justify-between pb-4">
         <span>상품금액</span>
-        <span>원</span>
+        <span>${price}원</span>
       </div>
       <div class="flex justify-between pb-4">
         <span>상품할인금액</span>
-        <span>원</span>
+        <span> -${discount}원</span>
       </div>
       <div class="flex justify-between items-center pb-4">
         <span>배송비</span>
@@ -373,7 +373,7 @@ function updateTemplate() {
       <div class="flex justify-between border-t-2 py-4">
         <span>결제예정금액</span>
         <span>
-          <strong><!-- 상품금액+배송비 합 --></strong>
+          <strong>${discountPrice}</strong>
           <span>원</span>
         </span>
       </div>
@@ -387,4 +387,4 @@ function updateTemplate() {
   `;
   cartList.insertAdjacentHTML('afterbegin', template);
 }
-updateTemplate();
+priceTemplate();
