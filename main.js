@@ -18,6 +18,8 @@ const kitList = await pb.collection('product').getFullList({
   filter: 'category = "도구"',
 });
 
+// await localStorage.setItem('currentView', '[]');
+
 // querySelect
 
 const advertisingImg = document.querySelector('.swiper-wrapper');
@@ -29,13 +31,17 @@ const kit = document.querySelector('.kit-list');
 
 // 팝업창 기능 구현
 
-if (compareDay('day') || localStorage.getItem('day') === null) {
-  dialog.showModal();
-}
+// if (compareDay('day') || localStorage.getItem('day') === null) {
+//   dialog.showModal();
+// }
+compareDay('day').then((resolve) => {
+  if (resolve || localStorage.getItem('day') == null) {
+    dialog.showModal();
+  }
+});
 
 function handlePopup() {
-  setStorageDay('day');
-  dialog.close();
+  setStorageDay('day').then(dialog.close());
 }
 
 todayBtn.addEventListener('click', handlePopup);
@@ -50,7 +56,7 @@ closeBtn.addEventListener('click', () => {
 
 records.forEach(({ collectionId, id, photo, alt }) => {
   const template = /*html*/ `
-  <div class="swiper-slide">
+  <div class="swiper-slide advertising-slide">
           <a href="/" class="advertising-slide"
             ><img
               src="${getPbImageURL(collectionId, id, photo)}"
@@ -72,7 +78,7 @@ productList.forEach(
 
     const template = /* html */ `
     <li class="swiper-slide product-info">
-      <a href="/src/pages/detail/#${id}" class="">
+      <a href="/src/pages/detail/#${id}" class="saveItem">
         <div class="image-container">
           <img
           src="${getPbImageURL(collectionId, id, photo)}"
@@ -117,6 +123,28 @@ productList.forEach(
       discountTag.insertAdjacentHTML('afterbegin', discountTemplate);
       discountTag.insertAdjacentHTML('afterend', priceTemplate);
     }
+
+    const saveItem = document.querySelector('.saveItem');
+
+    async function saveItemInfo() {
+      try {
+        const getCurrentView = await localStorage.getItem('currentView');
+        const currentData = JSON.parse(getCurrentView);
+
+        const data = { collectionId, id, photo };
+        currentData.push(data);
+
+        await localStorage.setItem('currentView', JSON.stringify(currentData));
+      } catch {
+        const currentData = [];
+        const data = { collectionId, id, photo };
+        currentData.push(data);
+
+        await localStorage.setItem('currentView', JSON.stringify(currentData));
+      }
+    }
+
+    saveItem.addEventListener('click', saveItemInfo);
   }
 );
 
@@ -128,7 +156,7 @@ kitList.forEach(
 
     const template = /* html */ `
     <li class="swiper-slide product-info kit-info">
-      <a href="/" class="">
+      <a href="/src/pages/detail/#${id}" class="saveItem">
         <div class="image-container">
           <img
           src="${getPbImageURL(collectionId, id, photo)}"
@@ -221,3 +249,5 @@ const kitSwiper = new Swiper('.swiper-kit', {
     prevEl: '.kit-prev',
   },
 });
+
+// 최근 본 상품

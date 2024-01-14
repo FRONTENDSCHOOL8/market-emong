@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script
+      type="module"
+      src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+    ></script> -->
     <script type="module" src="/src/js/include.js"></script>
     <script type="module" src="/src/pages/signUp/signUp.js"></script>
   </head>
@@ -47,7 +51,8 @@
                 </div>
                 <button
                   type="button"
-                  class="h-45pxr w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                  disabled
+                  class="idDuplicateBtn h-45pxr w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white disabled:text-gray-400"
                 >
                   중복 확인
                 </button>
@@ -134,7 +139,8 @@
                 </div>
                 <button
                   type="button"
-                  class="h-45pxr w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white"
+                  disabled
+                  class="emailDuplicateBtn h-45pxr w-143pxr rounded border border-skybluemong font-semibold text-skybluemong hover:bg-bluemong hover:text-white disabled:text-gray-400"
                 >
                   중복 확인
                 </button>
