@@ -329,7 +329,8 @@ function updateTemplate() {
 
     <div class="m-auto border p-5 ">
       <div class="flex items-center pb-3">
-        <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" />
+        <!-- <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" /> -->
+        <span class="h-7 w-7 bg-location-icon bg-no-repeat bg-center bg-cover"></span>
         <span>배송지</span>
       </div>
       <div class="pb-6">
