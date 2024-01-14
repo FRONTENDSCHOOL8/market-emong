@@ -16,13 +16,13 @@
     <header id="header"></header>
 
     <!-- 최근본 상품 -->
-    <div class="recently-swiper sticky right-20pxr top-200pxr"></div>
+    <div class="recently-swiper sticky top-200pxr"></div>
 
     <main class="m-auto w-[1050px] font-[600]">
       <h3 class="my-48pxr text-center text-21pxr">베스트</h3>
 
       <div class="flex">
-        <!-- 카테고리 list  -->
+        <!-- & 카테고리 list  -->
         <nav class="mr-47pxr w-220pxr">
           <!-- 필터 및 초기화 -->
           <div class="list-nav flex justify-between">
@@ -53,59 +53,294 @@
               <span class="ml-5pxr text-15pxr">초기화</span>
             </button>
           </div>
-          <!-- 카테고리 nav -->
-          <div class="list-nav">
+          <!-- * 카테고리 nav -->
+          <!--<div class="list-nav">
             <button class="listnav-btn">
               <span>카테고리</span>
             </button>
-            <!-- <nav>
+            <nav>
               <ul class="flex flex-col">
                 <li>캐릭터</li>
                 <li>도구</li>
               </ul>
-            </nav> -->
-          </div>
-          <!-- 브랜드 nav -->
-          <div class="list-nav">
-            <button class="listnav-btn">
-              <span>브랜드</span>
-            </button>
-          </div>
-          <!-- 가격 nav -->
-          <div class="list-nav">
-            <button class="listnav-btn">
-              <span>가격</span>
-            </button>
-          </div>
-          <details class="group">
+            </nav>
+          </div>-->
+          <details class="group border-b-2 border-solid border-gray-300">
             <summary
-              class="flex cursor-pointer list-none items-center justify-between font-medium"
+              class="himan flex h-52pxr cursor-pointer list-none items-center justify-between"
             >
-              <span> 카테고리</span>
-              <span class="transition group-open:rotate-180">
+              <span class="">카테고리</span>
+              <span class="transition group-open:-rotate-180">
                 <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
                   fill="none"
-                  height="24"
-                  shape-rendering="geometricPrecision"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M6 9l6 6 6-6"></path>
+                  <g clip-path="url(#clip0_61_3984)">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.5 13L15 18L20.5 13L19.4 12L15 16L10.6 12L9.5 13Z"
+                      fill="#68C3F1"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_61_3984">
+                      <rect
+                        width="6"
+                        height="11"
+                        fill="white"
+                        transform="translate(20.5 12) rotate(90)"
+                      />
+                    </clipPath>
+                  </defs>
                 </svg>
               </span>
             </summary>
-            <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-              캐릭터
-            </p>
-            <p class="group-open:animate-fadeIn mt-3 text-neutral-600">도구</p>
+            <nav>
+              <ul class="text-15pxr font-[400]">
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr mt-9pxr text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >캐릭터</span
+                    >
+                    <span class="font-12pxr text-gray-300">3</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >도구</span
+                    >
+                    <span class="font-12pxr text-gray-300">5</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </details>
+          <!-- * 브랜드 nav -->
+          <!--<div class="list-nav">
+            <button class="listnav-btn">
+              <span>브랜드</span>
+            </button>
+          </div>-->
+          <details class="group border-b-2 border-solid border-gray-300">
+            <summary
+              class="himan flex h-52pxr cursor-pointer list-none items-center justify-between"
+            >
+              <span class="">브랜드</span>
+              <span class="transition group-open:-rotate-180">
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_61_3984)">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.5 13L15 18L20.5 13L19.4 12L15 16L10.6 12L9.5 13Z"
+                      fill="#68C3F1"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_61_3984">
+                      <rect
+                        width="6"
+                        height="11"
+                        fill="white"
+                        transform="translate(20.5 12) rotate(90)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
+            </summary>
+            <nav>
+              <ul class="text-15pxr font-[400]">
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr mt-9pxr text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >캐릭터</span
+                    >
+                    <span class="font-12pxr text-gray-300">3</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >도구</span
+                    >
+                    <span class="font-12pxr text-gray-300">5</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </details>
+
+          <!-- * 가격 nav -->
+          <!--<div class="list-nav">
+            <button class="listnav-btn">
+              <span>가격</span>
+            </button>
+          </div>-->
+          <details class="group border-b-2 border-solid border-gray-300">
+            <summary
+              class="himan flex h-52pxr cursor-pointer list-none items-center justify-between"
+            >
+              <span class="">가격</span>
+              <span class="transition group-open:-rotate-180">
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_61_3984)">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.5 13L15 18L20.5 13L19.4 12L15 16L10.6 12L9.5 13Z"
+                      fill="#68C3F1"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_61_3984">
+                      <rect
+                        width="6"
+                        height="11"
+                        fill="white"
+                        transform="translate(20.5 12) rotate(90)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
+            </summary>
+            <nav>
+              <ul class="text-15pxr font-[400]">
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr mt-9pxr text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >1만원 미만</span
+                    >
+                    <span class="font-12pxr text-gray-300">2</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >1만원대</span
+                    >
+                    <span class="font-12pxr text-gray-300">1</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >2만원대</span
+                    >
+                    <span class="font-12pxr text-gray-300">1</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >3만원대</span
+                    >
+                    <span class="font-12pxr text-gray-300">1</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >4만원대</span
+                    >
+                    <span class="font-12pxr text-gray-300">1</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >5-9만원대</span
+                    >
+                    <span class="font-12pxr text-gray-300">1</span>
+                  </a>
+                </li>
+                <li
+                  class="group-open:animate-fadeIn mb-18pxr flex text-neutral-600"
+                >
+                  <a
+                    href="/"
+                    class="bg-unchecked-icon checked:bg-checked-icon inline-block h-24pxr w-full bg-left bg-no-repeat"
+                  >
+                    <span class="ml-29pxr mr-4pxr mt-3pxr inline-block"
+                      >10만원 이상</span
+                    >
+                    <span class="font-12pxr text-gray-300">1</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </details>
         </nav>
 
-        <!--상품 list -->
+        <!-- & 상품 list -->
         <section class="w-783pxr">
           <!-- 상품 list herder -->
           <ul class="mb-20pxr flex justify-between">

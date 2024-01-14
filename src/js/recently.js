@@ -28,9 +28,9 @@ function test2() {
   saveItem.forEach((item) => {
     // console.log(item, item.thumbnailSrc);
     const template = /* html */ `
-      <li class="swiper-slide">
+      <li class="swiper-slide recently-slide">
         <a href="${item.url}" class="flex justify-center">
-          <div class="">
+          <div class="recently-img">
             <img
             src="${item.thumbnailSrc}"
             alt="${item.thumbnailAlt}"

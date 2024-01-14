@@ -1,7 +1,8 @@
 import PocketBase from 'pocketbase';
 import '/src/styles/product.css';
 import '/src/styles/tailwind.css';
-import { getPbImageURL, pb } from '/src/lib/';
+// import gsap from 'gsap';
+import { getPbImageURL, pb, comma } from '/src/lib/';
 
 const hash = window.location.hash.slice(1);
 
@@ -48,7 +49,7 @@ productList.forEach(
         <p class="text-12pxr">미래배송</p>
         <span class="name"> [${brand}]${name} </span>
         <span class="discount-price">
-          ${discountPrice}원
+          ${comma(discountPrice)}원
         </span>
         <span class="label">${label}</span>
       </a>
@@ -71,7 +72,7 @@ productList.forEach(
 
     const discountTag = document.querySelector('.discount-price');
     const priceTemplate = /* html */ `
-      <span class="price">${price}</span>
+      <span class="price">${comma(price)}</span>
     `;
 
     const discountTemplate = /* html */ `
