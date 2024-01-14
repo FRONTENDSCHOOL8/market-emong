@@ -2,6 +2,10 @@ import PocketBase from 'pocketbase';
 import '/src/styles/tailwind.css';
 import { getPbImageURL, pb } from '/src/lib/';
 
+/* -------------------------------------------------------------------------- */
+/*                                  toggle                                    */
+/* -------------------------------------------------------------------------- */
+
 document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
   toggle.addEventListener('click', function () {
     const cartProduct = this.nextElementSibling;
@@ -17,23 +21,19 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
   });
 });
 
-// const productTemplate = document.querySelector('.cart-list');
-// 로그인 유저 정보 가져오기
-// const userData = await pb.collection('users').getOne('q4l7a4urcjb33hz');
+/* -------------------------------------------------------------------------- */
+/*                            cart product list                               */
+/* -------------------------------------------------------------------------- */
+// 로그인 유저 정보 가져오기 test
+// const userData = await pb.collection('users').getOne('6kki52fp9i5fmjy');
 // const { id } = userData;
 
 const cartListCharater = document.querySelector('.product-list-charater');
 const cartListTool = document.querySelector('.product-list-tool');
 
 // 캐릭터 템플릿
-// const cartDataCharacter = await pb
-//   .collection('carts_products_data')
-//   .getFullList({
-//     filter: `packageType = "캐릭터" && users_record = "${id}"`,
-//     sort: 'created',
-//   });
-
 const cartDataCharacter = await pb.collection('product').getFullList({
+  filter: `category = "캐릭터"`,
   sort: '-created',
 });
 
@@ -42,15 +42,16 @@ cartDataCharacter.forEach(
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
-    <ul class="flex items-center justify-around py-3 border-b border-gray-200">
+    <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
       <li>
+        <label for="product-select">
         <input
           type="checkbox"
           id="product-select"
-          name="productSelect"
+          name="product-select"
           class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
-        <label for="product-select"></label>
+        </label>
       </li>
       <li class="flex items-center gap-1">
         <!-- 상품이미지 -->
@@ -73,16 +74,16 @@ cartDataCharacter.forEach(
         <button
           type="button"
           class="minus-button h-7 w-7 bg-minus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량감소"
           disabled
         >
-          <span class="sr-only">수량감소</span>
         </button>
         <span class="count">1</span>
         <button
           type="button"
           class="plus-button h-7 w-7 bg-plus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량증가"
         >
-          <span class="sr-only">수량증가</span>
         </button>
       </li>
       <li class="flex flex-col w-130pxr text-end">
@@ -95,8 +96,8 @@ cartDataCharacter.forEach(
         <button
           type="button"
           class="delete-button h-8 w-7 bg-delete-icon bg-cover bg-center bg-no-repeat"
+          aria-label="상품삭제"
         >
-          <span class="sr-only">상품삭제</span>
         </button>
       </li>
     </ul>
@@ -108,6 +109,7 @@ cartDataCharacter.forEach(
 
 // 도구 템플릿
 const cartDataTool = await pb.collection('product').getFullList({
+  filter: `category = "도구"`,
   sort: '-created',
 });
 
@@ -116,15 +118,16 @@ cartDataTool.forEach(
     const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
-    <ul class="flex items-center justify-around py-3 border-b border-gray-200">
+    <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
       <li>
+        <label for="product-select">
         <input
           type="checkbox"
           id="product-select"
-          name="productSelect"
+          name="product-select"
           class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
-        <label for="product-select"></label>
+        </label>
       </li>
       <li class="flex items-center gap-1">
         <!-- 상품이미지 -->
@@ -147,16 +150,16 @@ cartDataTool.forEach(
         <button
           type="button"
           class="minus-button h-7 w-7 bg-minus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량감소"
           disabled
         >
-          <span class="sr-only">수량감소</span>
         </button>
         <span class="count">1</span>
         <button
           type="button"
           class="plus-button h-7 w-7 bg-plus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
+          aria-label="수량증가"
         >
-          <span class="sr-only">수량증가</span>
         </button>
       </li>
       <li class="flex flex-col w-130pxr text-end">
@@ -169,8 +172,8 @@ cartDataTool.forEach(
         <button
           type="button"
           class="delete-button h-8 w-7 bg-delete-icon bg-cover bg-center bg-no-repeat"
+          aria-label="상품삭제"
         >
-          <span class="sr-only">상품삭제</span>
         </button>
       </li>
     </ul>
@@ -180,18 +183,112 @@ cartDataTool.forEach(
   }
 );
 
-// 수량, 금액 변경
+// 상품 삭제 (임시)
+cartListCharater.addEventListener('click', function (event) {
+  if (event.target.classList.contains('delete-button')) {
+    const product = event.target.closest('.product');
+    if (product) {
+      cartListCharater.removeChild(product);
+    }
+  }
+});
+
+cartListTool.addEventListener('click', function (event) {
+  if (event.target.classList.contains('delete-button')) {
+    const product = event.target.closest('.product');
+    if (product) {
+      cartListTool.removeChild(product);
+    }
+  }
+});
+
+/* -------------------------------------------------------------------------- */
+/*                                   checkbox                                 */
+/* -------------------------------------------------------------------------- */
+const selectAllCheckboxes = document.querySelectorAll(
+  'input[id^="selected-all"]'
+);
+const productCheckboxes = document.querySelectorAll(
+  'input[name="product-select"]'
+);
+const checkedCount = document.querySelectorAll('.checked-count');
+
+selectAllCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', function () {
+    productCheckboxes.forEach((productCheckbox) => {
+      productCheckbox.checked = this.checked;
+    });
+    SelectAllCheckboxes(this.checked);
+    updateCheckedCount();
+  });
+});
+
+productCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', function () {
+    const isAllSelected = Array.from(productCheckboxes).every(
+      (productCheckbox) => productCheckbox.checked
+    );
+    SelectAllCheckboxes(isAllSelected);
+    updateCheckedCount();
+  });
+});
+
+function SelectAllCheckboxes(checked) {
+  selectAllCheckboxes.forEach((checkbox) => {
+    checkbox.checked = checked;
+  });
+}
+
+// 선택한 상품 갯수
+function updateCheckedCount() {
+  const checkedItemsCount = document.querySelectorAll(
+    'input[name="product-select"]:checked'
+  ).length;
+  checkedCount.forEach(function (element) {
+    element.textContent = checkedItemsCount;
+  });
+}
+
+updateCheckedCount();
+
+// 전체 상품 갯수
+let productSelectCount = document.querySelectorAll(
+  'input[name="product-select"]'
+).length;
+let checkedAllCount = document.querySelectorAll('.checked-all-count');
+
+checkedAllCount.forEach(function (element) {
+  element.textContent = productSelectCount;
+});
+
+/* -------------------------------------------------------------------------- */
+/*                               수량, 금액 변경                                */
+/* -------------------------------------------------------------------------- */
+
 const minusButtons = Array.from(document.querySelectorAll('.minus-button'));
 const plusButtons = Array.from(document.querySelectorAll('.plus-button'));
-const productAmount = document.querySelectorAll('.count');
-productAmount.textContent = 1;
 
 function changeAmount(e) {
   e.preventDefault();
 
   const isPlusButton = e.target.classList.contains('plus-button');
-  const targetCountElement = e.target.parentElement.querySelector('.count');
+  const targetProduct = e.target.closest('.product');
+  const targetCountElement = targetProduct.querySelector('.count');
+  const priceElement = targetProduct.querySelector('.discount-price');
+  const costPriceElement = targetProduct.querySelector('.cost-price');
   let currentCount = parseInt(targetCountElement.textContent);
+  let discountPrice = parseInt(targetProduct.dataset.discountPrice);
+  let costPrice = parseInt(targetProduct.dataset.costPrice);
+
+  if (!discountPrice) {
+    discountPrice = parseInt(priceElement.textContent);
+    targetProduct.dataset.discountPrice = discountPrice;
+  }
+
+  if (!costPrice) {
+    costPrice = parseInt(costPriceElement.textContent);
+    targetProduct.dataset.costPrice = costPrice;
+  }
 
   if (!isPlusButton && currentCount > 1) {
     currentCount -= 1;
@@ -199,9 +296,14 @@ function changeAmount(e) {
     currentCount += 1;
   }
 
-  targetCountElement.textContent = currentCount;
+  const currentDiscountPrice = discountPrice * currentCount;
+  const currentCostPrice = costPrice * currentCount;
 
-  const minusButton = e.target.parentElement.querySelector('.minus-button');
+  targetCountElement.textContent = currentCount;
+  priceElement.textContent = `${currentDiscountPrice}원`;
+  costPriceElement.textContent = `${currentCostPrice}원`;
+
+  const minusButton = targetProduct.querySelector('.minus-button');
   minusButton.disabled = currentCount === 1;
 }
 
@@ -213,35 +315,38 @@ plusButtons.forEach((plusButton) => {
   plusButton.addEventListener('click', changeAmount);
 });
 
-// 배송지 정보
+/* -------------------------------------------------------------------------- */
+/*                                cart-side                                   */
+/* -------------------------------------------------------------------------- */
+const cartList = document.querySelector('.cart-side');
 
-const cartList = document.querySelector('.cart-price');
+// test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
+const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
+const { address } = userAddress;
 
 function updateTemplate() {
-  // clearContents('.result--template');
-
   const template = /* html */ `
-    <div class="m-auto border p-5">
+
+    <div class="m-auto border p-5 ">
       <div class="flex items-center pb-3">
         <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" />
         <span>배송지</span>
       </div>
-      <div class="pb-10">
-        <span>배송지를 입력해주세요💕</span>
-        <!-- 로그인 후 주소 랜더링 -->
-        <span class="hidden">배송지 주소</span>
+      <div class="pb-6">
+        <!-- 로그인 유저 주소 데이터 랜더링 -->
+        <h3>${address}</h3>
+        <span class="text-bluemong text-xs font-bold">미래배송</span>
       </div>
-      <!-- 로그인 후 배송지 변경으로 바꾸기 -->
       <button
         type="button"
-        class="w-full rounded-lg border border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
+        class="w-full font-bold rounded-lg border-2 border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
       >
-        주소 검색
+        배송지 변경
       </button>
     </div>
 
     <div class="bg-gray-50 p-5">
-      <!-- 상품 금액, 금액 합 랜더링 -->
+      <!-- 선택 상품 금액, 금액 합 랜더링 -->
       <div class="flex justify-between pb-4">
         <span>상품금액</span>
         <span>원</span>
@@ -250,9 +355,9 @@ function updateTemplate() {
         <span>상품할인금액</span>
         <span>원</span>
       </div>
-      <div class="flex justify-between pb-4">
+      <div class="flex justify-between items-center pb-4">
         <span>배송비</span>
-        <span>365일 언제나 무료배송~</span>
+        <span class="text-bluemong text-sm">마켓에몽은 <strong>365일</strong> 언제나 무료배송!</span>
       </div>
       <!-- 금액의 총 합 -->
       <div class="flex justify-between border-t-2 py-4">

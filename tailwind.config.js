@@ -29,6 +29,9 @@ module.exports = {
         'plus-icon': "url('/src/assets/components/ic-plus.svg')",
         'minus-icon': "url('/src/assets/components/ic-minus.svg')",
         'delete-icon': "url('/src/assets/components/ic-delete.svg')",
+        'location-icon': "url('/public/assets/header/ic-location.svg')",
+        'heart-icon': "url('/public/assets/header/ic-heart.svg')",
+        'cart-icon': "url('/public/assets/header/ic-cart.svg')",
       },
       spacing: {
         ...pxToRemFunc(0, 1000),
