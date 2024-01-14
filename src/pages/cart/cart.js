@@ -211,7 +211,7 @@ const selectAllCheckboxes = document.querySelectorAll(
 const productCheckboxes = document.querySelectorAll(
   'input[name="product-select"]'
 );
-const checkedCount = document.querySelector('.checked-count');
+const checkedCount = document.querySelectorAll('.checked-count');
 
 selectAllCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', function () {
@@ -244,7 +244,9 @@ function updateCheckedCount() {
   const checkedItemsCount = document.querySelectorAll(
     'input[name="product-select"]:checked'
   ).length;
-  checkedCount.textContent = checkedItemsCount.toString();
+  checkedCount.forEach(function (element) {
+    element.textContent = checkedItemsCount;
+  });
 }
 
 updateCheckedCount();
@@ -260,18 +262,33 @@ checkedAllCount.forEach(function (element) {
 });
 
 /* -------------------------------------------------------------------------- */
-/*                                수량 변경                                    */
+/*                               수량, 금액 변경                                */
 /* -------------------------------------------------------------------------- */
+
 const minusButtons = Array.from(document.querySelectorAll('.minus-button'));
 const plusButtons = Array.from(document.querySelectorAll('.plus-button'));
-// const productAmounts = document.querySelectorAll('.count');
 
 function changeAmount(e) {
   e.preventDefault();
 
   const isPlusButton = e.target.classList.contains('plus-button');
-  const targetCountElement = e.target.parentElement.querySelector('.count');
+  const targetProduct = e.target.closest('.product');
+  const targetCountElement = targetProduct.querySelector('.count');
+  const priceElement = targetProduct.querySelector('.discount-price');
+  const costPriceElement = targetProduct.querySelector('.cost-price');
   let currentCount = parseInt(targetCountElement.textContent);
+  let discountPrice = parseInt(targetProduct.dataset.discountPrice);
+  let costPrice = parseInt(targetProduct.dataset.costPrice);
+
+  if (!discountPrice) {
+    discountPrice = parseInt(priceElement.textContent);
+    targetProduct.dataset.discountPrice = discountPrice;
+  }
+
+  if (!costPrice) {
+    costPrice = parseInt(costPriceElement.textContent);
+    targetProduct.dataset.costPrice = costPrice;
+  }
 
   if (!isPlusButton && currentCount > 1) {
     currentCount -= 1;
@@ -279,9 +296,14 @@ function changeAmount(e) {
     currentCount += 1;
   }
 
-  targetCountElement.textContent = currentCount;
+  const currentDiscountPrice = discountPrice * currentCount;
+  const currentCostPrice = costPrice * currentCount;
 
-  const minusButton = e.target.parentElement.querySelector('.minus-button');
+  targetCountElement.textContent = currentCount;
+  priceElement.textContent = `${currentDiscountPrice}원`;
+  costPriceElement.textContent = `${currentCostPrice}원`;
+
+  const minusButton = targetProduct.querySelector('.minus-button');
   minusButton.disabled = currentCount === 1;
 }
 
@@ -324,7 +346,7 @@ function updateTemplate() {
     </div>
 
     <div class="bg-gray-50 p-5">
-      <!-- 상품 금액, 금액 합 랜더링 -->
+      <!-- 선택 상품 금액, 금액 합 랜더링 -->
       <div class="flex justify-between pb-4">
         <span>상품금액</span>
         <span>원</span>
