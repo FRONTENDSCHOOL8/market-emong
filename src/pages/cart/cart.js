@@ -28,7 +28,7 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
 const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
 const { address } = userAddress;
 // test 상품 등록
-const totalPrice = await pb.collection('product').getOne('vyvndu8syem4du2');
+const totalPrice = await pb.collection('product').getOne('vyh8v8amkw50uy0');
 const { price, discount } = totalPrice;
 
 const cartListCharater = document.querySelector('.product-list-charater');
@@ -56,7 +56,7 @@ cartDataCharacter.forEach(
           type="checkbox"
           id="product-select"
           name="product-select"
-          class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
+          class="product-checkbox h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
         </label>
       </li>
@@ -131,7 +131,7 @@ cartDataTool.forEach(
           type="checkbox"
           id="product-select"
           name="product-select"
-          class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
+          class=" product-checkbox h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
         </label>
       </li>
@@ -332,6 +332,7 @@ plusButtons.forEach((plusButton) => {
 /* -------------------------------------------------------------------------- */
 const cartList = document.querySelector('.cart-side');
 
+// test 하나의 상품 입력 상태
 function priceTemplate() {
   const discountPrice = price - (price * discount) / 100;
   const template = /* html */ `
@@ -359,11 +360,11 @@ function priceTemplate() {
       <!-- 선택 상품 금액, 금액 합 랜더링 -->
       <div class="flex justify-between pb-4">
         <span>상품금액</span>
-        <span>${price}원</span>
+        <span>${comma(price)}원</span>
       </div>
       <div class="flex justify-between pb-4">
         <span>상품할인금액</span>
-        <span> -${discount}원</span>
+        <span> -${comma(discount)}원</span>
       </div>
       <div class="flex justify-between items-center pb-4">
         <span>배송비</span>
@@ -373,7 +374,7 @@ function priceTemplate() {
       <div class="flex justify-between border-t-2 py-4">
         <span>결제예정금액</span>
         <span>
-          <strong>${discountPrice}</strong>
+          <strong>${comma(discountPrice)}</strong>
           <span>원</span>
         </span>
       </div>
