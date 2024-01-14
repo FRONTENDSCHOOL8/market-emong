@@ -111,28 +111,18 @@
             </form>
           </div>
           <!-- 배송지, 찜, 장바구니 아이콘 -->
-          <div>
-            <ul class="flex gap-4">
-              <li>
-                <button type="button">
-                  <img src="/assets/header/ic-location.svg" alt="배송지정보" />
-                </button>
-              </li>
-              <li>
-                <a href="/">
-                  <img src="/assets/header/ic-heart.svg" alt="찜한상품" />
-                </a>
-              </li>
-              <li class="relative">
-                <a href="/src/pages/cart/">
-                  <img src="/assets/header/ic-cart.svg" alt="장바구니" />
-                  <span
-                    class="absolute -right-1 top-0 h-4 w-4 rounded-full bg-bluemong text-center text-xs leading-4 text-white"
-                    >1</span
-                  >
-                </a>
-              </li>
-            </ul>
+          <div class="flex gap-2"> 
+            <button type="button" aria-label="배송지" class="bg-location-icon h-10 w-10 bg-cover bg-center bg-no-repeat">
+            </button>
+
+            <a href="/" aria-label="찜하기" class="bg-heart-icon h-10 w-10 bg-cover bg-center bg-no-repeat">
+            </a>
+
+            <a href="/src/pages/cart/" aria-label="장바구니" class="h-10 w-10 bg-cart-icon bg-cover bg-center bg-no-repeat relative">
+            </a>
+            <!-- <span
+                class="absolute -right-1 top-0 h-4 w-4 rounded-full bg-bluemong text-center text-xs leading-4 text-white"
+                >1</span> -->
           </div>
         </div>
       </div>
@@ -211,28 +201,21 @@
           </form>
         </div>
         <div class="sub-cart hidden">
-          <ul class="flex items-center gap-2">
-            <li>
-              <a href="/">
-                <img src="/assets/header/ic-location.svg" alt="" />
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <img src="/assets/header/ic-heart.svg" alt="" />
-              </a>
-            </li>
-            <li class="relative">
-              <a href="/">
-                <img src="/assets/header/ic-cart.svg" alt="" />
-                <span
-                  class="absolute -right-1 top-0 h-4 w-4 rounded-full  bg-bluemong text-center text-xs leading-  text-white"
-                  >1</span
-                >
-              </a>
-            </li>
-          </ul>
+          <div class="flex gap-2"> 
+            <button type="button" aria-label="배송지" class="bg-location-icon h-10 w-10 bg-cover bg-center bg-no-repeat">
+            </button>
+
+            <a href="/" aria-label="찜하기" class="bg-heart-icon h-10 w-10 bg-cover bg-center bg-no-repeat">
+            </a>
+
+            <a href="/src/pages/cart/" aria-label="장바구니" class="h-10 w-10 bg-cart-icon bg-cover bg-center bg-no-repeat relative">
+            </a>
+            <!-- <span
+                class="absolute -right-1 top-0 h-4 w-4 rounded-full bg-bluemong text-center text-xs leading-4 text-white"
+                >1</span> -->
+          </div>
         </div>
+        
         <!-- 배송안내 스크롤 후 display:none -->
         <div class="sub-notice leading-6 rounded-3xl border border-skybluemong px-2">
           <a href="/" class="text-13pxr text-gray-600"
