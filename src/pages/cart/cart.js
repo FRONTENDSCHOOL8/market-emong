@@ -31,15 +31,19 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
 const cartListCharater = document.querySelector('.product-list-charater');
 const cartListTool = document.querySelector('.product-list-tool');
 
-// 캐릭터 템플릿
 const cartDataCharacter = await pb.collection('product').getFullList({
   filter: `category = "캐릭터"`,
   sort: '-created',
 });
+const cartDataTool = await pb.collection('product').getFullList({
+  filter: `category = "도구"`,
+  sort: '-created',
+});
 
+// 캐릭터 템플릿
 cartDataCharacter.forEach(
   ({ collectionId, id, photo, brand, name, discount, price }) => {
-    const discountPrice = comma(price - (price * discount) / 100);
+    const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
     <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
@@ -88,8 +92,12 @@ cartDataCharacter.forEach(
       </li>
       <li class="flex flex-col w-130pxr text-end">
         <!-- 상품금액 -->
-        <span class="discount-price text-right font-bold"> ${discountPrice}원 </span>
-        <span class="cost-price line-through text-right text-sm text-gray-400"> ${price}원 </span>
+        <span class="discount-price text-right font-bold"> ${comma(
+          discountPrice
+        )}원 </span>
+        <span class="cost-price line-through text-right text-sm text-gray-400"> ${comma(
+          price
+        )}원 </span>
       </li>
       <li>
         <!-- 삭제 -->
@@ -108,14 +116,9 @@ cartDataCharacter.forEach(
 );
 
 // 도구 템플릿
-const cartDataTool = await pb.collection('product').getFullList({
-  filter: `category = "도구"`,
-  sort: '-created',
-});
-
 cartDataTool.forEach(
   ({ collectionId, id, photo, brand, name, discount, price }) => {
-    const discountPrice = comma(price - (price * discount) / 100);
+    const discountPrice = price - (price * discount) / 100;
 
     const template = /* html */ `
     <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
@@ -164,7 +167,9 @@ cartDataTool.forEach(
       </li>
       <li class="flex flex-col w-130pxr text-end">
         <!-- 상품금액 -->
-        <span class="discount-price text-right font-bold"> ${discountPrice}원 </span>
+        <span class="discount-price text-right font-bold"> ${comma(
+          discountPrice
+        )}원 </span>
         <span class="cost-price line-through text-right text-sm text-gray-400"> ${comma(
           price
         )}원 </span>
@@ -278,32 +283,34 @@ function changeAmount(e) {
   const targetCountElement = targetProduct.querySelector('.count');
   const priceElement = targetProduct.querySelector('.discount-price');
   const costPriceElement = targetProduct.querySelector('.cost-price');
-  let currentCount = parseInt(targetCountElement.textContent); // 수량
-  let discountPrice = parseInt(targetProduct.dataset.discountPrice); // 할인금액
-  let costPrice = parseInt(targetProduct.dataset.costPrice); // 원래금액
 
+  let currentCount = parseInt(targetCountElement.textContent); // 수량
+  let discountPrice = parseInt(
+    targetProduct.dataset.discountPrice?.replace(/,/g, '')
+  ); // 할인금액
+  let costPrice = parseInt(targetProduct.dataset.costPrice?.replace(/,/g, '')); // 원래금액
+
+  // 상품 금액
   if (!discountPrice) {
-    discountPrice = parseInt(priceElement.textContent);
-    targetProduct.dataset.discountPrice = comma(discountPrice);
+    discountPrice = parseInt(priceElement.textContent.replace(/,/g, ''));
+    targetProduct.dataset.discountPrice = discountPrice;
   }
 
   if (!costPrice) {
-    costPrice = parseInt(costPriceElement.textContent);
+    costPrice = parseInt(costPriceElement.textContent.replace(/,/g, ''));
     targetProduct.dataset.costPrice = costPrice;
   }
 
+  // 상품 수량
   if (!isPlusButton && currentCount > 1) {
     currentCount -= 1;
   } else if (isPlusButton) {
     currentCount += 1;
   }
-
-  const currentDiscountPrice = discountPrice * currentCount;
-  const currentCostPrice = costPrice * currentCount;
-
   targetCountElement.textContent = currentCount;
-  priceElement.textContent = `${currentDiscountPrice}원`;
-  costPriceElement.textContent = `${currentCostPrice}원`;
+
+  priceElement.innerText = `${comma(discountPrice * currentCount)}원`;
+  costPriceElement.innerText = `${comma(costPrice * currentCount)}원`;
 
   const minusButton = targetProduct.querySelector('.minus-button');
   minusButton.disabled = currentCount === 1;
