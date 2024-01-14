@@ -1,5 +1,5 @@
 import '/src/styles/tailwind.css';
-import { getPbImageURL, pb } from '/src/lib/';
+import { getPbImageURL, pb, comma } from '/src/lib/';
 
 /* 디테일 페이지 타이틀 */
 function setDocumentTitle(title) {
@@ -28,7 +28,10 @@ detailList.forEach(
     brand,
     label,
     weight,
+    discount,
   }) => {
+    const discountPrice = price - (price * discount) / 100;
+
     const template = /*html*/ `
   <div class="flex h-480pxr items-center bg-gray-100 p-20pxr">
           <img
@@ -50,7 +53,7 @@ detailList.forEach(
                 </h2>
               </div>
               <div class="mb-16pxr">
-                <span class="text-28pxr font-semibold">${price}</span>
+                <span class="text-28pxr font-semibold">${comma(price)}</span>
                 <span class="mb-20pxr font-normal">원</span>
               </div>
               <p class="mb-20pxr font-semibold text-skybluemong">
@@ -114,7 +117,7 @@ detailList.forEach(
               </li>
             </ul>
           </div>
-          <div class="detail-product-select">
+          <div class="product detail-product-select">
             <div class="detail-select">
               <dl
                 class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
@@ -129,11 +132,11 @@ detailList.forEach(
                       <div
                         class="select-product-count mr-16pxr flex justify-between border border-gray-100 text-center font-semibold text-gray-500"
                       >
-                        <button type="button" aria-label="수량내리기">
+                        <button type="button" aria-label="수량내리기" disabled class="minus-button">
                           <img src="/src/assets/detail-Minus.svg" alt="빼기" />
                         </button>
-                        <div class="items-center text-16pxr">1</div>
-                        <button type="button" aria-label="수량올리기">
+                        <div class="count items-center text-16pxr">1</div>
+                        <button type="button" aria-label="수량올리기" class="plus-button">
                           <img src="/src/assets/detail-Plus.svg" alt="더하기" />
                         </button>
                       </div>
@@ -141,7 +144,12 @@ detailList.forEach(
                     <div
                       class="detail-select-count flex items-end whitespace-nowrap"
                     >
-                      <span class="text-black">${price}원</span>
+                      <span class="discount-price text-right font-bold pr-5pxr text-14pxr text-black"> ${comma(
+                        discountPrice
+                      )}원 </span>
+                      <span class="cost-price line-through text-right text-sm text-gray-400">${comma(
+                        price
+                      )}원</span>
                     </div>
                   </div>
                 </dd>
@@ -157,7 +165,7 @@ detailList.forEach(
                   >총 상품금액:</span
                 >
                 <span class="pr-4pxr text-28pxr font-semibold leading-9"
-                  >${price}</span
+                  >${comma(discountPrice)}</span
                 >
                 <span class="font-bold leading-8">원</span>
               </div>
@@ -244,7 +252,7 @@ checkPoint.forEach(({ description, description2 }) => {
         </div>
         <div class="pt-68pxr">
           <span class="text-23pxr">내구성</span>
-          <p class="pt-22pxr text-16pxr">
+          <p class="pt-22pxr text-16pxr  text-indent: 5px">
             ${description2}
           </p>
         </div>
@@ -270,3 +278,53 @@ InfoPic.forEach(({ collectionId, id, photo_2 }) => {
 `;
   detailPic.insertAdjacentHTML('afterbegin', template);
 });
+
+/* -------------------------------------------------------------------------- */
+/*                               수량, 금액 변경                                */
+/* -------------------------------------------------------------------------- */
+
+function changeAmount(e) {
+  e.preventDefault();
+
+  const isPlusButton = e.target.classList.contains('.plus-button');
+  const targetProduct = e.target.closest('.product');
+  const targetCountElement = targetProduct.querySelector('.count');
+  const priceElement = targetProduct.querySelector('.discount-price');
+  const costPriceElement = targetProduct.querySelector('.cost-price');
+  let currentCount = parseInt(targetCountElement.textContent);
+  let discountPrice = parseInt(
+    targetProduct.dataset.discountPrice?.replace(/,/g, '')
+  );
+  let costPrice = parseInt(targetProduct.dataset.costPrice?.replace(/,/g, ''));
+
+  // 상품 금액
+  if (!discountPrice) {
+    discountPrice = parseInt(priceElement.textContent.replace(/,/g, ''));
+    targetProduct.dataset.discountPrice = discountPrice;
+  }
+
+  if (!costPrice) {
+    costPrice = parseInt(costPriceElement.textContent.replace(/,/g, ''));
+    targetProduct.dataset.costPrice = costPrice;
+  }
+
+  // 상품 수량
+  if (!isPlusButton && currentCount > 1) {
+    currentCount -= 1;
+  } else if (isPlusButton) {
+    currentCount += 1;
+  }
+
+  targetCountElement.textContent = currentCount;
+  priceElement.innerText = `${comma(discountPrice * currentCount)}원`;
+  costPriceElement.innerText = `${comma(costPrice * currentCount)}원`;
+
+  const minusButton = targetProduct.querySelector('.minus-button');
+  minusButton.disabled = currentCount === 1;
+}
+
+const minusButton = document.querySelector('.minus-button');
+minusButton.addEventListener('click', changeAmount);
+
+const plusButton = document.querySelector('.plus-button');
+plusButton.addEventListener('click', changeAmount);
