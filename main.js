@@ -159,7 +159,7 @@ kitList.forEach(
 
     const template = /* html */ `
     <li class="swiper-slide product-info kit-info">
-      <a href="/src/pages/detail/#${id}" class="">
+      <a href="/src/pages/detail/#${id}" class="saveItem">
         <div class="image-container">
           <img
           src="${getPbImageURL(collectionId, id, photo)}"
