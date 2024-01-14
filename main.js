@@ -5,11 +5,6 @@ import '/src/styles/product.css';
 import { getPbImageURL, pb, setStorageDay, compareDay } from '/src/lib/';
 
 // pb 통신
-const users = await pb.collection('users').getList(1, 1, {
-  filter: 'username = "jump6746"',
-});
-
-console.log(users);
 
 const records = await pb.collection('advertisement').getFullList({
   sort: '-created',
