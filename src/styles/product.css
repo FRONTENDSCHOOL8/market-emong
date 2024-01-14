@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 
+.product-inner{
+  @apply relative;
+}
 
 .product-info{
   @apply relative w-250pxr;
@@ -67,16 +70,15 @@
 
 .product-prev,
 .kit-prev{
-  @apply text-0pxr leading-0pxr w-50pxr h-50pxr relative rounded-[25px] 
-         -mt-50pxr top-198pxr -left-25pxr bg-center bg-no-repeat
-         rotate-180;
+  @apply rotate-180;
+
+  
   background-image: url("/src/assets/product-arrow.svg");
 }
 
 .product-next,
 .kit-next{
-  @apply text-0pxr leading-0pxr w-50pxr h-50pxr relative rounded-[25px] 
-         -mt-50pxr top-198pxr left-[1025px] bg-center bg-no-repeat;
+
   background-image: url("/src/assets/product-arrow.svg");
 }
 

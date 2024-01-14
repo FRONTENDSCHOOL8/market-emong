@@ -22,6 +22,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         iconArrow: "url('/src/assets/ic-arrow.svg')",
+        'current-top': "url('/src/assets/current-product-top.svg')",
+        'current-bottom': "url('/src/assets/current-product-bottom.svg')",
         'checked-icon': "url('/src/assets/components/ic-is-checked.svg')",
         'unchecked-icon': "url('/src/assets/components/ic-is-unchecked.svg')",
         'plus-icon': "url('/src/assets/components/ic-plus.svg')",

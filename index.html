@@ -20,12 +20,15 @@
       <div
         class="swiper-advertising relative mx-auto min-w-[1050px] max-w-[1920px]"
       >
-        <div class="swiper-wrapper"></div>
+        <div class="swiper-wrapper advertising-wrapper"></div>
         <div class="swiper-button-prev main-prev left-200pxr"></div>
         <div class="swiper-button-next main-next right-200pxr"></div>
         <div class="swiper-pagination"></div>
       </div>
     </div>
+
+    <!-- 최근본 상품 -->
+    <div class="recently-swiper sticky top-200pxr"></div>
 
     <!-- 유튜브 광고 마크업 -->
     <div class="mt-40pxr flex justify-center">
@@ -45,8 +48,12 @@
         <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
           이 상품 어때요?
         </h2>
-        <button class="swiper-button-prev product-prev"></button>
-        <button class="swiper-button-next product-next"></button>
+        <button
+          class="swiper-button-prev product-prev relative -left-25pxr top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+        ></button>
+        <button
+          class="swiper-button-next product-next relative left-[1025px] top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+        ></button>
         <div class="swiper swiper-product">
           <ul
             class="product-list swiper-wrapper inline-flex justify-between"
@@ -95,50 +102,18 @@
         <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
           이 도구 어때요?
         </h2>
-        <button class="swiper-button-prev kit-prev"></button>
-        <button class="swiper-button-next kit-next"></button>
+        <button
+          class="swiper-button-prev kit-prev rotate-18 relative -left-25pxr top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+        ></button>
+        <button
+          class="swiper-button-next kit-next relative left-[1025px] top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+        ></button>
         <div class="swiper swiper-kit">
           <ul class="kit-list swiper-wrapper inline-flex justify-between"></ul>
         </div>
       </div>
     </div>
 
-    <!--slider swiper 미완성-->
-    <!-- Slider main container -->
-    <!-- <div
-      class="swiper current-product border-gray-200 m-0 h-full max-h-223pxr max-w-73pxr border p-8pxr"
-    >
-      <p class="mt-32pxr text-center text-12pxr">최근 본 상품</p> -->
-    <!-- Additional required wrapper -->
-    <!-- <div
-        class="swiper-wrapper current-product-wrapper display mx-8xpr justify-center gap-x-8pxr"
-      > -->
-    <!-- Slides -->
-    <!-- <div
-          class="swiper-slide flex max-h-18pxr max-w-18pxr flex-wrap justify-center gap-x-8pxr"
-        >
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-        <div class="swiper-slide max-h-18pxr max-w-18pxr">
-          <img src="/src/assets/bread.png" alt="" />
-        </div>
-      </div>
-      <div
-        class="swiper-button-prev top-50pxr max-h-18pxr max-w-18pxr -translate-y-31pxr translate-x-16pxr self-center bg-[url('/src/assets/current-product-top.svg')] bg-center bg-no-repeat after:hidden"
-      ></div>
-      <div
-        class="swiper-button-next max-h-18pxr max-w-18pxr -translate-x-16pxr translate-y-56pxr self-center bg-[url('/src/assets/current-product-bottom.svg')] bg-center bg-no-repeat after:hidden"
-      ></div>
-    </div> -->
     <footer id="footer"></footer>
   </body>
 </html>
