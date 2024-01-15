@@ -249,5 +249,3 @@ const kitSwiper = new Swiper('.swiper-kit', {
     prevEl: '.kit-prev',
   },
 });
-
-// 최근 본 상품

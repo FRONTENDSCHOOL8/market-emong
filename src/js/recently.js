@@ -19,12 +19,17 @@ function test(e) {
   data.push({ url, thumbnailSrc, thumbnailAlt });
   // console.log(data);
   localStorage.setItem('currentItem', JSON.stringify(data));
+  location.href = url;
 }
 
-function test2() {
+export function test2() {
   const saveItem = JSON.parse(localStorage.getItem('currentItem'));
   if (!saveItem) return;
   const recently = document.querySelector('.recently-wrapper');
+  recently.style.display = 'block';
+  recently.classList.remove('hidden');
+  // console.log(recently);
+  if (!recently) return;
   saveItem.forEach((item) => {
     // console.log(item, item.thumbnailSrc);
     const template = /* html */ `
