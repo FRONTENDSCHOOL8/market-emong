@@ -25,14 +25,14 @@ function recentData(e) {
 
 export function recentItem() {
   const saveItem = JSON.parse(localStorage.getItem('currentItem'));
-  // if (!saveItem) return;
+  if (!saveItem) return;
   const recently = document.querySelector('.recently-wrapper');
   // recently.style.display = 'block';
   // recently.classList.remove('hidden');
   console.log(recently);
   if (!recently) return;
   saveItem.forEach((item) => {
-    console.log(item, item.thumbnailSrc);
+    // console.log(item, item.thumbnailSrc);
     const template = /* html */ `
       <li class="swiper-slide recently-slide">
         <a href="${item.url}" class="flex justify-center">
@@ -52,7 +52,9 @@ export function recentItem() {
 }
 
 mainRecently1.addEventListener('click', recentData);
-mainRecently2.addEventListener('click', recentData);
+if (mainRecently2) {
+  mainRecently2.addEventListener('click', recentData);
+}
 
 recentItem();
 
