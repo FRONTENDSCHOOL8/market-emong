@@ -1,12 +1,19 @@
 import '/src/styles/tailwind.css';
 import { getPbImageURL, pb, comma } from '/src/lib/';
 
-/* 디테일 페이지 타이틀 */
+/* -------------------------------------------------------------------------- */
+/*                            디테일 페이지 타이틀                               */
+/* -------------------------------------------------------------------------- */
+
 function setDocumentTitle(title) {
   document.title = title;
 }
 
 setDocumentTitle('마켓에몽 - 디테일');
+
+/* -------------------------------------------------------------------------- */
+/*                                   main                                     */
+/* -------------------------------------------------------------------------- */
 
 /* 상품 선택 후 장바구니 담기 */
 const hash = window.location.hash.slice(1);
@@ -164,7 +171,7 @@ detailList.forEach(
                 <span class="pr-17pxr font-semibold leading-5"
                   >총 상품금액:</span
                 >
-                <span class="pr-4pxr text-28pxr font-semibold leading-9"
+                <span class="total-price pr-4pxr text-28pxr font-semibold leading-9"
                   >${comma(discountPrice)}</span
                 >
                 <span class="font-bold leading-8">원</span>
@@ -283,48 +290,119 @@ InfoPic.forEach(({ collectionId, id, photo_2 }) => {
 /*                               수량, 금액 변경                                */
 /* -------------------------------------------------------------------------- */
 
-function changeAmount(e) {
-  e.preventDefault();
+// button, count
+const minusButton = document.querySelector('.minus-button');
+const plusButton = document.querySelector('.plus-button');
+const count = document.querySelector('.count');
 
-  const isPlusButton = e.target.classList.contains('.plus-button');
-  const targetProduct = e.target.closest('.product');
-  const targetCountElement = targetProduct.querySelector('.count');
-  const priceElement = targetProduct.querySelector('.discount-price');
-  const costPriceElement = targetProduct.querySelector('.cost-price');
-  let currentCount = parseInt(targetCountElement.textContent);
-  let discountPrice = parseInt(
-    targetProduct.dataset.discountPrice?.replace(/,/g, '')
-  );
-  let costPrice = parseInt(targetProduct.dataset.costPrice?.replace(/,/g, ''));
+// 금액
+const discountPrice = document.querySelector('.discount-price');
+const costPrice = document.querySelector('.cost-price');
+const totalPrice = document.querySelector('.total-price');
 
-  // 상품 금액
-  if (!discountPrice) {
-    discountPrice = parseInt(priceElement.textContent.replace(/,/g, ''));
-    targetProduct.dataset.discountPrice = discountPrice;
+// 숫자 타입의 현재(costPrice) 금액과 할인(discountPrice) 금액
+const changePrice1 = Number(beforeComma(costPrice.innerText));
+const changePrice2 = Number(beforeComma(discountPrice.innerText));
+
+// minus button 클릭 시 수량 및 금액 감소
+minusButton.addEventListener('click', () => {
+  let currentCount = Number(count.innerText);
+  currentCount -= 1; // 1씩 감소
+  count.innerText = currentCount; // count에 속한 text만 수집
+
+  // 클릭 이벤트 시 상품 선택란의 금액과 총 상품 금액 표시(원 단위 추가)
+  costPrice.innerText = `${comma(changePrice1 * currentCount)}원`;
+  discountPrice.innerText = `${comma(changePrice2 * currentCount)}원`;
+  totalPrice.innerText = comma(changePrice2 * currentCount);
+
+  // 수량이 1이상 일 때 작동 시작
+  if (count.innerText <= 1) {
+    minusButton.disabled = true;
   }
+});
 
-  if (!costPrice) {
-    costPrice = parseInt(costPriceElement.textContent.replace(/,/g, ''));
-    targetProduct.dataset.costPrice = costPrice;
+// plus button 클릭 시 수량 및 금액 증가
+plusButton.addEventListener('click', () => {
+  let currentCount = Number(count.innerText);
+  currentCount += 1; // 1씩 증가
+  count.innerText = currentCount;
+
+  // 클릭 이벤트 시 상품 선택란의 금액과 총 상품 금액 표시(원 단위 추가)
+  costPrice.innerText = `${comma(changePrice1 * currentCount)}원`;
+  discountPrice.innerText = `${comma(changePrice2 * currentCount)}원`;
+  totalPrice.innerText = comma(changePrice2 * currentCount);
+
+  // 수량이 1이하 일 때 작동 중지
+  if (count.innerText > 1) {
+    minusButton.disabled = false;
   }
+});
 
-  // 상품 수량
-  if (!isPlusButton && currentCount > 1) {
-    currentCount -= 1;
-  } else if (isPlusButton) {
-    currentCount += 1;
-  }
+/* 상품 가격 업데이트 기능 */
+function updatePrice() {
+  // count 값을 숫자로 변환한 값
+  const currentCount = Number(count.innerText);
+  // costPrice와 discountPrice 요소에서 쉼표를 제거한 값
+  const currentCostPrice = beforeComma(costPrice.innerText);
+  const currentDiscountPrice = beforeComma(discountPrice.innerText);
 
-  targetCountElement.textContent = currentCount;
-  priceElement.innerText = `${comma(discountPrice * currentCount)}원`;
-  costPriceElement.innerText = `${comma(costPrice * currentCount)}원`;
-
-  const minusButton = targetProduct.querySelector('.minus-button');
-  minusButton.disabled = currentCount === 1;
+  // (할인금액 * 수량) 값을 comma를 추가하여 totalPrice에 저장
+  const currentTotalPrice = currentDiscountPrice * currentCount;
+  totalPrice.innerText = addCommas(currentTotalPrice);
+  // (할인금액 * 수량) 값을 comma를 추가하여 discountPrice에 저장
+  const updatedDiscountPrice = currentDiscountPrice * currentCount;
+  discountPrice.innerText = addCommas(updatedDiscountPrice);
+  // (할인 전 금액 * 수량) 값을 comma를 추가하여 costPrice에 저장
+  const updatedCostPrice = currentCostPrice * currentCount;
+  costPrice.innerText = addCommas(updatedCostPrice);
 }
 
-const minusButton = document.querySelector('.minus-button');
-minusButton.addEventListener('click', changeAmount);
+// 'comma', '원' 없애고 숫자만 수집하는 기능
+function beforeComma(text) {
+  const words = text.split(',');
+  let result = '';
+  for (let i = 0; i < words.length; i++) {
+    if (i === words.length - 1) {
+      words[i] = words[i].slice(0, -1);
+    }
+    result = result + words[i];
+  }
 
-const plusButton = document.querySelector('.plus-button');
-plusButton.addEventListener('click', changeAmount);
+  return Number(result);
+}
+
+// comma 추가 기능
+function addCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               장바구니 담기                                  */
+/* -------------------------------------------------------------------------- */
+
+const goCartButton = document.querySelector('.detail-cart-button');
+
+async function goCart(e) {
+  e.preventDefault();
+
+  // 로컬스토리지의 user 값
+  const currentUserData = JSON.parse(localStorage.getItem('userAuth'));
+
+  const userId = currentUserData.user.id;
+  const count = document.querySelector('.count');
+
+  const data = {
+    userId: userId,
+    productId: hash,
+    count: count.innerText,
+  };
+
+  const record = await pb.collection('cart').create(data);
+
+  alert('장바구니 담기 완료!');
+
+  // 버튼 클릭시 사이트 이동
+  location.href = '/src/pages/cart/';
+}
+
+goCartButton.addEventListener('click', goCart);
