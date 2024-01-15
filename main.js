@@ -1,6 +1,5 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-// import { recentItem } from '/src/js/recently';
 import '/src/styles/tailwind.css';
 import '/src/styles/product.css';
 import { getPbImageURL, pb, setStorageDay, compareDay } from '/src/lib/';
@@ -197,8 +196,8 @@ const adverSwiper = new Swiper('.swiper-advertising', {
     el: '.swiper-pagination',
   },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.main-prev',
+    prevEl: '.main-next',
   },
   keyboard: {
     enabled: true,
@@ -228,5 +227,3 @@ const kitSwiper = new Swiper('.swiper-kit', {
     prevEl: '.kit-prev',
   },
 });
-
-// recentItem();
