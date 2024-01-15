@@ -14,15 +14,28 @@
     <header id="header"></header>
 
     <!-- 최근본 상품 -->
-    <div class="recently-swiper sticky right-20pxr top-200pxr"></div>
+    <div
+      class="recently-swiper recs:hidden sticky top-40pxr z-50 float-right h-223pxr w-78pxr -translate-x-40pxr translate-y-100pxr flex-col overflow-hidden border-2 border-gray-200 bg-white px-6pxr py-24pxr text-center"
+    >
+      <span class="my-8pxr block text-12pxr font-[600]">최근 본 상품</span>
+      <div class="swiper recently-container h-130pxr">
+        <ul class="swiper-wrapper recently-wrapper h-130pxr"></ul>
+      </div>
+      <div
+        class="swiper-button-prev recently-prev bg-current-bottom h-18pxr w-18pxr translate-x-17pxr translate-y-110pxr bg-no-repeat after:hidden"
+      ></div>
+      <div
+        class="swiper-button-next recently-next bg-current-top h-18pxr w-18pxr -translate-x-20pxr -translate-y-80pxr bg-no-repeat after:hidden"
+      ></div>
+    </div>
 
     <!-- 상품 선택 후 장바구니 담기 -->
     <main class="w-full">
       <section class="m-auto flex w-[1050px] justify-between pt-40pxr">
         <!-- <div class="flex h-480pxr items-center bg-gray-100 p-20pxr">
           <img
-            src="/src/assets/doraemon.png"
-            alt="도라에몽"
+            src="${getPbImageURL(collectionId, id, photo)}"
+            alt="${name}"
             class="h-428pxr w-360pxr"
           />
         </div>
@@ -32,14 +45,14 @@
               <span class="text-21pxr font-bold text-gray-500">미래배송</span>
               <div>
                 <h1 class="characterName mt-16pxr pb-4pxr text-28pxr font-semibold">
-                  [너구리]도라에몽
+                  [${brand}]${name}
                 </h1>
                 <h2 class="mb-16pxr text-16pxr font-normal text-gray-400">
-                  도구보관함
+                ${label}
                 </h2>
               </div>
               <div class="mb-16pxr">
-                <span class="text-28pxr font-semibold">50,000</span>
+                <span class="text-28pxr font-semibold">${comma(price)}</span>
                 <span class="mb-20pxr font-normal">원</span>
               </div>
               <p class="mb-20pxr font-semibold text-skybluemong">
@@ -71,7 +84,7 @@
               >
                 <dt class="w-128pxr">포장타입</dt>
                 <dd>
-                  <span>캐릭터</span>
+                  <span>${category}</span>
                   <p class="whitespace-nowrap text-gray-400">
                     택배배송은 에코 포장이 스티로폼으로 대체됩니다.
                   </p>
@@ -90,7 +103,7 @@
               >
                 <dt class="w-128pxr">중량/용량</dt>
                 <dd>
-                  <span>129.3kg</span>
+                  <span>${weight}</span>
                 </dd>
               </li>
               <li
@@ -103,7 +116,7 @@
               </li>
             </ul>
           </div>
-          <div class="detail-product-select">
+          <div class="product detail-product-select">
             <div class="detail-select">
               <dl
                 class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
@@ -114,23 +127,28 @@
                     class="select-option flex w-425pxr justify-between border border-solid border-gray-100 px-16pxr py-12pxr font-semibold text-gray-500"
                   >
                     <div class="flex flex-col gap-12pxr whitespace-nowrap">
-                      <span>[너구리]도라에몽</span>
+                      <span>[${brand}]${name}</span>
                       <div
                         class="select-product-count mr-16pxr flex justify-between border border-gray-100 text-center font-semibold text-gray-500"
                       >
-                        <button type="button" aria-label="수량내리기" disabled>
-                          <img src="/src/assets/detail-Minus.svg" alt="빼기" />
+                        <button type="button" aria-label="수량내리기" disabled class="minus-button">
+                          <img src="/public/assets/detail/detail-Minus.svg" alt="빼기" />
                         </button>
-                        <div class="items-center text-16pxr">1</div>
-                        <button type="button" aria-label="수량올리기">
-                          <img src="/src/assets/detail-Plus.svg" alt="더하기" />
+                        <div class="count items-center text-16pxr">1</div>
+                        <button type="button" aria-label="수량올리기" class="plus-button">
+                          <img src="/public/assets/detail/detail-Plus.svg" alt="더하기" />
                         </button>
                       </div>
                     </div>
                     <div
                       class="detail-select-count flex items-end whitespace-nowrap"
                     >
-                      <span class="text-black">50,000원</span>
+                      <span class="discount-price text-right font-bold pr-5pxr text-14pxr text-black"> ${comma(
+                        discountPrice
+                      )}원 </span>
+                      <span class="cost-price line-through text-right text-sm text-gray-400">${comma(
+                        price
+                      )}원</span>
                     </div>
                   </div>
                 </dd>
@@ -140,22 +158,22 @@
               class="detail-price border-t border-solid border-gray-100 px-4pxr py-28pxr text-right"
             >
               <div
-                class="flex items-end justify-end text-right text-16pxr font-semibold"
+                class="flex justify-end items-center text-right text-16pxr font-semibold"
               >
                 <span class="pr-17pxr font-semibold leading-5"
                   >총 상품금액:</span
                 >
-                <span class="pr-4pxr text-28pxr font-semibold leading-9"
-                  >50,000</span
+                <span class="total-price pr-4pxr text-28pxr font-semibold leading-9"
+                  >${comma(discountPrice)}</span
                 >
                 <span class="font-bold leading-8">원</span>
               </div>
-              <div class="pt-10pxr text-16pxr">
+              <div class="flex justify-end items-center pt-10pxr text-16pxr">
                 <span
                   class="gap-8pxr rounded-2xl bg-accent__yellow px-8pxr py-4pxr text-10pxr text-white"
                   >적립</span
                 >
-                <span class="text-16pxr font-semibold"
+                <span class="pl-6pxr text-16pxr font-semibold"
                   >로그인 후, 적립 혜택 제공</span
                 >
               </div>
@@ -165,13 +183,13 @@
                 type="button"
                 class="like-button flex h-54pxr w-54pxr items-center justify-center rounded-sm border border-gray-100 p-4pxr"
               >
-                <img src="/src/assets/Heart.svg" alt="찜하기" class="w-36pxr" />
+                <img src="/public/assets/detail/Heart.svg" alt="찜하기" class="w-36pxr" />
               </button>
               <button
                 type="button"
                 class="bell-button flex h-54pxr w-54pxr items-center justify-center rounded-sm border border-gray-100 p-4pxr"
               >
-                <img src="/src/assets/Bell.svg" alt="재입고 알림" />
+                <img src="/public/assets/detail/Bell.svg" alt="재입고 알림" />
               </button>
               <button
                 type="button"
@@ -207,7 +225,7 @@
           >
             <a href="#detail-review">
               <span>후기</span>
-              <span>(1,000)</span>
+              <span>(9,999+)</span>
             </a>
           </li>
           <li class="flex flex-1 items-center justify-center border bg-gray-50">
@@ -245,9 +263,13 @@
             </div> -->
             <div class="detail-product-point w-[1050px] py-96pxr">
               <div class="flex flex-col justify-center">
-                <h3 class="text-50pxr font-normal text-gray-800">
-                  <span>emong's Check Point</span>
-                </h3>
+                <div class="flex items-center">
+                  <div class="flex-grow border-t"></div>
+                  <h3 class="px-16pxr text-50pxr font-normal text-gray-800">
+                    emong's Check Point
+                  </h3>
+                  <div class="flex-grow border-t"></div>
+                </div>
                 <div class="detail-point-text text-left font-normal">
                   <!-- <div class="pt-68pxr">
                     <span class="text-23pxr">주의사항</span>
@@ -290,7 +312,7 @@
               <div
                 class="detail-why-wrapper pb-35pxr text-center text-28pxr font-bold"
               >
-                <span>WHY EMONG</span>
+                <h3>WHY EMONG</h3>
               </div>
               <div class="detail-wrapper-desc pb-84pxr">
                 <div class="flex w-[1050px] justify-between px-52pxr align-top">
@@ -301,7 +323,7 @@
                       <img
                         src="/src/assets/detail-list-icon.svg"
                         alt="상품위원회"
-                        class="h-40pxr w-40pxr pb-16pxr"
+                        class="mb-16pxr h-40pxr w-40pxr"
                       />
                       깐깐한 상품위원회
                     </dt>
@@ -319,7 +341,7 @@
                       <img
                         src="/src/assets/detail-only-e.svg"
                         alt="오직에몽"
-                        class="h-40pxr w-40pxr pb-16pxr"
+                        class="mb-16pxr h-40pxr w-40pxr"
                       />
                       차별화된 Emong Only 상품
                     </dt>
@@ -337,14 +359,15 @@
                       <img
                         src="/src/assets/detail-delivery.svg"
                         alt="배송"
-                        class="h-40pxr w-40pxr pb-16pxr"
+                        class="mb-16pxr h-40pxr w-40pxr"
                       />
                       타임머신 배송
                     </dt>
                     <dd class="pt-24pxr text-16pxr font-normal">
                       이시대 업계 최초로 타임머신 타고 <br />
                       눈 앞까지 배달 하는 배송 시스템,<br />
-                      상품을 안전하게 눈 앞까지 전해드립니다.
+                      상품을 안전하게 눈 앞까지 전해드립니다. <br />
+                      1초만에 배송 완료입니다.
                     </dd>
                   </dl>
                 </div>
@@ -356,7 +379,7 @@
                       <img
                         src="/src/assets/detail-price.svg"
                         alt="최선의가격"
-                        class="h-40pxr w-40pxr pb-16pxr"
+                        class="mb-16pxr h-40pxr w-40pxr"
                       />
                       고객, 생산자를 위한 최선의 가격
                     </dt>
@@ -364,7 +387,8 @@
                       매주 A/S가 필요없게끔 하는 <br />
                       좋은 품질, 타협하지 않은 선에서 <br />
                       최선의 가격으로 언제나 합리적인 <br />
-                      가격으로 정기 조정합니다.
+                      가격으로 정기 조정합니다. <br />
+                      고객님들 감사합니다.
                     </dd>
                   </dl>
                   <dl class="detail-desc5 m-0 pt-56pxr text-center">
@@ -374,7 +398,7 @@
                       <img
                         src="/src/assets/detail-circulation.svg"
                         alt="환경보호유통"
-                        class="h-40pxr w-40pxr pb-16pxr"
+                        class="mb-16pxr h-40pxr w-40pxr"
                       />
                       환경을 생각하는 지속 가능한 품질
                     </dt>
@@ -390,8 +414,284 @@
               </div>
             </div>
           </div>
-          <div class="detail-review" id="detail-review"></div>
-          <div class="detail-inquiry" id="detail-inquiry"></div>
+          <!-- 상품후기 -->
+          <div class="detail-review mt-52pxr w-[1050px]" id="detail-review">
+            <div class="mb-56pxr flex w-full justify-between">
+              <div class="flex flex-col">
+                <h3 class="pb-24pxr text-28pxr font-normal">상품후기</h3>
+                <ul class="list-inside list-disc text-16pxr font-semibold">
+                  글후기 50원 적립금 혜택이 있어요.
+                  <li class="text-12pxr font-semibold text-gray-500">
+                    퍼플, 더퍼플은 2배 적립 (100원) / 주간 베스트 후기로 선정 시
+                    5,000원 추가 적립
+                  </li>
+                  <li class="text-12pxr font-semibold text-gray-500">
+                    후기 작성은 배송완료일로부터 30일 이내 가능합니다.
+                  </li>
+                  <li class="text-12pxr font-semibold text-gray-500">
+                    작성하신 후기는 확인 후 적립금이 지급됩니다. (영업일 기준
+                    평균 1~2일 소요)
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="h-44pxr w-155pxr rounded-sm bg-skybluemong text-16pxr font-semibold text-white"
+                >
+                  후기 작성하기
+                </button>
+              </div>
+            </div>
+            <div class="mb-19pxr flex justify-between">
+              <span class="text-12pxr font-semibold">총 2개</span>
+              <div>
+                <button
+                  type="button"
+                  class="border-r-2 pr-8pxr text-16pxr font-semibold"
+                >
+                  추천순
+                </button>
+                <button
+                  type="button"
+                  class="text-16pxr font-semibold text-gray-300"
+                >
+                  최근 등록순
+                </button>
+              </div>
+            </div>
+            <div
+              class="notification1 flex h-58pxr items-center border-t border-content px-20pxr py-4pxr"
+            >
+              <div class="items-center">
+                <span
+                  class="bg-gray-100 px-8pxr py-3pxr text-12pxr font-semibold"
+                  >공지</span
+                >
+                <button type="button" class="pl-20pxr text-16pxr font-semibold">
+                  금주의 베스트 후기 안내
+                </button>
+              </div>
+            </div>
+            <div
+              class="notification2 flex h-58pxr items-center border-t px-20pxr py-4pxr"
+            >
+              <div class="items-center">
+                <span
+                  class="bg-gray-100 px-8pxr py-3pxr text-12pxr font-semibold"
+                  >공지</span
+                >
+                <button type="button" class="pl-20pxr text-16pxr font-semibold">
+                  상품 후기 적립금 정책 안내
+                </button>
+              </div>
+            </div>
+            <div class="review-text flex border-b border-t px-20pxr py-20pxr">
+              <div class="flex pr-82pxr">
+                <span
+                  class="mr-8pxr h-18pxr rounded-sm bg-skybluemong px-8pxr pr-8pxr text-12pxr font-semibold text-white"
+                  >베스트</span
+                >
+                <span
+                  class="mr-8pxr h-18pxr rounded-sm border border-skybluemong px-8pxr text-12pxr font-semibold text-skybluemong"
+                  >퍼플</span
+                >
+                <span class="text-12pxr font-semibold">김*명</span>
+              </div>
+              <article>
+                <div class="pb-20pxr text-12pxr font-semibold text-gray-400">
+                  [너구리]도라에몽
+                </div>
+                <p class="pb-20pxr text-12pxr font-normal">
+                  너무 귀여워여~<br />맨날 안고 잘거예요!!
+                </p>
+                <p class="text-12pxr font-semibold text-gray-400">2024.01.15</p>
+              </article>
+            </div>
+            <div class="arrow mt-16pxr flex justify-center">
+              <div class="mr-16pxr h-56pxr w-56pxr">
+                <button type="button">
+                  <img
+                    src="/assets/detail/detail-arrow-l.svg"
+                    alt="전 단계로 이동"
+                  />
+                </button>
+              </div>
+              <div class="h-56pxr w-56pxr">
+                <button type="button">
+                  <img
+                    src="/assets/detail/detail-arrow-r.svg"
+                    alt="다음 단계로 이동"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- 상품문의 -->
+          <div class="detail-inquiry mt-72pxr" id="detail-inquiry">
+            <div class="mb-56pxr flex w-full justify-between">
+              <div class="flex flex-col">
+                <h3 class="pb-24pxr text-28pxr font-normal">상품문의</h3>
+                <ul class="list-inside list-disc text-16pxr font-semibold">
+                  <li class="text-12pxr font-semibold text-gray-500">
+                    상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과
+                    다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.
+                  </li>
+                  <li class="text-12pxr font-semibold text-gray-500">
+                    배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은
+                    마이컬리 내 1:1 문의에 남겨주세요.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="h-44pxr w-155pxr rounded-sm bg-skybluemong text-16pxr font-semibold text-white"
+                >
+                  문의하기
+                </button>
+              </div>
+            </div>
+            <table class="mb-132pxr w-[1050px] border-t border-content">
+              <tr class="h-58pxr">
+                <th class="w-750pxr">제목</th>
+                <th class="w-100pxr">작성자</th>
+                <th class="w-100pxr">작성일</th>
+                <th class="w-100pxr">답변상태</th>
+              </tr>
+              <tbody>
+                <tr class="h-58pxr border-t border-content">
+                  <td class="px-20pxr">
+                    <div class="items-center">
+                      <span
+                        class="bg-gray-100 px-8pxr py-3pxr text-12pxr font-semibold"
+                        >공지</span
+                      >
+                      <button
+                        type="button"
+                        class="pl-20pxr text-16pxr font-semibold"
+                      >
+                        판매(일시)중단 제품 안내 (24.01.16 업데이트)
+                      </button>
+                    </div>
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    칼리
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    2024.01.15
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr class="h-58pxr border-t">
+                  <td class="px-20pxr">
+                    <div class="items-center">
+                      <button type="button" class="text-16pxr font-semibold">
+                        팩이 터져서 왔어요
+                      </button>
+                    </div>
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    이*현
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    2024.01.13
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    답변대기
+                  </td>
+                </tr>
+                <tr class="h-58pxr border-t">
+                  <td class="px-20pxr">
+                    <div class="flex items-center">
+                      <button
+                        type="button"
+                        class="mr-20pxr text-16pxr font-semibold text-gray-400"
+                      >
+                        비밀글입니다.
+                      </button>
+                      <img src="/assets/detail/Lock.svg" alt="비밀글" />
+                    </div>
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    여*윤
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    2024.01.12
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    답변대기
+                  </td>
+                </tr>
+                <tr class="h-58pxr border-b border-t">
+                  <td class="px-20pxr">
+                    <div class="flex items-center">
+                      <button
+                        type="button"
+                        class="mr-20pxr text-16pxr font-semibold text-gray-400"
+                      >
+                        비밀글입니다.
+                      </button>
+                      <img src="/assets/detail/Lock.svg" alt="비밀글" />
+                    </div>
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    최*은
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-gray-400"
+                  >
+                    2024.01.12
+                  </td>
+                  <td
+                    class="items-center text-center text-16pxr font-semibold text-skybluemong"
+                  >
+                    답변완료
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="arrow mb-96pxr flex justify-center">
+              <div class="mr-16pxr h-56pxr w-56pxr">
+                <button type="button">
+                  <img
+                    src="/assets/detail/detail-arrow-l.svg"
+                    alt="전 단계로 이동"
+                  />
+                </button>
+              </div>
+              <div class="h-56pxr w-56pxr">
+                <button type="button">
+                  <img
+                    src="/assets/detail/detail-arrow-r.svg"
+                    alt="다음 단계로 이동"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
           <div class="my-40pxr"></div>
         </div>
       </section>

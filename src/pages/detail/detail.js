@@ -140,21 +140,21 @@ detailList.forEach(
                         class="select-product-count mr-16pxr flex justify-between border border-gray-100 text-center font-semibold text-gray-500"
                       >
                         <button type="button" aria-label="수량내리기" disabled class="minus-button">
-                          <img src="/src/assets/detail-Minus.svg" alt="빼기" />
+                          <img src="/assets/detail/detail-Minus.svg" alt="빼기" />
                         </button>
                         <div class="count items-center text-16pxr">1</div>
                         <button type="button" aria-label="수량올리기" class="plus-button">
-                          <img src="/src/assets/detail-Plus.svg" alt="더하기" />
+                          <img src="/assets/detail/detail-Plus.svg" alt="더하기" />
                         </button>
                       </div>
                     </div>
                     <div
                       class="detail-select-count flex items-end whitespace-nowrap"
                     >
-                      <span class="discount-price text-right font-bold pr-5pxr text-14pxr text-black"> ${comma(
+                      <span class="discount-price text-right font-bold pr-8pxr text-14pxr text-black"> ${comma(
                         discountPrice
                       )}원 </span>
-                      <span class="cost-price line-through text-right text-sm text-gray-400">${comma(
+                      <span class="cost-price line-through text-right font-bold text-14pxr text-gray-400">${comma(
                         price
                       )}원</span>
                     </div>
@@ -166,7 +166,7 @@ detailList.forEach(
               class="detail-price border-t border-solid border-gray-100 px-4pxr py-28pxr text-right"
             >
               <div
-                class="flex items-end justify-end text-right text-16pxr font-semibold"
+                class="flex justify-end items-center text-right text-16pxr font-semibold"
               >
                 <span class="pr-17pxr font-semibold leading-5"
                   >총 상품금액:</span
@@ -176,12 +176,12 @@ detailList.forEach(
                 >
                 <span class="font-bold leading-8">원</span>
               </div>
-              <div class="pt-10pxr text-16pxr">
+              <div class="flex justify-end items-center pt-10pxr text-16pxr">
                 <span
                   class="gap-8pxr rounded-2xl bg-accent__yellow px-8pxr py-4pxr text-10pxr text-white"
                   >적립</span
                 >
-                <span class="text-16pxr font-semibold"
+                <span class="pl-6pxr text-16pxr font-semibold"
                   >로그인 후, 적립 혜택 제공</span
                 >
               </div>
@@ -191,13 +191,13 @@ detailList.forEach(
                 type="button"
                 class="like-button flex h-54pxr w-54pxr items-center justify-center rounded-sm border border-gray-100 p-4pxr"
               >
-                <img src="/src/assets/Heart.svg" alt="찜하기" class="w-36pxr" />
+                <img src="/assets/detail/Heart.svg" alt="찜하기" class="w-36pxr" />
               </button>
               <button
                 type="button"
                 class="bell-button flex h-54pxr w-54pxr items-center justify-center rounded-sm border border-gray-100 p-4pxr"
               >
-                <img src="/src/assets/Bell.svg" alt="재입고 알림" />
+                <img src="/assets/detail/Bell.svg" alt="재입고 알림" />
               </button>
               <button
                 type="button"
