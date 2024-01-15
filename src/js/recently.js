@@ -3,7 +3,8 @@ import 'swiper/css/bundle';
 import '/src/styles/product.css';
 import '/src/styles/tailwind.css';
 
-const productTest = document.querySelector('.product-list');
+const mainRecently1 = document.querySelector('.product-list');
+const mainRecently2 = document.querySelector('.kit-list');
 
 function recentData(e) {
   e.preventDefault();
@@ -50,7 +51,8 @@ export function recentItem() {
   });
 }
 
-productTest.addEventListener('click', recentData);
+mainRecently1.addEventListener('click', recentData);
+mainRecently2.addEventListener('click', recentData);
 
 recentItem();
 
