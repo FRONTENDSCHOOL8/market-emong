@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 import '/src/styles/tailwind.css';
-import { getPbImageURL, pb } from '/src/lib/';
+import { getPbImageURL, pb, comma } from '/src/lib/';
 
 /* -------------------------------------------------------------------------- */
 /*                                  toggle                                    */
@@ -24,19 +24,26 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
 /* -------------------------------------------------------------------------- */
 /*                            cart product list                               */
 /* -------------------------------------------------------------------------- */
-// 로그인 유저 정보 가져오기 test
-// const userData = await pb.collection('users').getOne('6kki52fp9i5fmjy');
-// const { id } = userData;
+// test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
+const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
+const { address } = userAddress;
+// test 상품 등록
+const totalPrice = await pb.collection('product').getOne('vyh8v8amkw50uy0');
+const { price, discount } = totalPrice;
 
 const cartListCharater = document.querySelector('.product-list-charater');
 const cartListTool = document.querySelector('.product-list-tool');
 
-// 캐릭터 템플릿
 const cartDataCharacter = await pb.collection('product').getFullList({
   filter: `category = "캐릭터"`,
   sort: '-created',
 });
+const cartDataTool = await pb.collection('product').getFullList({
+  filter: `category = "도구"`,
+  sort: '-created',
+});
 
+// 캐릭터 템플릿
 cartDataCharacter.forEach(
   ({ collectionId, id, photo, brand, name, discount, price }) => {
     const discountPrice = price - (price * discount) / 100;
@@ -49,7 +56,7 @@ cartDataCharacter.forEach(
           type="checkbox"
           id="product-select"
           name="product-select"
-          class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
+          class="product-checkbox h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
         </label>
       </li>
@@ -88,8 +95,12 @@ cartDataCharacter.forEach(
       </li>
       <li class="flex flex-col w-130pxr text-end">
         <!-- 상품금액 -->
-        <span class="discount-price text-right font-bold"> ${discountPrice}원 </span>
-        <span class="cost-price line-through text-right text-sm text-gray-400"> ${price}원 </span>
+        <span class="discount-price text-right font-bold"> ${comma(
+          discountPrice
+        )}원 </span>
+        <span class="cost-price line-through text-right text-sm text-gray-400"> ${comma(
+          price
+        )}원 </span>
       </li>
       <li>
         <!-- 삭제 -->
@@ -108,11 +119,6 @@ cartDataCharacter.forEach(
 );
 
 // 도구 템플릿
-const cartDataTool = await pb.collection('product').getFullList({
-  filter: `category = "도구"`,
-  sort: '-created',
-});
-
 cartDataTool.forEach(
   ({ collectionId, id, photo, brand, name, discount, price }) => {
     const discountPrice = price - (price * discount) / 100;
@@ -125,7 +131,7 @@ cartDataTool.forEach(
           type="checkbox"
           id="product-select"
           name="product-select"
-          class="h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
+          class=" product-checkbox h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
         />
         </label>
       </li>
@@ -164,8 +170,12 @@ cartDataTool.forEach(
       </li>
       <li class="flex flex-col w-130pxr text-end">
         <!-- 상품금액 -->
-        <span class="discount-price text-right font-bold"> ${discountPrice}원 </span>
-        <span class="cost-price line-through text-right text-sm text-gray-400"> ${price}원 </span>
+        <span class="discount-price text-right font-bold"> ${comma(
+          discountPrice
+        )}원 </span>
+        <span class="cost-price line-through text-right text-sm text-gray-400"> ${comma(
+          price
+        )}원 </span>
       </li>
       <li>
         <!-- 삭제 -->
@@ -276,32 +286,34 @@ function changeAmount(e) {
   const targetCountElement = targetProduct.querySelector('.count');
   const priceElement = targetProduct.querySelector('.discount-price');
   const costPriceElement = targetProduct.querySelector('.cost-price');
-  let currentCount = parseInt(targetCountElement.textContent);
-  let discountPrice = parseInt(targetProduct.dataset.discountPrice);
-  let costPrice = parseInt(targetProduct.dataset.costPrice);
 
+  let currentCount = parseInt(targetCountElement.textContent); // 수량
+  let discountPrice = parseInt(
+    targetProduct.dataset.discountPrice?.replace(/,/g, '')
+  ); // 할인금액
+  let costPrice = parseInt(targetProduct.dataset.costPrice?.replace(/,/g, '')); // 원래금액
+
+  // 상품 금액
   if (!discountPrice) {
-    discountPrice = parseInt(priceElement.textContent);
+    discountPrice = parseInt(priceElement.textContent.replace(/,/g, ''));
     targetProduct.dataset.discountPrice = discountPrice;
   }
 
   if (!costPrice) {
-    costPrice = parseInt(costPriceElement.textContent);
+    costPrice = parseInt(costPriceElement.textContent.replace(/,/g, ''));
     targetProduct.dataset.costPrice = costPrice;
   }
 
+  // 상품 수량
   if (!isPlusButton && currentCount > 1) {
     currentCount -= 1;
   } else if (isPlusButton) {
     currentCount += 1;
   }
-
-  const currentDiscountPrice = discountPrice * currentCount;
-  const currentCostPrice = costPrice * currentCount;
-
   targetCountElement.textContent = currentCount;
-  priceElement.textContent = `${currentDiscountPrice}원`;
-  costPriceElement.textContent = `${currentCostPrice}원`;
+
+  priceElement.innerText = `${comma(discountPrice * currentCount)}원`;
+  costPriceElement.innerText = `${comma(costPrice * currentCount)}원`;
 
   const minusButton = targetProduct.querySelector('.minus-button');
   minusButton.disabled = currentCount === 1;
@@ -320,16 +332,15 @@ plusButtons.forEach((plusButton) => {
 /* -------------------------------------------------------------------------- */
 const cartList = document.querySelector('.cart-side');
 
-// test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
-const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
-const { address } = userAddress;
-
-function updateTemplate() {
+// test 하나의 상품 입력 상태
+function priceTemplate() {
+  const discountPrice = price - (price * discount) / 100;
   const template = /* html */ `
 
     <div class="m-auto border p-5 ">
       <div class="flex items-center pb-3">
-        <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" />
+        <!-- <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" /> -->
+        <span class="h-7 w-7 bg-location-icon bg-no-repeat bg-center bg-cover"></span>
         <span>배송지</span>
       </div>
       <div class="pb-6">
@@ -349,11 +360,11 @@ function updateTemplate() {
       <!-- 선택 상품 금액, 금액 합 랜더링 -->
       <div class="flex justify-between pb-4">
         <span>상품금액</span>
-        <span>원</span>
+        <span>${comma(price)}원</span>
       </div>
       <div class="flex justify-between pb-4">
         <span>상품할인금액</span>
-        <span>원</span>
+        <span> -${comma(discount)}원</span>
       </div>
       <div class="flex justify-between items-center pb-4">
         <span>배송비</span>
@@ -363,7 +374,7 @@ function updateTemplate() {
       <div class="flex justify-between border-t-2 py-4">
         <span>결제예정금액</span>
         <span>
-          <strong><!-- 상품금액+배송비 합 --></strong>
+          <strong>${comma(discountPrice)}</strong>
           <span>원</span>
         </span>
       </div>
@@ -377,4 +388,4 @@ function updateTemplate() {
   `;
   cartList.insertAdjacentHTML('afterbegin', template);
 }
-updateTemplate();
+priceTemplate();
