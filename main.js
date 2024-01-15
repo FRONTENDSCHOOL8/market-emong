@@ -22,7 +22,7 @@ const kitList = await pb.collection('product').getFullList({
 
 // querySelect
 
-const advertisingImg = document.querySelector('.swiper-wrapper');
+const advertisingImg = document.querySelector('.advertising-wrapper');
 const dialog = document.querySelector('#dialog');
 const todayBtn = document.querySelector('.todayButton');
 const closeBtn = document.querySelector('.closeButton');
@@ -249,5 +249,3 @@ const kitSwiper = new Swiper('.swiper-kit', {
     prevEl: '.kit-prev',
   },
 });
-
-// 최근 본 상품

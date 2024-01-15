@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/js/include.js"></script>
+    <script type="module" src="/src/js/recently.js"></script>
     <script type="module" src="/main.js"></script>
   </head>
 
@@ -28,91 +29,113 @@
     </div>
 
     <!-- 최근본 상품 -->
-    <div class="recently-swiper sticky top-200pxr"></div>
-
-    <!-- 유튜브 광고 마크업 -->
-    <div class="mt-40pxr flex justify-center">
-      <iframe
-        width="1050"
-        height="510"
-        src="https://www.youtube.com/embed/WupJjDfNyZg?si=XWpttiOgRv7Oat6-"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+    <div
+      class="recently-swiper recs:hidden sticky top-40pxr z-50 float-right max-h-223pxr w-78pxr -translate-x-40pxr translate-y-100pxr flex-col overflow-hidden border-2 border-gray-200 bg-white px-6pxr py-24pxr text-center default:hidden"
+    >
+      <span class="my-8pxr block text-12pxr font-[600]">최근 본 상품</span>
+      <div class="swiper recently-container">
+        <ul class="swiper-wrapper recently-wrapper h-130pxr"></ul>
+      </div>
+      <div
+        class="swiper-button-prev recently-prev bg-current-bottom lock absolute h-18pxr w-18pxr translate-x-17pxr translate-y-110pxr bg-no-repeat after:hidden"
+      ></div>
+      <div
+        class="swiper-button-next recently-next bg-current-top h-18pxr w-18pxr -translate-x-20pxr -translate-y-80pxr bg-no-repeat after:hidden"
+      ></div>
     </div>
 
-    <!-- 이 상품 어때요? 컨테이너 -->
-    <div class="product-container w-full py-40pxr">
-      <div class="product-inner m-auto flex w-[1050px] flex-col">
-        <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
-          이 상품 어때요?
-        </h2>
-        <button
-          class="swiper-button-prev product-prev relative -left-25pxr top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
-        ></button>
-        <button
-          class="swiper-button-next product-next relative left-[1025px] top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
-        ></button>
-        <div class="swiper swiper-product">
-          <ul
-            class="product-list swiper-wrapper inline-flex justify-between"
-          ></ul>
+    <main class="mx-auto w-[1050px]">
+      <!-- 유튜브 광고 마크업 -->
+      <div
+        class="advertising-youtube mx-auto my-40pxr flex h-510pxr w-[1050px]"
+      >
+        <iframe
+          width="1050"
+          height="510"
+          src="https://www.youtube.com/embed/WupJjDfNyZg?si=XWpttiOgRv7Oat6-"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- 이 상품 어때요? 컨테이너 -->
+      <div class="product-container w-full py-40pxr">
+        <div class="product-inner m-auto flex w-[1050px] flex-col">
+          <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
+            이 상품 어때요?
+          </h2>
+          <button
+            class="swiper-button-prev product-prev relative -left-25pxr top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+          ></button>
+          <button
+            class="swiper-button-next product-next relative left-[1025px] top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+          ></button>
+          <div class="swiper swiper-product">
+            <ul
+              class="product-list swiper-wrapper inline-flex justify-between"
+            ></ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 팝업창 마크업 -->
-    <dialog id="dialog" class="max-h-672pxr min-h-300pxr rounded-[16px]">
-      <a href="/">
-        <img src="/src/assets/popup.png" alt="도라에몽 비밀도구박물관 극장판" />
-      </a>
-      <form
-        method="dialog"
-        class="flex h-86pxr text-16pxr font-normal leading-25pxr text-gray-700"
-      >
-        <button
-          type="button"
-          value="cancel"
-          class="todayButton w-220pxr border-r border-gray-100"
-        >
-          오늘 하루 안보기
-        </button>
-        <button type="button" value="confirm" class="closeButton w-220pxr">
-          닫기
-        </button>
-      </form>
-    </dialog>
-
-    <!-- banner -->
-    <div class="banner-container my-40pxr w-full">
-      <div class="banner-wrapper m-auto w-[1050px]">
-        <a href="/" class="py-40pxr">
+      <!-- 팝업창 마크업 -->
+      <dialog id="dialog" class="max-h-672pxr min-h-300pxr rounded-[16px]">
+        <a href="/">
           <img
-            src="/src/assets/banner-photo1.jpg"
-            alt="12월 최대 70프로 할인 광고"
+            src="/src/assets/popup.png"
+            alt="도라에몽 비밀도구박물관 극장판"
           />
         </a>
-      </div>
-    </div>
+        <form
+          method="dialog"
+          class="flex h-86pxr text-16pxr font-normal leading-25pxr text-gray-700"
+        >
+          <button
+            type="button"
+            value="cancel"
+            class="todayButton w-220pxr border-r border-gray-100"
+          >
+            오늘 하루 안보기
+          </button>
+          <button type="button" value="confirm" class="closeButton w-220pxr">
+            닫기
+          </button>
+        </form>
+      </dialog>
 
-    <!-- 도구를 다 보여주는 회전 목마 -->
-    <div class="product-container w-full py-40pxr">
-      <div class="product-inner m-auto flex w-[1050px] flex-col">
-        <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
-          이 도구 어때요?
-        </h2>
-        <button
-          class="swiper-button-prev kit-prev rotate-18 relative -left-25pxr top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
-        ></button>
-        <button
-          class="swiper-button-next kit-next relative left-[1025px] top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
-        ></button>
-        <div class="swiper swiper-kit">
-          <ul class="kit-list swiper-wrapper inline-flex justify-between"></ul>
+      <!-- banner -->
+      <div class="banner-container my-40pxr w-full">
+        <div class="banner-wrapper m-auto w-[1050px]">
+          <a href="/" class="py-40pxr">
+            <img
+              src="/src/assets/banner-photo1.jpg"
+              alt="12월 최대 70프로 할인 광고"
+            />
+          </a>
         </div>
       </div>
-    </div>
+
+      <!-- 도구를 다 보여주는 회전 목마 -->
+      <div class="product-container w-full py-40pxr">
+        <div class="product-inner m-auto flex w-[1050px] flex-col">
+          <h2 class="mb-28pxr inline-block text-center text-28pxr text-content">
+            이 도구 어때요?
+          </h2>
+          <button
+            class="swiper-button-prev kit-prev rotate-18 relative -left-25pxr top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+          ></button>
+          <button
+            class="swiper-button-next kit-next relative left-[1025px] top-198pxr -mt-50pxr h-50pxr w-50pxr rounded-[25px] bg-center bg-no-repeat text-0pxr leading-0pxr"
+          ></button>
+          <div class="swiper swiper-kit">
+            <ul
+              class="kit-list swiper-wrapper inline-flex justify-between"
+            ></ul>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <footer id="footer"></footer>
   </body>
