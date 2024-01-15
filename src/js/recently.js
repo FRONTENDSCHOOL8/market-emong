@@ -1,11 +1,12 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-import '/src/styles/tailwind.css';
 import '/src/styles/product.css';
+import '/src/styles/tailwind.css';
 
-const productTest = document.querySelector('.product-list');
+const mainRecently1 = document.querySelector('.product-list');
+const mainRecently2 = document.querySelector('.kit-list');
 
-function test(e) {
+function recentData(e) {
   e.preventDefault();
   const product1 = e.target.closest('.product-info');
   if (!product1) return;
@@ -22,13 +23,13 @@ function test(e) {
   location.href = url;
 }
 
-export function test2() {
+export function recentItem() {
   const saveItem = JSON.parse(localStorage.getItem('currentItem'));
   if (!saveItem) return;
   const recently = document.querySelector('.recently-wrapper');
-  recently.style.display = 'block';
-  recently.classList.remove('hidden');
-  // console.log(recently);
+  // recently.style.display = 'block';
+  // recently.classList.remove('hidden');
+  console.log(recently);
   if (!recently) return;
   saveItem.forEach((item) => {
     // console.log(item, item.thumbnailSrc);
@@ -50,9 +51,12 @@ export function test2() {
   });
 }
 
-productTest.addEventListener('click', test);
+mainRecently1.addEventListener('click', recentData);
+if (mainRecently2) {
+  mainRecently2.addEventListener('click', recentData);
+}
 
-test2();
+recentItem();
 
 // 최근본 상품 swiper
 const recentSwiper = new Swiper('.recently-container', {
