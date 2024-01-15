@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 import '/src/styles/tailwind.css';
-import { getPbImageURL, pb, comma } from '/src/lib/';
+import { getPbImageURL, pb, comma, beforeComma } from '/src/lib/';
 
 /* -------------------------------------------------------------------------- */
 /*                                  toggle                                    */
@@ -24,106 +24,53 @@ document.querySelectorAll('.cart-toggle').forEach(function (toggle) {
 /* -------------------------------------------------------------------------- */
 /*                            cart product list                               */
 /* -------------------------------------------------------------------------- */
-// test 유저 등록 -> 로그인 후 로그인 유저 정보 랜더링
-const userAddress = await pb.collection('users').getOne('6kki52fp9i5fmjy');
-const { address } = userAddress;
-// test 상품 등록
-const totalPrice = await pb.collection('product').getOne('vyh8v8amkw50uy0');
-const { price, discount } = totalPrice;
+const currentUserData = JSON.parse(localStorage.getItem('userAuth'));
 
-const cartListCharater = document.querySelector('.product-list-charater');
+const userId = currentUserData.user.id;
+
+const userCarts = await pb.collection('cart').getFullList({
+  filter: `userId = "${userId}"`,
+});
+
+const cartData = [];
+
+userCarts.forEach((userCart) => {
+  cartData.push({
+    userId: userCart.userId,
+    productId: userCart.productId,
+    count: userCart.count,
+  });
+});
+
+console.log(cartData);
+
+const cartListCharacter = document.querySelector('.product-list-character');
 const cartListTool = document.querySelector('.product-list-tool');
+// const cartCharacter = document.querySelector('.category-character');
+// const cartTool = document.querySelector('.category-tool');
 
-const cartDataCharacter = await pb.collection('product').getFullList({
-  filter: `category = "캐릭터"`,
-  sort: '-created',
-});
-const cartDataTool = await pb.collection('product').getFullList({
-  filter: `category = "도구"`,
-  sort: '-created',
-});
+// 상품 목록 (상품 데이터)
+for await (const data of cartData) {
+  const productData = await pb.collection('product').getOne(data.productId);
 
-// 캐릭터 템플릿
-cartDataCharacter.forEach(
-  ({ collectionId, id, photo, brand, name, discount, price }) => {
-    const discountPrice = price - (price * discount) / 100;
+  createProductHTML(productData, userData);
+}
 
-    const template = /* html */ `
-    <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
-      <li>
-        <label for="product-select">
-        <input
-          type="checkbox"
-          id="product-select"
-          name="product-select"
-          class="product-checkbox h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
-        />
-        </label>
-      </li>
-      <li class="flex items-center gap-1">
-        <!-- 상품이미지 -->
-        <span>
-          <img
-            src="${getPbImageURL(collectionId, id, photo)}"
-            alt="${name}"
-            class="h-73pxr w-63pxr border border-gray-200 p-1"
-          />
-        </span>
-        <!-- 상품이름 -->
-        <span class="w-325pxr font-bold">
-          [${brand}]${name}
-        </span>
-      </li>
-      <!-- 상품갯수 추가, 감소 버튼 -->
-      <li
-        class="product-count flex justify-between w-90pxr h-30pxr items-center border border-gray-200"
-      >
-        <button
-          type="button"
-          class="minus-button h-7 w-7 bg-minus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
-          aria-label="수량감소"
-          disabled
-        >
-        </button>
-        <span class="count">1</span>
-        <button
-          type="button"
-          class="plus-button h-7 w-7 bg-plus-icon bg-cover bg-center bg-no-repeat hover:bg-slate-200"
-          aria-label="수량증가"
-        >
-        </button>
-      </li>
-      <li class="flex flex-col w-130pxr text-end">
-        <!-- 상품금액 -->
-        <span class="discount-price text-right font-bold"> ${comma(
-          discountPrice
-        )}원 </span>
-        <span class="cost-price line-through text-right text-sm text-gray-400"> ${comma(
-          price
-        )}원 </span>
-      </li>
-      <li>
-        <!-- 삭제 -->
-        <button
-          type="button"
-          class="delete-button h-8 w-7 bg-delete-icon bg-cover bg-center bg-no-repeat"
-          aria-label="상품삭제"
-        >
-        </button>
-      </li>
-    </ul>
-  `;
+function createProductHTML({
+  collectionId,
+  id,
+  category,
+  photo,
+  brand,
+  name,
+  discount,
+  price,
+}) {
+  // console.log(category);
+  const discountPrice = price - (price * discount) / 100;
 
-    cartListCharater.insertAdjacentHTML('afterbegin', template);
-  }
-);
-
-// 도구 템플릿
-cartDataTool.forEach(
-  ({ collectionId, id, photo, brand, name, discount, price }) => {
-    const discountPrice = price - (price * discount) / 100;
-
-    const template = /* html */ `
+  // 장바구니 상품 목록
+  const cartTemplate = /* html */ `
     <ul class="product flex items-center justify-around py-3 border-b border-gray-200">
       <li>
         <label for="product-select">
@@ -132,7 +79,8 @@ cartDataTool.forEach(
           id="product-select"
           name="product-select"
           class=" product-checkbox h-5 w-5 appearance-none bg-unchecked-icon bg-cover bg-center bg-no-repeat checked:bg-checked-icon"
-        />
+          checked
+          />
         </label>
       </li>
       <li class="flex items-center gap-1">
@@ -189,16 +137,23 @@ cartDataTool.forEach(
     </ul>
   `;
 
-    cartListTool.insertAdjacentHTML('afterbegin', template);
+  if (category === '캐릭터') {
+    // cartCharacter.classList.remove('hidden');
+    // cartCharacter.classList.add('block');
+    cartListCharacter.insertAdjacentHTML('afterbegin', cartTemplate);
+  } else if (category === '도구') {
+    // cartTool.classList.remove('hidden');
+    // cartTool.classList.add('block');
+    cartListTool.insertAdjacentHTML('afterbegin', cartTemplate);
   }
-);
+}
 
 // 상품 삭제 (임시)
-cartListCharater.addEventListener('click', function (event) {
+cartListCharacter.addEventListener('click', function (event) {
   if (event.target.classList.contains('delete-button')) {
     const product = event.target.closest('.product');
     if (product) {
-      cartListCharater.removeChild(product);
+      cartListCharacter.removeChild(product);
     }
   }
 });
@@ -330,11 +285,24 @@ plusButtons.forEach((plusButton) => {
 /* -------------------------------------------------------------------------- */
 /*                                cart-side                                   */
 /* -------------------------------------------------------------------------- */
+
+// 수정 필요!
+const userPrice = await pb.collection('cart').getFullList({});
+
+const { address, price, discount } = userPrice;
+
 const cartList = document.querySelector('.cart-side');
 
-// test 하나의 상품 입력 상태
-function priceTemplate() {
+function userData() {
   const discountPrice = price - (price * discount) / 100;
+
+  const allPrice = document.querySelectorAll('.discount-price');
+
+  let result = 0;
+  allPrice.forEach((price) => {
+    result + beforeComma(price.innerText);
+  });
+
   const template = /* html */ `
 
     <div class="m-auto border p-5 ">
@@ -364,7 +332,7 @@ function priceTemplate() {
       </div>
       <div class="flex justify-between pb-4">
         <span>상품할인금액</span>
-        <span> -${comma(discount)}원</span>
+        <span> -${comma(allPrice)}원</span>
       </div>
       <div class="flex justify-between items-center pb-4">
         <span>배송비</span>
@@ -388,4 +356,4 @@ function priceTemplate() {
   `;
   cartList.insertAdjacentHTML('afterbegin', template);
 }
-priceTemplate();
+userData();
