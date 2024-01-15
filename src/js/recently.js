@@ -1,11 +1,11 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-import '/src/styles/tailwind.css';
 import '/src/styles/product.css';
+import '/src/styles/tailwind.css';
 
 const productTest = document.querySelector('.product-list');
 
-function test(e) {
+function recentData(e) {
   e.preventDefault();
   const product1 = e.target.closest('.product-info');
   if (!product1) return;
@@ -22,16 +22,16 @@ function test(e) {
   location.href = url;
 }
 
-export function test2() {
+export function recentItem() {
   const saveItem = JSON.parse(localStorage.getItem('currentItem'));
-  if (!saveItem) return;
+  // if (!saveItem) return;
   const recently = document.querySelector('.recently-wrapper');
-  recently.style.display = 'block';
-  recently.classList.remove('hidden');
-  // console.log(recently);
+  // recently.style.display = 'block';
+  // recently.classList.remove('hidden');
+  console.log(recently);
   if (!recently) return;
   saveItem.forEach((item) => {
-    // console.log(item, item.thumbnailSrc);
+    console.log(item, item.thumbnailSrc);
     const template = /* html */ `
       <li class="swiper-slide recently-slide">
         <a href="${item.url}" class="flex justify-center">
@@ -50,9 +50,9 @@ export function test2() {
   });
 }
 
-productTest.addEventListener('click', test);
+productTest.addEventListener('click', recentData);
 
-test2();
+recentItem();
 
 // 최근본 상품 swiper
 const recentSwiper = new Swiper('.recently-container', {
