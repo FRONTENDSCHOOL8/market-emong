@@ -49,6 +49,7 @@ module.exports = {
         mobile: '360px',
         tablet: '768px',
         desktop: '1280px',
+        recs: { max: '1300px' },
       },
       content: {
         arrow: 'url("/src/assets/signUp-arrow.svg")',

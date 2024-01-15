@@ -19,18 +19,23 @@ function test(e) {
   data.push({ url, thumbnailSrc, thumbnailAlt });
   // console.log(data);
   localStorage.setItem('currentItem', JSON.stringify(data));
+  location.href = url;
 }
 
-function test2() {
+export function test2() {
   const saveItem = JSON.parse(localStorage.getItem('currentItem'));
   if (!saveItem) return;
   const recently = document.querySelector('.recently-wrapper');
+  recently.style.display = 'block';
+  recently.classList.remove('hidden');
+  // console.log(recently);
+  if (!recently) return;
   saveItem.forEach((item) => {
     // console.log(item, item.thumbnailSrc);
     const template = /* html */ `
-      <li class="swiper-slide">
+      <li class="swiper-slide recently-slide">
         <a href="${item.url}" class="flex justify-center">
-          <div class="">
+          <div class="recently-img">
             <img
             src="${item.thumbnailSrc}"
             alt="${item.thumbnailAlt}"
