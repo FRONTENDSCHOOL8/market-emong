@@ -1,17 +1,9 @@
+import { pb } from '/src/lib/';
+
 // top banner
 document.querySelector('.banner-close').addEventListener('click', () => {
   const topBanner = document.querySelector('.header-topbanner');
   topBanner.style.display = 'none';
-  localStorage.setItem('bannerClosed', 'true');
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  const topBanner = document.querySelector('.header-topbanner');
-  const bannerClosed = localStorage.getItem('bannerClosed');
-
-  if (bannerClosed === 'true') {
-    topBanner.style.display = 'none';
-  }
 });
 
 // 헤더 scroll
