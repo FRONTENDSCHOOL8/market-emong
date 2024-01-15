@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 import '/src/styles/tailwind.css';
-import { getPbImageURL, pb, comma, beforeComma } from '/src/lib/';
+import { getPbImageURL, pb, comma } from '/src/lib/';
 
 /* -------------------------------------------------------------------------- */
 /*                                  toggle                                    */
@@ -53,7 +53,7 @@ const cartListTool = document.querySelector('.product-list-tool');
 for await (const data of cartData) {
   const productData = await pb.collection('product').getOne(data.productId);
 
-  createProductHTML(productData, userData);
+  createProductHTML(productData);
 }
 
 function createProductHTML({
@@ -287,73 +287,73 @@ plusButtons.forEach((plusButton) => {
 /* -------------------------------------------------------------------------- */
 
 // 수정 필요!
-const userPrice = await pb.collection('cart').getFullList({});
+// const userPrice = await pb.collection('cart').getFullList({});
 
-const { address, price, discount } = userPrice;
+// const { address, price, discount } = userPrice;
 
-const cartList = document.querySelector('.cart-side');
+// const cartList = document.querySelector('.cart-side');
 
-function userData() {
-  const discountPrice = price - (price * discount) / 100;
+// function userData() {
+//   const discountPrice = price - (price * discount) / 100;
 
-  const allPrice = document.querySelectorAll('.discount-price');
+//   const allPrice = document.querySelectorAll('.discount-price');
 
-  let result = 0;
-  allPrice.forEach((price) => {
-    result + beforeComma(price.innerText);
-  });
+//   let result = 0;
+//   allPrice.forEach((price) => {
+//     result + beforeComma(price.innerText);
+//   });
 
-  const template = /* html */ `
+//   const template = /* html */ `
 
-    <div class="m-auto border p-5 ">
-      <div class="flex items-center pb-3">
-        <!-- <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" /> -->
-        <span class="h-7 w-7 bg-location-icon bg-no-repeat bg-center bg-cover"></span>
-        <span>배송지</span>
-      </div>
-      <div class="pb-6">
-        <!-- 로그인 유저 주소 데이터 랜더링 -->
-        <h3>${address}</h3>
-        <span class="text-bluemong text-xs font-bold">미래배송</span>
-      </div>
-      <button
-        type="button"
-        class="w-full font-bold rounded-lg border-2 border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
-      >
-        배송지 변경
-      </button>
-    </div>
+//     <div class="m-auto border p-5 ">
+//       <div class="flex items-center pb-3">
+//         <!-- <img src="/src/assets/cartPage/ic-location.svg" alt="배송지" /> -->
+//         <span class="h-7 w-7 bg-location-icon bg-no-repeat bg-center bg-cover"></span>
+//         <span>배송지</span>
+//       </div>
+//       <div class="pb-6">
+//         <!-- 로그인 유저 주소 데이터 랜더링 -->
+//         <h3>${address}</h3>
+//         <span class="text-bluemong text-xs font-bold">미래배송</span>
+//       </div>
+//       <button
+//         type="button"
+//         class="w-full font-bold rounded-lg border-2 border-skybluemong py-2 text-bluemong transition-all hover:bg-skybluemong hover:text-white"
+//       >
+//         배송지 변경
+//       </button>
+//     </div>
 
-    <div class="bg-gray-50 p-5">
-      <!-- 선택 상품 금액, 금액 합 랜더링 -->
-      <div class="flex justify-between pb-4">
-        <span>상품금액</span>
-        <span>${comma(price)}원</span>
-      </div>
-      <div class="flex justify-between pb-4">
-        <span>상품할인금액</span>
-        <span> -${comma(allPrice)}원</span>
-      </div>
-      <div class="flex justify-between items-center pb-4">
-        <span>배송비</span>
-        <span class="text-bluemong text-sm">마켓에몽은 <strong>365일</strong> 언제나 무료배송!</span>
-      </div>
-      <!-- 금액의 총 합 -->
-      <div class="flex justify-between border-t-2 py-4">
-        <span>결제예정금액</span>
-        <span>
-          <strong>${comma(discountPrice)}</strong>
-          <span>원</span>
-        </span>
-      </div>
-      <div class="flex justify-end gap-1 text-xs">
-        <span class="rounded-sm bg-orange-600 px-1 text-white"
-          >적립</span
-        >
-        <span>로그인 후 회원 등급에 따라 적립</span>
-      </div>
-    </div>
-  `;
-  cartList.insertAdjacentHTML('afterbegin', template);
-}
-userData();
+//     <div class="bg-gray-50 p-5">
+//       <!-- 선택 상품 금액, 금액 합 랜더링 -->
+//       <div class="flex justify-between pb-4">
+//         <span>상품금액</span>
+//         <span>${comma(price)}원</span>
+//       </div>
+//       <div class="flex justify-between pb-4">
+//         <span>상품할인금액</span>
+//         <span> -${comma(allPrice)}원</span>
+//       </div>
+//       <div class="flex justify-between items-center pb-4">
+//         <span>배송비</span>
+//         <span class="text-bluemong text-sm">마켓에몽은 <strong>365일</strong> 언제나 무료배송!</span>
+//       </div>
+//       <!-- 금액의 총 합 -->
+//       <div class="flex justify-between border-t-2 py-4">
+//         <span>결제예정금액</span>
+//         <span>
+//           <strong>${comma(discountPrice)}</strong>
+//           <span>원</span>
+//         </span>
+//       </div>
+//       <div class="flex justify-end gap-1 text-xs">
+//         <span class="rounded-sm bg-orange-600 px-1 text-white"
+//           >적립</span
+//         >
+//         <span>로그인 후 회원 등급에 따라 적립</span>
+//       </div>
+//     </div>
+//   `;
+//   cartList.insertAdjacentHTML('afterbegin', template);
+// }
+// userData();
