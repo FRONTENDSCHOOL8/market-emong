@@ -23,10 +23,3 @@ fetch('/src/components/footer.html')
 //     recently.innerHTML = data;
 //     return import('/src/js/recently.js');
 //   });
-// fetch('/src/components/recently.html')
-//   .then((res) => res.text())
-//   .then((data) => {
-//     const recentlySwiper = document.querySelector('.recently-swiper');
-//     recentlySwiper.innerHTML = data;
-//     return import('/src/js/recently.js');
-//   });
