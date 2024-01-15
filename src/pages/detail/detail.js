@@ -1,12 +1,19 @@
 import '/src/styles/tailwind.css';
-import { getPbImageURL, pb } from '/src/lib/';
+import { getPbImageURL, pb, comma } from '/src/lib/';
 
-/* 디테일 페이지 타이틀 */
+/* -------------------------------------------------------------------------- */
+/*                            디테일 페이지 타이틀                               */
+/* -------------------------------------------------------------------------- */
+
 function setDocumentTitle(title) {
   document.title = title;
 }
 
 setDocumentTitle('마켓에몽 - 디테일');
+
+/* -------------------------------------------------------------------------- */
+/*                                   main                                     */
+/* -------------------------------------------------------------------------- */
 
 /* 상품 선택 후 장바구니 담기 */
 const hash = window.location.hash.slice(1);
@@ -28,7 +35,10 @@ detailList.forEach(
     brand,
     label,
     weight,
+    discount,
   }) => {
+    const discountPrice = price - (price * discount) / 100;
+
     const template = /*html*/ `
   <div class="flex h-480pxr items-center bg-gray-100 p-20pxr">
           <img
@@ -50,7 +60,7 @@ detailList.forEach(
                 </h2>
               </div>
               <div class="mb-16pxr">
-                <span class="text-28pxr font-semibold">${price}</span>
+                <span class="text-28pxr font-semibold">${comma(price)}</span>
                 <span class="mb-20pxr font-normal">원</span>
               </div>
               <p class="mb-20pxr font-semibold text-skybluemong">
@@ -114,7 +124,7 @@ detailList.forEach(
               </li>
             </ul>
           </div>
-          <div class="detail-product-select">
+          <div class="product detail-product-select">
             <div class="detail-select">
               <dl
                 class="flex border-t border-solid border-gray-100 px-4pxr py-16pxr text-12pxr font-semibold text-gray-500"
@@ -129,11 +139,11 @@ detailList.forEach(
                       <div
                         class="select-product-count mr-16pxr flex justify-between border border-gray-100 text-center font-semibold text-gray-500"
                       >
-                        <button type="button" aria-label="수량내리기">
+                        <button type="button" aria-label="수량내리기" disabled class="minus-button">
                           <img src="/src/assets/detail-Minus.svg" alt="빼기" />
                         </button>
-                        <div class="items-center text-16pxr">1</div>
-                        <button type="button" aria-label="수량올리기">
+                        <div class="count items-center text-16pxr">1</div>
+                        <button type="button" aria-label="수량올리기" class="plus-button">
                           <img src="/src/assets/detail-Plus.svg" alt="더하기" />
                         </button>
                       </div>
@@ -141,7 +151,12 @@ detailList.forEach(
                     <div
                       class="detail-select-count flex items-end whitespace-nowrap"
                     >
-                      <span class="text-black">${price}원</span>
+                      <span class="discount-price text-right font-bold pr-5pxr text-14pxr text-black"> ${comma(
+                        discountPrice
+                      )}원 </span>
+                      <span class="cost-price line-through text-right text-sm text-gray-400">${comma(
+                        price
+                      )}원</span>
                     </div>
                   </div>
                 </dd>
@@ -156,8 +171,8 @@ detailList.forEach(
                 <span class="pr-17pxr font-semibold leading-5"
                   >총 상품금액:</span
                 >
-                <span class="pr-4pxr text-28pxr font-semibold leading-9"
-                  >${price}</span
+                <span class="total-price pr-4pxr text-28pxr font-semibold leading-9"
+                  >${comma(discountPrice)}</span
                 >
                 <span class="font-bold leading-8">원</span>
               </div>
@@ -244,7 +259,7 @@ checkPoint.forEach(({ description, description2 }) => {
         </div>
         <div class="pt-68pxr">
           <span class="text-23pxr">내구성</span>
-          <p class="pt-22pxr text-16pxr">
+          <p class="pt-22pxr text-16pxr  text-indent: 5px">
             ${description2}
           </p>
         </div>
@@ -270,3 +285,124 @@ InfoPic.forEach(({ collectionId, id, photo_2 }) => {
 `;
   detailPic.insertAdjacentHTML('afterbegin', template);
 });
+
+/* -------------------------------------------------------------------------- */
+/*                               수량, 금액 변경                                */
+/* -------------------------------------------------------------------------- */
+
+// button, count
+const minusButton = document.querySelector('.minus-button');
+const plusButton = document.querySelector('.plus-button');
+const count = document.querySelector('.count');
+
+// 금액
+const discountPrice = document.querySelector('.discount-price');
+const costPrice = document.querySelector('.cost-price');
+const totalPrice = document.querySelector('.total-price');
+
+// 숫자 타입의 현재(costPrice) 금액과 할인(discountPrice) 금액
+const changePrice1 = Number(beforeComma(costPrice.innerText));
+const changePrice2 = Number(beforeComma(discountPrice.innerText));
+
+// minus button 클릭 시 수량 및 금액 감소
+minusButton.addEventListener('click', () => {
+  let currentCount = Number(count.innerText);
+  currentCount -= 1; // 1씩 감소
+  count.innerText = currentCount; // count에 속한 text만 수집
+
+  // 클릭 이벤트 시 상품 선택란의 금액과 총 상품 금액 표시(원 단위 추가)
+  costPrice.innerText = `${comma(changePrice1 * currentCount)}원`;
+  discountPrice.innerText = `${comma(changePrice2 * currentCount)}원`;
+  totalPrice.innerText = comma(changePrice2 * currentCount);
+
+  // 수량이 1이상 일 때 작동 시작
+  if (count.innerText <= 1) {
+    minusButton.disabled = true;
+  }
+});
+
+// plus button 클릭 시 수량 및 금액 증가
+plusButton.addEventListener('click', () => {
+  let currentCount = Number(count.innerText);
+  currentCount += 1; // 1씩 증가
+  count.innerText = currentCount;
+
+  // 클릭 이벤트 시 상품 선택란의 금액과 총 상품 금액 표시(원 단위 추가)
+  costPrice.innerText = `${comma(changePrice1 * currentCount)}원`;
+  discountPrice.innerText = `${comma(changePrice2 * currentCount)}원`;
+  totalPrice.innerText = comma(changePrice2 * currentCount);
+
+  // 수량이 1이하 일 때 작동 중지
+  if (count.innerText > 1) {
+    minusButton.disabled = false;
+  }
+});
+
+/* 상품 가격 업데이트 기능 */
+function updatePrice() {
+  // count 값을 숫자로 변환한 값
+  const currentCount = Number(count.innerText);
+  // costPrice와 discountPrice 요소에서 쉼표를 제거한 값
+  const currentCostPrice = beforeComma(costPrice.innerText);
+  const currentDiscountPrice = beforeComma(discountPrice.innerText);
+
+  // (할인금액 * 수량) 값을 comma를 추가하여 totalPrice에 저장
+  const currentTotalPrice = currentDiscountPrice * currentCount;
+  totalPrice.innerText = addCommas(currentTotalPrice);
+  // (할인금액 * 수량) 값을 comma를 추가하여 discountPrice에 저장
+  const updatedDiscountPrice = currentDiscountPrice * currentCount;
+  discountPrice.innerText = addCommas(updatedDiscountPrice);
+  // (할인 전 금액 * 수량) 값을 comma를 추가하여 costPrice에 저장
+  const updatedCostPrice = currentCostPrice * currentCount;
+  costPrice.innerText = addCommas(updatedCostPrice);
+}
+
+// 'comma', '원' 없애고 숫자만 수집하는 기능
+function beforeComma(text) {
+  const words = text.split(',');
+  let result = '';
+  for (let i = 0; i < words.length; i++) {
+    if (i === words.length - 1) {
+      words[i] = words[i].slice(0, -1);
+    }
+    result = result + words[i];
+  }
+
+  return Number(result);
+}
+
+// comma 추가 기능
+function addCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               장바구니 담기                                  */
+/* -------------------------------------------------------------------------- */
+
+const goCartButton = document.querySelector('.detail-cart-button');
+
+async function goCart(e) {
+  e.preventDefault();
+
+  // 로컬스토리지의 user 값
+  const currentUserData = JSON.parse(localStorage.getItem('userAuth'));
+
+  const userId = currentUserData.user.id;
+  const count = document.querySelector('.count');
+
+  const data = {
+    userId: userId,
+    productId: hash,
+    count: count.innerText,
+  };
+
+  const record = await pb.collection('cart').create(data);
+
+  alert('장바구니 담기 완료!');
+
+  // 버튼 클릭시 사이트 이동
+  location.href = '/src/pages/cart/';
+}
+
+goCartButton.addEventListener('click', goCart);

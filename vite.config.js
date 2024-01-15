@@ -12,6 +12,7 @@ export default defineConfig({
         footer: resolve(__dirname, 'src/components/footer.html'),
         login: resolve(__dirname, 'src/pages/login/index.html'),
         cart: resolve(__dirname, 'src/pages/cart/index.html'),
+        detail: resolve(__dirname, 'src/pages/detail/index.html'),
         productList: resolve(__dirname, 'src/pages/productList/index.html'),
         signUp: resolve(__dirname, 'src/pages/signUp/index.html'),
         detail: resolve(__dirname, 'src/pages/detail/index.html'),
