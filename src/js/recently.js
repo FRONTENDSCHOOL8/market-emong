@@ -6,20 +6,40 @@ import '/src/styles/tailwind.css';
 const mainRecently1 = document.querySelector('.product-list');
 const mainRecently2 = document.querySelector('.kit-list');
 
+/**
+ * TODO: 삼항연산자는 적극적으로 리팩토링하시길 권합니다.
+ * 알아보기 어려운 코드와 에러를 만드는 1등 공신입니다.
+ */
+const getCurrentItem = () => {
+  const data = localStorage.getItem('currentItem')
+
+  if (data) {
+      return JSON.parse(localStorage.getItem('currentItem'))
+  }
+
+  return [];
+}
+
+const setCurrentItem = (product1) => {
+  const url = product1.querySelector('.saveItem').href;
+  const thumbnailSrc = product1.querySelector('.product-img').src;
+  const thumbnailAlt = product1.querySelector('.product-img').alt;
+  const data = getCurrentItem();
+  data.push({ url, thumbnailSrc, thumbnailAlt });
+  localStorage.setItem('currentItem', JSON.stringify(data));
+}
+
 function recentData(e) {
   e.preventDefault();
   const product1 = e.target.closest('.product-info');
   if (!product1) return;
+  /**
+   * TODO: 작업 단위를 별개의 함수로 분리해 보세요.
+   * 약간의 중복 코드를 감수해야 하지만, 그만한 가치가 있습니다.
+   */
+  setCurrentItem(product1);
+  // TODO: 생산자와 소비자를 가까운 곳에 두어야 정신력 소모가 줄어듭니다.
   const url = product1.querySelector('.saveItem').href;
-  const thumbnailSrc = product1.querySelector('.product-img').src;
-  const thumbnailAlt = product1.querySelector('.product-img').alt;
-
-  const data = localStorage.getItem('currentItem')
-    ? JSON.parse(localStorage.getItem('currentItem'))
-    : [];
-  data.push({ url, thumbnailSrc, thumbnailAlt });
-  // console.log(data);
-  localStorage.setItem('currentItem', JSON.stringify(data));
   location.href = url;
 }
 

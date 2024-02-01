@@ -39,7 +39,10 @@ function userToggle(eventStyle) {
   userInfo.addEventListener(eventStyle, () => {
     if (eventStyle === 'mouseenter') {
       userInfoList.style.visibility = 'visible';
-    } else if (eventStyle === 'mouseleave') {
+      return;
+    }
+
+    if (eventStyle === 'mouseleave') {
       userInfoList.style.visibility = 'hidden';
     }
   });
