@@ -32,14 +32,16 @@ const userCarts = await pb.collection('cart').getFullList({
   filter: `userId = "${userId}"`,
 });
 
-const cartData = [];
-
-userCarts.forEach((userCart) => {
-  cartData.push({
+/**
+ * TODO: forEach 로 부수효과를 만들지 마시고 Array.prototype.map 사용을 고려해 보세요.
+ * @type {{productId: *, count: *, userId: *}[]}
+ */
+const cartData = userCarts.map((userCart) => {
+  return {
     userId: userCart.userId,
     productId: userCart.productId,
     count: userCart.count,
-  });
+  };
 });
 
 console.log(cartData);
@@ -170,6 +172,10 @@ cartListTool.addEventListener('click', function (event) {
 /* -------------------------------------------------------------------------- */
 /*                                   checkbox                                 */
 /* -------------------------------------------------------------------------- */
+/**
+ * TODO: form 의 onchange 이벤트 핸들러로 수정할 수 있을거에요.
+ * @type {NodeListOf<Element>}
+ */
 const selectAllCheckboxes = document.querySelectorAll(
   'input[id^="selected-all"]'
 );
@@ -286,15 +292,12 @@ plusButtons.forEach((plusButton) => {
 /*                                cart-side                                   */
 /* -------------------------------------------------------------------------- */
 
-// 수정 필요!
-const userPrice = await pb.collection('users').getOne('6kki52fp9i5fmjy');
-
-const { address, price, discount } = userPrice;
-
-const cartList = document.querySelector('.cart-side');
-
-function userData() {
+async function userData() {
+  // TODO: 변수 선언부와 사용처는 가까울수록 좋겠습니다.
+  const userPrice = await pb.collection('users').getOne('6kki52fp9i5fmjy');
+  const { address, price, discount } = userPrice;
   const discountPrice = price - (price * discount) / 100;
+  const cartList = document.querySelector('.cart-side');
 
   // const allPrice = document.querySelectorAll('.discount-price');
 

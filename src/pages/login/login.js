@@ -1,26 +1,28 @@
 import { pb } from '/src/lib';
 
-const idField = document.querySelector('input[name="idField"]');
-const pwField = document.querySelector('input[name="pwField"]');
 const loginBtn = document.querySelector('.loginBtn');
+const form = document.querySelector('#form');
 
 function verifyBtnDisable() {
-  if (idField.value.length > 0 && pwField.value.length > 0) {
-    loginBtn.disabled = false;
-  } else {
-    loginBtn.disabled = true;
-  }
+  const idField = document.querySelector('input[name="idField"]');
+  const pwField = document.querySelector('input[name="pwField"]');
+  // 표현식을 유의미한 이름을 가진 변수에 담아 보세요.
+  const isValid = idField.value.length > 0 && pwField.value.length > 0
+
+  // 코드를 자연어처럼 연출할 수 있게 됩니다.
+  loginBtn.disabled = !isValid;
 }
 
 async function clickLoginBtn(e) {
   e.preventDefault();
-  const idValue = idField.value;
-  const pwValue = pwField.value;
+  // TODO: 거의 다 왔습니다! 폼 안에서 값을 가져와 보세요!
+  const formData = new FormData(e.currentTarget);
+  const { idField, pwField } = Object.fromEntries(formData.entries());
 
   try {
     const userData = await pb
       .collection('users')
-      .authWithPassword(idValue, pwValue);
+      .authWithPassword(idField, pwField);
 
     const data = await localStorage.getItem('pocketbase_auth');
 
@@ -42,6 +44,8 @@ async function clickLoginBtn(e) {
   }
 }
 
+const idField = document.querySelector('input[name="idField"]');
+const pwField = document.querySelector('input[name="pwField"]');
 idField.addEventListener('input', verifyBtnDisable);
 pwField.addEventListener('input', verifyBtnDisable);
-loginBtn.addEventListener('click', clickLoginBtn);
+form.addEventListener('submit', clickLoginBtn);
